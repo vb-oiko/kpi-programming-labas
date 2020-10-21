@@ -24,6 +24,16 @@ module.exports = {
           },
         ],
       },
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        loader: "file-loader",
+        options: {
+          name(resourcePath, resourceQuery) {
+            return "[folder]-[name].[ext]";
+          },
+          outputPath: "images",
+        },
+      },
     ],
   },
   output: {
