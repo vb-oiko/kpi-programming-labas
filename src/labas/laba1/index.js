@@ -12,6 +12,7 @@ export default {
     textEl.innerHTML = text;
 
     const codeEl = document.getElementById("code");
-    codeEl.innerHTML = `<pre>${code}</pre>`;
+    const escapedCode = code.replace(/\</g, "&lt;").replace(/\>/g, "&gt;");
+    codeEl.innerHTML = `<pre>${escapedCode}</pre>`;
   },
 };
