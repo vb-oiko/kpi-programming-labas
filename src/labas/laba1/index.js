@@ -1,6 +1,6 @@
 import chart from "./flowchart.flow";
 import text from "./text.md";
-import code from "./code.c";
+import code from "./laba1.c";
 import "./formula.png";
 
 export default {
