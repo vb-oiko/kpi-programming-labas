@@ -2,7 +2,7 @@ body {
   margin: 2rem;
 }
 
-#diagram,
+.flowchart,
 h2,
 h3 {
   text-align: center;
