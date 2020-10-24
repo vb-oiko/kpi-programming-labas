@@ -1,13 +1,8 @@
 st=>start: Початок
 e=>end: Кінець
-op1=>operation: My Operation|past:$myFunction
-op2=>operation: Stuff|current
-sub1=>subroutine: My Subroutine|invalid
-cond=>condition: Yes
-or No?|approved:>http://www.google.com
-c2=>condition: Good idea|rejected
-io=>inputoutput: catch something...|request
-para=>parallel: parallel tasks
+op1=>operation: a := (3 + exp(y - 1)) / ((1 + x^2) * abs(y - tan(z)))
+op2=>operation: b := 1 + abs(y - x) + (y - x)^2 / 2 + (abs(y - x))^2 / 3
+i=>inputoutput: Введення вихідних даних: x, y, z
+o=>inputoutput: Виведення результатів: a, b
 
-st->e
-
+st->i->op1->op2->o->e
