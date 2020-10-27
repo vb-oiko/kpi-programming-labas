@@ -1,9 +1,13 @@
 const path = require("path");
+const fs = require("fs");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
-let htmlPageNames = ["laba1", "laba2"];
+const docsPath = path.resolve(__dirname, "src/docs/");
+const htmlPageNames = fs
+  .readdirSync(docsPath)
+  .filter((filename) => fs.statSync(`${docsPath}/${filename}`).isDirectory());
 
-let multipleHtmlPlugins = htmlPageNames.map((name) => {
+const multipleHtmlPlugins = htmlPageNames.map((name) => {
   return new HtmlWebpackPlugin({
     template: `./src/core/template.html`, // relative path to the HTML files
     filename: `${name}.html`, // output HTML files
@@ -19,8 +23,8 @@ module.exports = {
   },
   entry: {
     main: "./src/index.js",
-    laba1: "./src/labas/laba1/index.js",
-    laba2: "./src/labas/laba2/index.js",
+    laba1: "./src/docs/laba1/index.js",
+    laba2: "./src/docs/laba2/index.js",
   },
   module: {
     rules: [
