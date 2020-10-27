@@ -16,17 +16,23 @@ const multipleHtmlPlugins = htmlPageNames.map((name) => {
   });
 });
 
+const entry = htmlPageNames.reduce(
+  (acc, page) => ({
+    ...acc,
+    [page]: `./src/docs/${page}/index.js`,
+  }),
+  {
+    main: "./src/index.js",
+  }
+);
+
 module.exports = {
   resolve: {
     alias: {
       ["@"]: path.resolve(__dirname, "src/"),
     },
   },
-  entry: {
-    main: "./src/index.js",
-    laba1: "./src/docs/laba1/index.js",
-    laba2: "./src/docs/laba2/index.js",
-  },
+  entry,
   module: {
     rules: [
       { test: /\.css$/, use: ["style-loader", "css-loader"] },
