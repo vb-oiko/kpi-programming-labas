@@ -1,8 +1,28 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
+let htmlPageNames = ["laba1", "laba2"];
+
+let multipleHtmlPlugins = htmlPageNames.map((name) => {
+  return new HtmlWebpackPlugin({
+    template: `./src/labas/${name}/${name}.html`, // relative path to the HTML files
+    filename: `${name}.html`, // output HTML files
+    chunks: [`${name}`], // respective JS files
+  });
+});
+
 module.exports = {
-  entry: "./src/index.js",
+  resolve: {
+    alias: {
+      ["@"]: path.resolve(__dirname, "src/"),
+    },
+  },
+  entry: {
+    main: "./src/index.js",
+    laba1: "./src/labas/laba1/index.js",
+    laba2: "./src/labas/laba2/index.js",
+    //... repeat until example 4
+  },
   module: {
     rules: [
       { test: /\.css$/, use: ["style-loader", "css-loader"] },
@@ -38,15 +58,11 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "index_bundle.js",
   },
   plugins: [
     new HtmlWebpackPlugin({
-      filename: "laba1.html",
-      template: "./src/labas/laba1/laba1.html",
-    }),
-    new HtmlWebpackPlugin({
       template: "./src/index.html",
+      chunks: ["main"],
     }),
-  ],
+  ].concat(multipleHtmlPlugins),
 };

@@ -1,5 +1,3 @@
-import "./style.css";
-
 const renderBlock = {
   app: document.getElementById("app"),
 
@@ -44,8 +42,6 @@ const renderBlock = {
   },
 };
 
-const render = (blocks) => {
+export const render = (blocks) => {
   blocks.forEach((block) => renderBlock.render(block));
 };
-
-// render(laba1.blocks);

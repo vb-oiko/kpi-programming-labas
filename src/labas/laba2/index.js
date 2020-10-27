@@ -4,7 +4,7 @@ import code from "./laba1.c";
 import "./formula.png";
 import { render } from "@/core";
 
-const laba1 = [
+const laba2 = [
   {
     title: "",
     type: "markdown",
@@ -22,4 +22,4 @@ const laba1 = [
   },
 ];
 
-render(laba1);
+render(laba2);
