@@ -1,5 +1,6 @@
 const path = require("path");
 const fs = require("fs");
+const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 const docsPath = path.resolve(__dirname, "src/docs/");
@@ -63,8 +64,11 @@ module.exports = {
     path: path.resolve(__dirname, "dist"),
   },
   plugins: [
+    new webpack.DefinePlugin({
+      PAGES: JSON.stringify(htmlPageNames),
+    }),
     new HtmlWebpackPlugin({
-      template: "./src/index.html",
+      template: "./src/core/index.html",
       chunks: ["main"],
     }),
   ].concat(multipleHtmlPlugins),
