@@ -1,16 +1,25 @@
 import chart from "./flowchart.flow";
 import text from "./text.md";
 import code from "./code.c";
+import { render } from "@/core";
+import "@/style.css";
 
-export default {
-  render() {
-    const diagram = flowchart.parse(chart);
-    diagram.drawSVG("diagram");
-
-    const textEl = document.getElementById("text");
-    textEl.innerHTML = text;
-
-    const codeEl = document.getElementById("code");
-    codeEl.innerHTML = `<pre>${code}</pre>`;
+const blocks = [
+  {
+    title: "",
+    type: "markdown",
+    content: text,
   },
-};
+  {
+    title: "Блок-схема алгоритму",
+    type: "flowchart",
+    content: chart,
+  },
+  {
+    title: "Вихідний код програми",
+    type: "code",
+    content: code,
+  },
+];
+
+render(blocks);
