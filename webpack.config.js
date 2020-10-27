@@ -5,7 +5,7 @@ let htmlPageNames = ["laba1", "laba2"];
 
 let multipleHtmlPlugins = htmlPageNames.map((name) => {
   return new HtmlWebpackPlugin({
-    template: `./src/labas/${name}/${name}.html`, // relative path to the HTML files
+    template: `./src/core/template.html`, // relative path to the HTML files
     filename: `${name}.html`, // output HTML files
     chunks: [`${name}`], // respective JS files
   });
@@ -21,7 +21,6 @@ module.exports = {
     main: "./src/index.js",
     laba1: "./src/labas/laba1/index.js",
     laba2: "./src/labas/laba2/index.js",
-    //... repeat until example 4
   },
   module: {
     rules: [
