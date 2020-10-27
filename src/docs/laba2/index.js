@@ -3,6 +3,7 @@ import text from "./text.md";
 import code from "./laba1.c";
 import "./formula.png";
 import { render } from "@/core";
+import "@/style.css";
 
 const laba2 = [
   {
