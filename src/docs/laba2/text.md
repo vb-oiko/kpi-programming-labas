@@ -27,11 +27,13 @@
 
 2-2. Для довільного $x$ обчислити:
 
-$ y = \begin{cases} 
-1, \quad при \quad x < 0\\
-\cos x, \quad при \quad 0 \le x \le \pi \\
--1, \quad при \quad x > \pi\\
- \end{cases}$
+$$
+ y = \begin{cases}
+   1, \quad при \quad x < 0\\
+   \cos x, \quad при \quad 0 \le x \le \pi \\
+   -1, \quad при \quad x > \pi\\
+ \end{cases}
+$$
 
 ### Аналіз умов задачі
 

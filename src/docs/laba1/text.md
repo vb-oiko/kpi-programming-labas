@@ -18,7 +18,10 @@
 
 ### Завдання
 
-![вихідна формула](formula.png)
+$$
+a = \frac{3 + e^{y-1}}{1 + x^2 \left| y - \tg z \right|};
+b = 1 + \left| y - x \right| + \frac{(y - x)^2}{2} + \frac{\left| y - x \right|^2}{3}
+$$
 
 ### Аналіз умов задачі
 
