@@ -47,9 +47,9 @@ module.exports = {
             loader: "html-loader",
           },
           {
-            loader: "markdown-loader",
+            loader: "markdown-latex-loader",
             options: {
-              /* your options here */
+              div: true,
             },
           },
         ],
