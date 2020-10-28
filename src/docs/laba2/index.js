@@ -1,11 +1,11 @@
 import chart from "./flowchart.flow";
 import text from "./text.md";
-import code from "./laba1.c";
+import code from "./code.c";
 import "./formula.png";
 import { render } from "@/core";
 import "@/style.css";
 
-const laba2 = [
+const blocks = [
   {
     title: "",
     type: "markdown",
@@ -23,4 +23,4 @@ const laba2 = [
   },
 ];
 
-render(laba2);
+render(blocks);
