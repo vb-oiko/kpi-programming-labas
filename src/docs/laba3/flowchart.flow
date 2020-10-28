@@ -1,4 +1,21 @@
 st=>start: Початок
 e=>end: Кінець
 
-st->e
+in_n=>inputoutput: Введення вихідних даних: n
+out_err=>inputoutput: n має бути більше 0
+cond1=>condition: n > 0
+
+op1=>operation: s: = 0, p := 1, i := 1
+cond2=>condition: i <= n
+in_x=>inputoutput: Введення вихідних даних: Xi
+op2=>operation: s: = s + Xi, p := p * s, i := i + 1
+
+out_res=>inputoutput: Виведення результату: p
+
+st->in_n->cond1
+
+cond1(true@Так)->op1->cond2
+cond1(false@Ні)->out_err(top)->in_n
+
+cond2(true@Так)->in_x->op2(bottom)->cond2
+cond2(no@Ні,left)->out_res->e
