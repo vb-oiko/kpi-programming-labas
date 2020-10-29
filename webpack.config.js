@@ -4,9 +4,13 @@ const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 const docsPath = path.resolve(__dirname, "src/docs/");
-const htmlPageNames = fs
-  .readdirSync(docsPath)
-  .filter((filename) => fs.statSync(`${docsPath}/${filename}`).isDirectory());
+
+const getSubFolders = (path) =>
+  fs
+    .readdirSync(path)
+    .filter((filename) => fs.statSync(`${path}/${filename}`).isDirectory());
+
+const htmlPageNames = getSubFolders(docsPath);
 
 const multipleHtmlPlugins = htmlPageNames.map((name) => {
   return new HtmlWebpackPlugin({
@@ -77,5 +81,6 @@ module.exports = {
       template: "./src/core/index.html",
       chunks: ["main"],
     }),
-  ].concat(multipleHtmlPlugins),
+    ...multipleHtmlPlugins,
+  ],
 };
