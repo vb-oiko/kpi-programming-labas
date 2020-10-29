@@ -11,20 +11,35 @@ const getSubFolders = (path) =>
     .readdirSync(path)
     .filter((filename) => fs.statSync(`${path}/${filename}`).isDirectory());
 
-const htmlPageNames = getSubFolders(docsPath);
+const getAllFolders = (path) => {
+  const folders = getSubFolders(path);
+
+  return folders
+    .map((folder) => {
+      const subFolders = getAllFolders(`${path}/${folder}`);
+      return subFolders.length
+        ? subFolders.map((subFolder) => `${folder}/${subFolder}`)
+        : folder;
+    })
+    .flat();
+};
+
+const toSnakeCase = (str) => str.replace(/\//g, "-");
+
+const htmlPageNames = getAllFolders(docsPath);
 
 const multipleHtmlPlugins = htmlPageNames.map((name) => {
   return new HtmlWebpackPlugin({
     template: `./src/core/template.html`, // relative path to the HTML files
     filename: `${name}.html`, // output HTML files
-    chunks: [`${name}`], // respective JS files
+    chunks: [toSnakeCase(name)], // respective JS files,
   });
 });
 
 const entry = htmlPageNames.reduce(
   (acc, page) => ({
     ...acc,
-    [page]: `./src/docs/${page}/index.js`,
+    [toSnakeCase(page)]: `./src/docs/${page}/index.js`,
   }),
   {
     main: "./src/index.js",
