@@ -2,6 +2,7 @@ const path = require("path");
 const fs = require("fs");
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 const docsPath = path.resolve(__dirname, "src/docs/");
 
@@ -74,6 +75,7 @@ module.exports = {
     path: path.resolve(__dirname, "docs"),
   },
   plugins: [
+    new CleanWebpackPlugin(),
     new webpack.DefinePlugin({
       PAGES: JSON.stringify(htmlPageNames),
     }),
