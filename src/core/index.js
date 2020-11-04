@@ -1,3 +1,9 @@
+import hljs from "highlight.js/lib/core";
+import c from "highlight.js/lib/languages/c-like";
+import "highlight.js/styles/github.css";
+
+hljs.registerLanguage("c", c);
+
 const renderBlock = {
   app: document.getElementById("app"),
 
@@ -37,11 +43,12 @@ const renderBlock = {
   code(content) {
     const el = document.createElement("div");
     const escapedCode = content.replace(/\</g, "&lt;").replace(/\>/g, "&gt;");
-    el.innerHTML = `<pre>${escapedCode}</pre>`;
+    el.innerHTML = `<pre><code class="c">${escapedCode}</code></pre>`;
     this.app.appendChild(el);
   },
 };
 
 export const render = (blocks) => {
   blocks.forEach((block) => renderBlock.render(block));
+  hljs.initHighlightingOnLoad();
 };
