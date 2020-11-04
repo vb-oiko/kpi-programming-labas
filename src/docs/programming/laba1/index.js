@@ -1,10 +1,19 @@
 import chart from "./flowchart.flow";
 import text from "./text.md";
-import code from "./laba1.c";
+import code from "./code.c";
+import titleSheet from "@/common/programming-laba-title-sheet.html";
 import { render } from "@/core";
 import "@/style.css";
 
-const laba1 = [
+const blocks = [
+  {
+    title: "",
+    type: "html",
+    content: titleSheet,
+    vars: {
+      labaNo: 1,
+    },
+  },
   {
     title: "",
     type: "markdown",
@@ -22,4 +31,4 @@ const laba1 = [
   },
 ];
 
-render(laba1);
+render(blocks);
