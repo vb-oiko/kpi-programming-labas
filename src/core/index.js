@@ -55,6 +55,13 @@ const renderBlock = {
     el.innerHTML = `<pre><code class="c">${escapedCode}</code></pre>`;
     this.app.appendChild(el);
   },
+
+  mermaid(content) {
+    const el = document.createElement("div");
+    el.classList.add("mermaid", "align-center");
+    el.innerHTML = content;
+    this.app.appendChild(el);
+  },
 };
 
 export const render = (blocks) => {
