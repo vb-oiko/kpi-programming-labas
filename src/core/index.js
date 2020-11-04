@@ -20,7 +20,7 @@ const renderBlock = {
   render(block) {
     this.addTitle(block);
     try {
-      this[block.type](block.content);
+      this[block.type](block.content, block.vars);
     } catch (err) {
       throw new Error(`Wrong type of block: ${block.type}`);
     }
@@ -37,6 +37,15 @@ const renderBlock = {
   markdown(content) {
     const el = document.createElement("div");
     el.innerHTML = content;
+    this.app.appendChild(el);
+  },
+
+  html(content, vars) {
+    const el = document.createElement("div");
+    el.innerHTML = Object.keys(vars).reduce((acc, key) => {
+      const reg = RegExp(`\{\{${key}\}\}`, "g");
+      return acc.replace(reg, vars[key]);
+    }, content);
     this.app.appendChild(el);
   },
 

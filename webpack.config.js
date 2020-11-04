@@ -57,7 +57,7 @@ module.exports = {
     rules: [
       { test: /\.css$/, use: ["style-loader", "css-loader"] },
       {
-        test: /\.flow$|\.c$/i,
+        test: /\.flow$|\.html$|\.c$/i,
         use: "raw-loader",
       },
       {
