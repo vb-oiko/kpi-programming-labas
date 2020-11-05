@@ -1,4 +1,4 @@
-import chart from "./flowchart.flow";
+import chart from "./flowchart.mmd";
 import text from "./text.md";
 import code from "./code.c";
 import titleSheet from "@/common/programming-laba-title-sheet.html";
@@ -11,7 +11,7 @@ const blocks = [
     type: "html",
     content: titleSheet,
     vars: {
-      labaNo: 1,
+      labaNo: 3,
     },
   },
   {
@@ -21,7 +21,7 @@ const blocks = [
   },
   {
     title: "Блок-схема алгоритму",
-    type: "flowchart",
+    type: "mermaid",
     content: chart,
   },
   {
