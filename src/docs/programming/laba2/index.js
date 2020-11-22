@@ -1,5 +1,6 @@
 import chart from "./flowchart.flow";
 import text from "./text.md";
+import text1 from "./text1.md";
 import code from "./code.c";
 import titleSheet from "@/common/programming-laba-title-sheet.html";
 import { render } from "@/core";
@@ -11,7 +12,7 @@ const blocks = [
     type: "html",
     content: titleSheet,
     vars: {
-      labaNo: 2,
+      labaNo: 1,
     },
   },
   {
@@ -28,6 +29,11 @@ const blocks = [
     title: "Вихідний код програми",
     type: "code",
     content: code,
+  },
+  {
+    title: "Скріншоти виконання програми",
+    type: "markdown",
+    content: text1,
   },
 ];
 
