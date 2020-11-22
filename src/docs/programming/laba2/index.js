@@ -12,7 +12,7 @@ const blocks = [
     type: "html",
     content: titleSheet,
     vars: {
-      labaNo: 1,
+      labaNo: 2,
     },
   },
   {
