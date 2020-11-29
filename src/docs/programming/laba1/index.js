@@ -1,4 +1,4 @@
-import chart from "./flowchart.flow";
+import chart from "./flowchart.mmd";
 import text from "./text.md";
 import text1 from "./text1.md";
 import code from "./code.c";
@@ -22,7 +22,7 @@ const blocks = [
   },
   {
     title: "Блок-схема алгоритму",
-    type: "flowchart",
+    type: "mermaid",
     content: chart,
   },
   {
