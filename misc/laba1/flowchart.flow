@@ -1,0 +1,8 @@
+st=>start: Початок
+e=>end: Кінець
+op1=>operation: a := (3 + exp(y - 1)) / ((1 + x^2) * abs(y - tan(z)))
+op2=>operation: b := 1 + abs(y - x) + (y - x)^2 / 2 + (abs(y - x))^2 / 3
+i=>inputoutput: Введення вихідних даних: x, y, z
+o=>inputoutput: Виведення результатів: a, b
+
+st->i->op1->op2->o->e
