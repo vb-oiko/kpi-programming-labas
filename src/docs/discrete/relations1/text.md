@@ -51,10 +51,10 @@ $$
 
 Якщо вихідне відношення є симетричним, тоді:
 
-$$\forall x \in {\rm I\!R}, (xRy) \Leftrightarrow (yRx), \text{тобто}
+$$\forall x \in {\rm I\!R}, (xRy) \Rightarrow (yRx), \text{тобто}
 $$ 
 
-$$\forall x \in {\rm I\!R}, (y=kx) \Leftrightarrow (x=ky), \quad k \in {\rm I\!N}
+$$\forall x \in {\rm I\!R}, (y=kx) \Rightarrow (x=ky), \quad k \in {\rm I\!N}
 $$
 
 Для того, щоб спростувати це твердження нам достатньо лише одного контрприкладу. Візьмемо пару $(1R2)$, для якої твердження $(y=kx)$ виконується при $k=2$. Але для пари $(2R1)$ твердження $(y=kx)$ не виконується при жодному $k \in {\rm I\!N}$.
