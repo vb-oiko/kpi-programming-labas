@@ -13,38 +13,79 @@ $$
 
 Розпишемо належність пари $(x,y)$ лівій частині тотожності:
 
-$$(A \times (C \cup D)) \setminus((A \cup B) \times C) 
-= (A \times (C \cup D)) \cap ((A \cup B) \times C)^c
+$$(A \times (C \cup D)) \setminus ((A \cup B) \times C) 
 \Leftrightarrow
 $$
 
 $$
-\Leftrightarrow (x \in A \land y \in (C \cup D)) \land (x \notin (A \cup B) \land y \notin C)
+\Leftrightarrow (x,y) \in (A \times (C \cup D)) \land 
+\lnot [(x,y) \in ((A \cup B) \times C)] 
 \Leftrightarrow 
 $$
 
-$$\Leftrightarrow 
-x \in A \land x \notin (A \cup B) 
-\land y \in (C \cup D)  \land y \notin C
-\Leftrightarrow $$
-
-$$\Leftrightarrow 
-(x \in A) \land (x \notin A \lor x \notin  B) 
-\land 
-(y \in C \lor y \in D)  \land y \notin C
-\Leftrightarrow $$
-
-$$\Leftrightarrow 
-((x \in A \land x \notin A )\lor (x \in A \land  x \notin  B) )
-\land 
-((y \in C  \land y \notin C )\lor (y \in D \land y \notin C))
-\Leftrightarrow $$
-
-$$\Leftrightarrow 
-x \in A \land  x \notin  B
-\land 
-y \in D \land y \notin C
 $$
+\Leftrightarrow (x \in A \land y \in (C \cup D)) \land
+\lnot[ x \in (A \cup B) \land y \in C]
+\Leftrightarrow 
+$$
+
+$$
+\Leftrightarrow [x \in A \land (y \in C \lor y \in  D)] \land
+[\lnot (x \in (A \cup B) \lor y \notin C]
+\Leftrightarrow 
+$$
+
+$$
+\Leftrightarrow [x \in A \land (y \in C \lor y \in  D)] \land
+[\lnot (x \in A \lor x \in  B) \lor y \notin C]
+\Leftrightarrow 
+$$
+
+$$
+\Leftrightarrow [x \in A \land (y \in C \lor y \in  D)] \land
+[(x \notin A \land x \notin  B) \lor y \notin C]
+\Leftrightarrow 
+$$
+
+$$
+\Leftrightarrow [x \in A \land (y \in C \lor y \in  D)] \land
+[(x \notin A \lor y \notin C)\land ( x \notin  B \lor y \notin C) ]
+\Leftrightarrow 
+$$
+
+
+$$
+\Leftrightarrow [(x \in A \land y \in C) \lor (x \in A \land  y \in  D)] \land
+[(x \notin A \lor y \notin C)\land ( x \notin  B \lor y \notin C) ]
+\Leftrightarrow 
+$$
+
+$$
+\Leftrightarrow [(x \in A \land y \in C) \lor (x \in A \land  y \in  D)] \land
+[\lnot (x \in A \land y \in C)\land ( x \notin  B \lor y \notin C) ]
+\Leftrightarrow 
+$$
+
+$$
+\Leftrightarrow ( [(x \in A \land y \in C) \lor (x \in A \land  y \in  D)] \land
+\lnot (x \in A \land y \in C) )
+\land ( x \notin  B \lor y \notin C) 
+\Leftrightarrow 
+$$
+
+$$
+\Leftrightarrow [(x \in A \land  y \in  D)
+\land \lnot (x \in A \land y \in C)] 
+\land ( x \notin  B \lor y \notin C) 
+\Leftrightarrow 
+$$
+
+$$
+\Leftrightarrow [(x \in A \land  y \in  D)
+\land (x \notin A \lor y \notin C)] 
+\land ( x \notin  B \lor y \notin C) 
+$$
+
 
 Розпишемо належність пари $(x,y)$ правій частині тотожності:
 
@@ -53,23 +94,40 @@ $$
 \Leftrightarrow $$
 
 $$\Leftrightarrow
-(x \in A \land y\in D) \land (x \notin(A \cup B) \land y\notin C)
+((x,y) \in (A \times D)) \land 
+\lnot ((x,y)\in((A \cup B) \times C))
 \Leftrightarrow $$
 
 $$\Leftrightarrow
-x \in A \land y\in D \land (x \notin A \lor x \notin  B) \land y\notin C
+(x \in A \land y \in D) \land 
+\lnot (x \in(A \cup B) \land y \in C)
 \Leftrightarrow $$
 
 $$\Leftrightarrow
-x \in A \land y\in D \land ((x \notin A \land y\notin C) \lor (x \notin  B \land y\notin C)) 
+(x \in A \land y \in D) \land 
+\lnot ((x \in A \lor x \in B) \land y \in C)
 \Leftrightarrow $$
 
 $$\Leftrightarrow
-y\in D \land ((x \in A \land x \notin A \land y\notin C) \lor (x \in A \land x \notin  B \land y\notin C)) 
+(x \in A \land y \in D) \land 
+(\lnot (x \in A \lor x \in B) \lor y \notin C)
 \Leftrightarrow $$
 
 $$\Leftrightarrow
-y\in D \land x \in A \land x \notin  B \land y\notin C
+(x \in A \land y \in D) \land 
+( (x \notin A \land x \notin B) \lor y \notin C)
+\Leftrightarrow $$
+
+$$\Leftrightarrow
+(x \in A \land y \in D) \land 
+[(x \notin A \lor y \notin C) \land (x \notin B \lor y \notin C)]
+\Leftrightarrow $$
+
+$$\Leftrightarrow
+[(x \in A \land y \in D) \land (x \notin A \lor y \notin C)] 
+\land (x \notin B \lor y \notin C)
 $$
+
+
 
 Отримані формули тотожні, отже вихідну тотожність доведено.
