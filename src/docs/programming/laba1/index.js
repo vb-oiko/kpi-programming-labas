@@ -1,6 +1,5 @@
 import chart from "./flowchart.mmd";
 import text from "./text.md";
-import text1 from "./text1.md";
 import code from "./code.c";
 import titleSheet from "@/common/programming-laba-title-sheet.html";
 import { render } from "@/core";
@@ -24,16 +23,17 @@ const blocks = [
     title: "Блок-схема алгоритму",
     type: "mermaid",
     content: chart,
+    vars: {
+      id: "flowchart",
+    },
   },
   {
     title: "Вихідний код програми",
     type: "code",
     content: code,
-  },
-  {
-    title: "Скріншоти виконання програми",
-    type: "markdown",
-    content: text1,
+    vars: {
+      id: "code",
+    },
   },
 ];
 

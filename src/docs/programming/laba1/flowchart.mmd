@@ -1,12 +1,9 @@
 graph TD
     START(["Початок&nbsp"])
-    INPUT_MSG[/"Введіть вхідні значення  <br/> для змінних a,b,x такі, що: <br/>|a|<=1, |b*x-a|<=1"/]
-    WRONG_INPUT_MSG[/"Формула не визначена  <br/>  при введених значеннях"/]
-    INPUT[/"&nbsp;&nbsp;&nbsp; a,b,x &nbsp;&nbsp;&nbsp;"/]
-    IF{"abs(a)<=1 && <br> abs(b*x-a)<=1"}
-    CALC["R = asin(pow(2)) +  <br/> + acos(b*x-a) + exp(b*x) &nbsp " ]
-    OUTPUT[/"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; R &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "/]
+    INPUT[/"&nbsp;&nbsp;&nbsp; x,y,z &nbsp;&nbsp;&nbsp;"/]
+    CALC1["a := (3 + exp(y - 1)) / ((1 + x^2) * abs(y - tan(z))) &nbsp " ]
+    CALC2["b := 1 + abs(y - x) + (y - x)^2 / 2 + (abs(y - x))^2 / 3 &nbsp " ]
+    OUTPUT[/"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a,b &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "/]
     STOP([Кінець])
-    START --> INPUT_MSG --> IF -->|Так| INPUT --> CALC --> OUTPUT --> STOP
-    IF -->|Ні| WRONG_INPUT_MSG --> STOP
+    START --> INPUT --> CALC1 --> CALC2 --> OUTPUT --> STOP
     classDef default fill:#fff,stroke:#333,stroke-width:2px;
