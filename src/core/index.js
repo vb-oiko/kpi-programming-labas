@@ -18,7 +18,6 @@ const renderBlock = {
   },
 
   render(block) {
-    this.addTitle(block);
     try {
       this[block.type](block.content, block.vars);
     } catch (err) {
@@ -49,18 +48,18 @@ const renderBlock = {
     this.app.appendChild(el);
   },
 
-  code(content) {
-    const el = document.createElement("div");
+  code(content, vars) {
+    const { id } = vars;
+    const el = document.getElementById(id);
     const escapedCode = content.replace(/\</g, "&lt;").replace(/\>/g, "&gt;");
     el.innerHTML = `<pre><code class="c">${escapedCode}</code></pre>`;
-    this.app.appendChild(el);
   },
 
-  mermaid(content) {
-    const el = document.createElement("div");
+  mermaid(content, vars) {
+    const { id } = vars;
+    const el = document.getElementById(id);
     el.classList.add("mermaid", "align-center");
     el.innerHTML = content;
-    this.app.appendChild(el);
   },
 };
 
