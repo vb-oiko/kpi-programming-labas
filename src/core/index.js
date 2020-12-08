@@ -25,11 +25,11 @@ const renderBlock = {
     }
   },
 
-  flowchart(content) {
+  flowchart(content, vars) {
     const diagram = flowchart.parse(content);
-    const el = document.createElement("div");
+    const { id } = vars;
+    const el = document.getElementById(id);
     el.classList.add("flowchart");
-    this.app.appendChild(el);
     diagram.drawSVG(el);
   },
 
