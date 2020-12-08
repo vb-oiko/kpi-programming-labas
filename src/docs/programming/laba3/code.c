@@ -26,6 +26,9 @@ int main()
 
         s += xi;
         p *= s;
+
+        printf("поточне значення s[%d] = %f \n", i, s);
+        printf("поточне значення p[%d] = %f \n", i, p);
     }
 
     printf("шукане значення p = %f \n", p);
