@@ -11,7 +11,7 @@ const blocks = [
     type: "html",
     content: titleSheet,
     vars: {
-      labaNo: 3,
+      labaNo: 4,
     },
   },
   {
@@ -23,11 +23,17 @@ const blocks = [
     title: "Блок-схема алгоритму",
     type: "mermaid",
     content: chart,
+    vars: {
+      id: "flowchart",
+    },
   },
   {
     title: "Вихідний код програми",
     type: "code",
     content: code,
+    vars: {
+      id: "code",
+    },
   },
 ];
 

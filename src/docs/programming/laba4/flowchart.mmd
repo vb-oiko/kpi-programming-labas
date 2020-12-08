@@ -1,7 +1,30 @@
 graph TD
-    A[Start] --> B{Is it?};
-    B -->|Yes| C[OK];
-    C --> D[Rethink];
-    D --> B;
-    B -->|No| E[End];
+    START(["Початок"])
+    subgraph "цикл 1"
+    INPUT_N[/"n"/]
+    WHILE_N{{"n>0"}}
+    end
+    subgraph "цикл 2"
+    FOR_I_B{{"i = 0 ... n-1"}}
+    INC_I_B["i := i+1"]
+    CALC_BO["b[i] := 0"]
+    end
+    subgraph "цикли 3 та 4"
+    FOR_I{{"i = 0 ... n-1"}}
+    FOR_J{{"j = 0 ... n-1"}}
+    INPUT_A[/"a[i][j]"/]
+    INC_I["i := i+1"]
+    CALC_B["b[j] += a[i][j]"]
+    INC_J["j := j+1"]
+    end
+    OUTPUT_A[/"a"/]
+    OUTPUT_B[/"b"/]
+    STOP([Кінець])
+    START --> INPUT_N --> WHILE_N -->|Не виконується| INPUT_N
+    FOR_I --> OUTPUT_A --> OUTPUT_B --> STOP
+    INC_I_B --> FOR_I_B --> FOR_I --> FOR_J --> INPUT_A --> CALC_B
+    CALC_B --> INC_J --> FOR_J
+    WHILE_N -->|Виконується| FOR_I_B --> CALC_BO --> INC_I_B
+    INC_J --> INC_I --> FOR_I
     
+    classDef default fill:#fff,stroke:#333,stroke-width:2px;
