@@ -8,6 +8,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+#include <time.h>
 
 #define INPUT_FILE "/src/docs/programming/laba5/input.txt"
 
@@ -20,20 +21,61 @@ int *printIntArray(int *arr, int n);
 int **readIntMatrix(FILE *fptr, int m, int n);
 int **printIntMatrix(int **A, int m, int n);
 void freeMatrix(int **A, int m, int n);
+int *copyIntArray(int *from, int *to, int n);
+void descInsertSortWithBarr(int *arr, int n);
+int *getRandIntArray(int n);
+int **getRandIntMatrix(int m, int n);
+
+void descInsertSortWithBarr(int *arr, int n)
+{
+    if (n <= 1)
+    {
+        return;
+    }
+    printf("-------------------\n");
+    int *barr = malloc((n + 1) * sizeof(int));
+
+    copyIntArray(arr, barr + 1, n);
+
+    for (int i = 2; i < n + 1; i++)
+    {
+        printf("i: %d\n", i);
+        barr[0] = barr[i];
+        printIntArray(barr, n + 1);
+        int j = i;
+        while (barr[j] > barr[j - 1])
+        {
+            barr[j] = barr[j - 1];
+            barr[j - 1] = barr[0];
+            j -= 1;
+            printIntArray(barr, n + 1);
+        }
+    }
+    printf("-------------------\n");
+
+    copyIntArray(barr + 1, arr, n);
+    free(barr);
+}
 
 int main()
 {
+    srand(time(NULL));
     FILE *fptr = openFile();
     int m = readInt(fptr);
     int n = readInt(fptr);
     int k = readInt(fptr);
+    // int **A = readIntMatrix(fptr, m, n);
+    int **A = getRandIntMatrix(m, n);
+
     printf("rows count: %d\n", m);
     printf("columns count: %d\n", n);
     printf("row to sort: %d\n", k);
+    printf("source matrix:\n");
+    printIntMatrix(A, m, n);
 
-    int **A = readIntMatrix(fptr, m, n);
+    descInsertSortWithBarr(A[k - 1], n);
 
-    printf("matrix:\n");
+    printf("\ntarget matrix:\n");
     printIntMatrix(A, m, n);
 
     freeMatrix(A, m, n);
@@ -202,4 +244,32 @@ void freeMatrix(int **A, int m, int n)
     }
 
     free(A);
+}
+
+int *copyIntArray(int *from, int *to, int n)
+{
+    for (int i = 0; i < n; i++)
+    {
+        to[i] = from[i];
+    }
+}
+
+int *getRandIntArray(int n)
+{
+    int *arr = malloc(n * sizeof(int));
+    for (int i = 0; i < n; i++)
+    {
+        arr[i] = rand() % 100;
+    }
+    return arr;
+}
+
+int **getRandIntMatrix(int m, int n)
+{
+    int **A = (int **)malloc(m * sizeof(int));
+    for (int i = 0; i < m; i++)
+    {
+        A[i] = getRandIntArray(n);
+    }
+    return A;
 }
