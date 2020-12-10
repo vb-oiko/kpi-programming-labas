@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <math.h>
 
-#define PREC 0.01
+#define PREC 0.001
 
 double arctan(double x);
 double xn(double x, int n);

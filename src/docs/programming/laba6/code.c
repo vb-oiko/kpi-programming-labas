@@ -11,7 +11,7 @@ char *capitalizeSentences(char *source);
 
 int main(void)
 {
-    char *string = " sed ut perspiciatis unde! omnis iste natus error sit? voluptatem accusantium.doloremque laudantium, totam rem aperiam.    eaque ipsa quae ab illo!voluptas nulla pariatur?";
+    char *string = " sed ut perspiciatis unde! omnis iste natus error sit? voluptatem accusantium.doloremque laudantium,  totam rem aperiam.    eaque ipsa quae ab illo!voluptas nulla pariatur?";
     char *result = capitalizeSentences(string);
 
     printf("source string:\n");
@@ -27,7 +27,6 @@ char *capitalizeSentences(char *source)
 {
     char *startPattern = "^\\W*\\w";
     char *restPattern = "([.!?])\\W*(\\w)";
-    char *string = " sed ut perspiciatis unde! omnis iste natus error sit? voluptatem accusantium.doloremque laudantium, totam rem aperiam.    eaque ipsa quae ab illo!voluptas nulla pariatur?";
     regex_t startRegex;
     regex_t restRegex;
 
@@ -42,12 +41,12 @@ char *capitalizeSentences(char *source)
 
     regmatch_t pmatch[1];
     size_t pos;
-    char *s = string;
+    char *s = source;
 
     if (!regexec(&startRegex, s, ARRAY_SIZE(pmatch), pmatch, 0))
     {
-        pos = (s - string) + pmatch[0].rm_eo - 1;
-        result[pos] = toupper(string[pos]);
+        pos = (s - source) + pmatch[0].rm_eo - 1;
+        result[pos] = toupper(source[pos]);
     }
 
     for (int i = 0;; i++)
@@ -55,8 +54,8 @@ char *capitalizeSentences(char *source)
         if (regexec(&restRegex, s, ARRAY_SIZE(pmatch), pmatch, 0))
             break;
 
-        pos = (s - string) + pmatch[0].rm_eo - 1;
-        result[pos] = toupper(string[pos]);
+        pos = (s - source) + pmatch[0].rm_eo - 1;
+        result[pos] = toupper(source[pos]);
         s += pmatch[0].rm_eo;
     }
 
