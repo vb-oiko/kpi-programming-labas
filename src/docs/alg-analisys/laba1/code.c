@@ -1,48 +1,62 @@
 
 #include <stdlib.h>
 #include <stdio.h>
-#include <time.h>
+#include <sys/times.h> // for times
+#include <unistd.h>    // for sysconf
 
-#define N 100
+// #define N 50000000
+#define PASS_COUNT 5
 
 void printIntArray(int *arr, int n);
 int *getRandIntArray(int n);
 int getOddArray(int *source, int n, int *target);
 int getEvenArray(int *source, int n, int *target);
+double getExecutionTime(int N, int debug);
 
 int main(void)
 {
-    srand(time(NULL));
-    int *arr = getRandIntArray(N);
+    srand(times(NULL));
 
-    int *odds = malloc(N * sizeof(int));
-    int *evens = malloc(N * sizeof(int));
+    printf("\n\n");
+    getExecutionTime(20, 1);
 
-    if (odds == NULL || evens == NULL)
+    printf("!-------------------------------------------------------------------------------------------------!\n");
+    printf("!                   !                                     Time, sec                               !\n");
+    printf("!      Number       !-----------------------------------------------------------------------------!\n");
+    printf("!    of elements    !   Pass 1   !   Pass 2   !   Pass 3   !   Pass 4   !   Pass 5   !   Average  !\n");
+    printf("!-------------------------------------------------------------------------------------------------!\n");
+    fflush(stdout);
+
+    for (int i = 10000000; i <= 50000000; i += 10000000)
     {
-        printf("Failled to allocate memory");
-        exit(EXIT_FAILURE);
+        printf("! %12d      !", i);
+        fflush(stdout);
+
+        float totalTime = 0;
+
+        for (int j = 1; j <= PASS_COUNT; j += 1)
+        {
+            float time = getExecutionTime(i, 0);
+            printf(" % 8lf  !", time);
+            fflush(stdout);
+            totalTime += time;
+        }
+        printf(" % 8lf  !", totalTime / PASS_COUNT);
+
+        printf("\n");
     }
 
-    int nOdds = getOddArray(arr, N, odds);
-    odds = realloc(odds, nOdds * sizeof(int));
+    printf("!-------------------------------------------------------------------------------------------------!\n");
+    printf("\n\n");
 
-    int nEvens = getEvenArray(arr, N, evens);
-    evens = realloc(evens, nEvens * sizeof(int));
-
-    printIntArray(arr, N);
-    printf("\n\n");
-    printIntArray(odds, nOdds);
-    printf("\n\n");
-    printIntArray(evens, nEvens);
-    printf("\n\n");
+    return 0;
 }
 
 void printIntArray(int *arr, int n)
 {
     for (int i = 0; i < n; i++)
     {
-        printf("%5d", arr[i]);
+        printf("%4d", arr[i]);
     }
     printf("\n");
 }
@@ -96,4 +110,47 @@ int getEvenArray(int *source, int n, int *target)
     }
 
     return k;
+}
+
+double getExecutionTime(int N, int debug)
+{
+    struct tms start, end;
+    long clocks_per_sec = sysconf(_SC_CLK_TCK);
+    long clocks;
+
+    int *arr = getRandIntArray(N);
+
+    int *odds = malloc(N * sizeof(int));
+    int *evens = malloc(N * sizeof(int));
+
+    if (odds == NULL || evens == NULL)
+    {
+        printf("Failled to allocate memory");
+        exit(EXIT_FAILURE);
+    }
+
+    times(&start);
+    int nOdds = getOddArray(arr, N, odds);
+    int nEvens = getEvenArray(arr, N, evens);
+    times(&end);
+
+    if (debug == 1)
+    {
+        printf("Algorithm check\n\n");
+        printf("Source array\n");
+        printIntArray(arr, N);
+        printf("Odd array\n");
+        printIntArray(odds, nOdds);
+        printf("Even array\n");
+        printIntArray(evens, nEvens);
+        printf("\n");
+        fflush(stdout);
+    }
+
+    free(arr);
+    free(odds);
+    free(evens);
+
+    clocks = end.tms_utime - start.tms_utime;
+    return (double)clocks / clocks_per_sec;
 }
