@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "functional": "c",
-        "string": "c"
+        "string": "c",
+        "sstream": "c"
     }
 }
