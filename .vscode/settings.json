@@ -2,6 +2,7 @@
     "files.associations": {
         "functional": "c",
         "string": "c",
-        "sstream": "c"
+        "sstream": "c",
+        "limits": "c"
     }
 }
