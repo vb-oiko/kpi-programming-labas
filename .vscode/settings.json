@@ -3,6 +3,7 @@
         "functional": "c",
         "string": "c",
         "sstream": "c",
-        "limits": "c"
+        "limits": "c",
+        "algorithm": "c"
     }
 }
