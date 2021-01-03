@@ -9,9 +9,10 @@
 
 typedef enum
 {
-    BEST,
+    FIRST,
     MIDDLE,
-    WORST,
+    LAST,
+    NOT_PRESENT
 } caseType;
 
 int maxLength = 100;
@@ -29,15 +30,14 @@ char *newString(size_t length);
 char **newStringArray(size_t maxLength);
 void freeStrArray(char **arr, int arrLength);
 void checkTestDataGeneration();
+int quickLinearSearch(const char *searchedWord, char **arr, int arrLen);
 
 int main(void)
 {
-    curLength;
-
     checkTestDataGeneration();
 
     // char *string = newString(MAX_STR_LEN);
-    // geterateTestString(string, WORD_DEFAULT, WORD_TO_SEARCH, WORST);
+    // geterateTestString(string, WORD_DEFAULT, WORD_TO_SEARCH, LAST);
 
     // printf("%s\n\n", string);
 
@@ -49,10 +49,26 @@ int main(void)
     // freeStrArray(arr, curLength);
 }
 
+int quickLinearSearch(const char *searchedWord, char **arr, int arrLen)
+{
+    int res = -1;
+
+    for (int i = 0; i < arrLen; i++)
+    {
+        if (strcmp(searchedWord, arr[i]) == 0)
+        {
+            res = i;
+            break;
+        }
+    }
+
+    return res;
+}
+
 void checkTestDataGeneration()
 {
 
-    for (caseType testCase = BEST; testCase <= WORST; testCase++)
+    for (caseType testCase = FIRST; testCase <= NOT_PRESENT; testCase++)
     {
         char *string = newString(TEST_STR_LEN);
         char **arr = newStringArray(maxLength);
@@ -66,6 +82,9 @@ void checkTestDataGeneration()
         splitStrToArray(arr, string);
         printf("Array:\n");
         printStrArray(arr, curLength);
+
+        int ind = quickLinearSearch(WORD_TO_SEARCH, arr, curLength);
+        printf("Index of the searched word in array (or -1 if the word is not found) is: %d\n", ind);
 
         printf("\n\n");
         freeStrArray(arr, curLength);
@@ -107,14 +126,17 @@ void geterateTestString(char *string, const char *defaultWord, const char *searc
 
     switch (testCase)
     {
-    case BEST:
+    case FIRST:
         target = 0;
         break;
     case MIDDLE:
         target = wordCount / 2;
         break;
-    case WORST:
+    case LAST:
         target = wordCount - 1;
+        break;
+    case NOT_PRESENT:
+        target = wordCount + 1;
         break;
 
     default:
@@ -176,8 +198,6 @@ void splitStrToArray(char **arr, char *string)
         memcpy(word, st, len);
         word[len + 1] = '\0';
         push(arr, word);
-        // arr[curLength] = word;
-        // curLength += 1;
         int eo = pmatch[0].rm_eo;
         s += (eo + 1);
     }
