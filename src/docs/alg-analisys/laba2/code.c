@@ -5,7 +5,7 @@
 
 #define ARRAY_SIZE(arr) (sizeof((arr)) / sizeof((arr)[0]))
 #define MAX_STR_LEN (2lu << 31) - 1
-#define TEST_STR_LEN 160
+#define TEST_STR_LEN 1600
 
 typedef enum
 {
@@ -25,7 +25,7 @@ const char *STR_END = "\0";
 int push(char **arr, char *word);
 void printStrArray(char **arr, int arrLength);
 void splitStrToArray(char **arr, char *string);
-void geterateTestString(char *string, const char *defaultWord, const char *searchWord, caseType testCase);
+void geterateTestString(char *string, const char *defaultWord, const char *searchWord, size_t strLen, caseType testCase);
 char *newString(size_t length);
 char **newStringArray(size_t maxLength);
 void freeStrArray(char **arr, int arrLength);
@@ -37,16 +37,20 @@ int main(void)
     checkTestDataGeneration();
 
     // char *string = newString(MAX_STR_LEN);
-    // geterateTestString(string, WORD_DEFAULT, WORD_TO_SEARCH, LAST);
-
-    // printf("%s\n\n", string);
-
     // char **arr = newStringArray(maxLength);
-    // splitStrToArray(arr, string);
-    // printStrArray(arr, curLength);
+    // curLength = 0;
 
-    // free(string);
+    // printf("Test Case %d:\n", LAST);
+
+    // geterateTestString(string, WORD_DEFAULT, WORD_TO_SEARCH, MAX_STR_LEN, LAST);
+    // splitStrToArray(arr, string);
+
+    // int ind = quickLinearSearch(WORD_TO_SEARCH, arr, curLength);
+    // printf("Index of the searched word in array (or -1 if the word is not found) is: %d\n", ind);
+
+    // printf("\n\n");
     // freeStrArray(arr, curLength);
+    // free(string);
 }
 
 int quickLinearSearch(const char *searchedWord, char **arr, int arrLen)
@@ -76,7 +80,7 @@ void checkTestDataGeneration()
 
         printf("Test Case %d:\n", testCase);
 
-        geterateTestString(string, WORD_DEFAULT, WORD_TO_SEARCH, testCase);
+        geterateTestString(string, WORD_DEFAULT, WORD_TO_SEARCH, TEST_STR_LEN, testCase);
         printf("String: %s\n\n", string);
 
         splitStrToArray(arr, string);
@@ -116,12 +120,12 @@ char **newStringArray(size_t maxLength)
     return arr;
 }
 
-void geterateTestString(char *string, const char *defaultWord, const char *searchWord, caseType testCase)
+void geterateTestString(char *string, const char *defaultWord, const char *searchWord, size_t strLen, caseType testCase)
 {
     const char *SPACE = " ";
 
     size_t wordLen = strlen(defaultWord) + 1;
-    size_t wordCount = (TEST_STR_LEN - 2) / wordLen;
+    size_t wordCount = (strLen - 2) / wordLen;
     size_t target;
 
     switch (testCase)
@@ -227,13 +231,15 @@ int push(char **arr, char *word)
     if (curLength == maxLength)
     {
         maxLength += pageLength;
-        arr = realloc(arr, maxLength * sizeof(char *));
+        char **newArr = realloc(arr, maxLength * sizeof(char *));
 
-        if (arr == NULL)
+        if (newArr == NULL)
         {
             printf("Failed to reallocate memory to increase size of the array");
             exit(EXIT_FAILURE);
         }
+
+        arr = newArr;
     }
 
     return curLength;
