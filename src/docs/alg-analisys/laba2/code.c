@@ -4,8 +4,8 @@
 #include <stdlib.h>
 
 #define ARRAY_SIZE(arr) (sizeof((arr)) / sizeof((arr)[0]))
-#define MAX_STR_LEN (2lu << 31) - 1
-#define TEST_STR_LEN 1600
+#define MAX_STR_LEN (2lu << 21) - 1
+#define TEST_STR_LEN 160
 
 typedef enum
 {
@@ -15,12 +15,11 @@ typedef enum
     NOT_PRESENT
 } caseType;
 
-int maxLength = 100;
-int pageLength = 100;
 int curLength = 0;
 const char *WORD_DEFAULT = "AAAAAA";
 const char *WORD_TO_SEARCH = "BBBBBB";
 const char *STR_END = "\0";
+const int minWordLen = 7;
 
 int push(char **arr, char *word);
 void printStrArray(char **arr, int arrLength);
@@ -34,23 +33,23 @@ int quickLinearSearch(const char *searchedWord, char **arr, int arrLen);
 
 int main(void)
 {
-    checkTestDataGeneration();
+    // checkTestDataGeneration();
 
-    // char *string = newString(MAX_STR_LEN);
-    // char **arr = newStringArray(maxLength);
-    // curLength = 0;
+    char *string = newString(MAX_STR_LEN);
+    char **arr = newStringArray(MAX_STR_LEN / minWordLen + 1);
+    curLength = 0;
 
-    // printf("Test Case %d:\n", LAST);
+    printf("Test Case %d:\n", LAST);
 
-    // geterateTestString(string, WORD_DEFAULT, WORD_TO_SEARCH, MAX_STR_LEN, LAST);
-    // splitStrToArray(arr, string);
+    geterateTestString(string, WORD_DEFAULT, WORD_TO_SEARCH, MAX_STR_LEN, LAST);
+    splitStrToArray(arr, string);
 
-    // int ind = quickLinearSearch(WORD_TO_SEARCH, arr, curLength);
-    // printf("Index of the searched word in array (or -1 if the word is not found) is: %d\n", ind);
+    int ind = quickLinearSearch(WORD_TO_SEARCH, arr, curLength);
+    printf("Index of the searched word in array (or -1 if the word is not found) is: %d\n", ind);
 
-    // printf("\n\n");
-    // freeStrArray(arr, curLength);
-    // free(string);
+    printf("\n\n");
+    freeStrArray(arr, curLength);
+    free(string);
 }
 
 int quickLinearSearch(const char *searchedWord, char **arr, int arrLen)
@@ -75,7 +74,7 @@ void checkTestDataGeneration()
     for (caseType testCase = FIRST; testCase <= NOT_PRESENT; testCase++)
     {
         char *string = newString(TEST_STR_LEN);
-        char **arr = newStringArray(maxLength);
+        char **arr = newStringArray(TEST_STR_LEN / minWordLen + 1);
         curLength = 0;
 
         printf("Test Case %d:\n", testCase);
@@ -201,7 +200,8 @@ void splitStrToArray(char **arr, char *string)
         char *word = malloc((len + 1) * sizeof(char));
         memcpy(word, st, len);
         word[len + 1] = '\0';
-        push(arr, word);
+        arr[curLength] = word;
+        curLength++;
         int eo = pmatch[0].rm_eo;
         s += (eo + 1);
     }
@@ -221,26 +221,4 @@ void printStrArray(char **arr, int arrLength)
     {
         printf("%s\n", arr[i]);
     }
-}
-
-int push(char **arr, char *word)
-{
-    arr[curLength] = word;
-    curLength++;
-
-    if (curLength == maxLength)
-    {
-        maxLength += pageLength;
-        char **newArr = realloc(arr, maxLength * sizeof(char *));
-
-        if (newArr == NULL)
-        {
-            printf("Failed to reallocate memory to increase size of the array");
-            exit(EXIT_FAILURE);
-        }
-
-        arr = newArr;
-    }
-
-    return curLength;
 }
