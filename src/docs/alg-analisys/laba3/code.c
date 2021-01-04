@@ -16,7 +16,7 @@ typedef enum
 } caseType;
 
 int debugMode = 0;
-int iterationsCount[3] = {1000, 10000, 100000};
+int arraySize[3] = {1000, 10000, 100000};
 
 char caseName[TEST_CASES_NUM][7] = {
     "Best",
@@ -34,6 +34,8 @@ void algCheck();
 int getDigit(int a, int k);
 void countingSort(int *arr, int n, int digit, size_t *comparisons, size_t *swap);
 void radixSort(int *arr, int n, size_t *comparisons, size_t *swap);
+int *newIntArray(size_t n);
+int *getIntArrayByCase(size_t n, caseType testCase);
 
 int main()
 {
@@ -41,9 +43,41 @@ int main()
 
     debugMode = 1;
     algCheck();
-
     debugMode = 0;
+    return 0;
 
+    printf("!-------------------------------------------------------------------------------------------------------------!\n");
+    printf("!                   !                                     Sorting Method                                      !\n");
+    printf("!                   !-----------------------------------------------------------------------------------------!\n");
+    printf("!       Array       !            Comparisons Count               !                Swaps Count                 !\n");
+    printf("!        Size       !-----------------------------------------------------------------------------------------!\n");
+    printf("!                   !  Theoretical ! Experimental !    Ratio     !  Theoretical ! Experimental !    Ratio     !\n");
+    printf("!-------------------------------------------------------------------------------------------------------------!\n");
+    printf("!                                            Selection Sort                                                   !\n");
+    printf("!-------------------------------------------------------------------------------------------------------------!\n");
+    printf("!                   !                                        Best Case                                        !\n");
+    printf("!                   !-----------------------------------------------------------------------------------------!\n");
+    fflush(stdout);
+    for (size_t testCase = 0; testCase < TEST_CASES_NUM; testCase++)
+    {
+        int n = arraySize[testCase];
+
+        printf("! %12s      !", caseName[testCase]);
+        printf(" % 10zu  !", n * n / 2);
+        printf(" % 10zu  !", n * n / 2);
+        printf(" % 10fl  !", n * n / 2);
+        fflush(stdout);
+    }
+
+    printf("!                                              Merge Sort                                                     !\n");
+    printf("!-------------------------------------------------------------------------------------------------------------!\n");
+    fflush(stdout);
+
+    printf("!                                              Radix Sort                                                     !\n");
+    printf("!-------------------------------------------------------------------------------------------------------------!\n");
+    fflush(stdout);
+
+    printf("\n\n");
     return 0;
 }
 
@@ -51,7 +85,16 @@ void algCheck()
 {
     size_t comps;
     size_t swaps;
+    printf("GENERATING ARRAYS\n");
+    for (size_t i = 0; i < TEST_CASES_NUM; i++)
+    {
+        int *arr = getIntArrayByCase(TEST_ARRAY_SIZE, i);
+        printf("%s case\n", caseName[i]);
+        printIntArray(arr, TEST_ARRAY_SIZE);
+    }
+    printf("\n\n");
 
+    printf("SORTING ALGORITHMS\n");
     int *arr1 = getRandIntArray(TEST_ARRAY_SIZE);
     int *arr2 = copyIntArray(arr1, TEST_ARRAY_SIZE);
     int *arr3 = copyIntArray(arr1, TEST_ARRAY_SIZE);
@@ -322,4 +365,50 @@ void radixSort(int *arr, int n, size_t *comparisons, size_t *swaps)
         countingSort(arr, n, i, comparisons, swaps);
         printIntArray(arr, n);
     }
+}
+
+int *newIntArray(size_t n)
+{
+    int *arr = malloc(n * sizeof(int));
+    if (arr == NULL)
+    {
+        printf("Failed to allocate memory");
+        exit(EXIT_FAILURE);
+    }
+    return arr;
+}
+
+int *getIntArrayByCase(size_t n, caseType testCase)
+{
+    int *arr;
+
+    switch (testCase)
+    {
+    case BEST:
+        arr = newIntArray(n);
+        for (size_t i = 0; i < n; i++)
+        {
+            arr[i] = i;
+        }
+        break;
+
+    case MIDDLE:
+        arr = getRandIntArray(n);
+        break;
+
+    case WORST:
+        arr = newIntArray(n);
+        for (size_t i = 0; i < n; i++)
+        {
+            arr[i] = n - i;
+        }
+        break;
+
+    default:
+        printf("Wrong test case type");
+        exit(EXIT_FAILURE);
+        break;
+    }
+
+    return arr;
 }
