@@ -32,11 +32,14 @@ void swap(int *a, int *b);
 void mergeSort(int *arr, size_t left, size_t right, size_t *comparisons, size_t *swaps);
 void algCheck();
 int getDigit(int a, int k);
-int *countingSort(int *arr, int n, int digit);
+void countingSort(int *arr, int n, int digit);
+void radixSort(int *arr, int n);
 
 int main()
 {
     srand(time(NULL));
+    debugMode = 1;
+
     // algCheck();
 
     int *arr1 = getRandIntArray(TEST_ARRAY_SIZE);
@@ -45,8 +48,12 @@ int main()
     printf("\n");
 
     printf("Counting sort\n");
-    int *arr2 = countingSort(arr1, TEST_ARRAY_SIZE, 0);
-    printIntArray(arr2, TEST_ARRAY_SIZE);
+    countingSort(arr1, TEST_ARRAY_SIZE, 0);
+    printIntArray(arr1, TEST_ARRAY_SIZE);
+    countingSort(arr1, TEST_ARRAY_SIZE, 1);
+    printIntArray(arr1, TEST_ARRAY_SIZE);
+    countingSort(arr1, TEST_ARRAY_SIZE, 2);
+    printIntArray(arr1, TEST_ARRAY_SIZE);
     printf("\n");
 
     return 0;
@@ -86,9 +93,10 @@ void algCheck()
 int *getRandIntArray(size_t n)
 {
     int *arr = malloc(n * sizeof(int));
+    int range = debugMode ? 1000 : 10000000;
     for (size_t i = 0; i < n; i++)
     {
-        arr[i] = rand() % (n * 10);
+        arr[i] = rand() % range;
     }
     return arr;
 }
@@ -250,16 +258,21 @@ int getDigit(int a, int k)
     return (a / powersOf10[k]) % 10;
 }
 
-int *countingSort(int *arr, int n, int digit)
+void countingSort(int *arr, int n, int digit)
 {
     int *count = malloc(10 * sizeof(int));
+    for (size_t i = 0; i < 10; i++)
+    {
+        count[i] = 0;
+    }
+
     int *output = malloc(n * sizeof(int));
 
     for (size_t i = 0; i < n; i++)
     {
         count[getDigit(arr[i], digit)]++;
     }
-    printIntArray(count, 10);
+    // printIntArray(count, 10);
 
     int total = 0;
     for (size_t i = 0; i < 10; i++)
@@ -268,14 +281,31 @@ int *countingSort(int *arr, int n, int digit)
         count[i] += total;
         total += temp;
     }
-    printIntArray(count, 10);
+    // printIntArray(count, 10);
 
-    for (size_t i = 0; i < n; i++)
+    for (int i = n - 1; i >= 0; i--)
     {
-        output[count[getDigit(arr[i], digit)] - 1] = arr[i];
+        int key = getDigit(arr[i], digit);
+        int ind = count[key] - 1;
+        // printf("elem: %5d, i: %5d, key: %5d, index: %5d\n", arr[i], i, key, ind);
+        output[ind] = arr[i];
         count[getDigit(arr[i], digit)]--;
     }
 
+    for (size_t i = 0; i < n; i++)
+    {
+        arr[i] = output[i];
+    }
+
+    free(output);
     free(count);
-    return output;
+}
+
+void radixSort(int *arr, int n)
+{
+    for (size_t i = 0; i < 3; i++)
+    {
+        countingSort(arr, n, i);
+        printIntArray(arr, n);
+    }
 }
