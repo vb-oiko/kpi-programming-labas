@@ -6,7 +6,7 @@
 #define TEST_CASES_NUM 3
 #define ITERATIONS_NUM 3
 #define RANDOM_GENERATION_NUM 1000
-#define TEST_ARRAY_SIZE 10
+#define TEST_ARRAY_SIZE 20
 
 typedef enum
 {
@@ -27,6 +27,7 @@ int *getRandIntArray(size_t n);
 void printIntArray(int *arr, size_t n);
 void selectionSort(int *arr, size_t n, size_t *comparisons, size_t *swaps);
 void swap(int *a, int *b);
+void mergeSort(int *arr, size_t left, size_t right, size_t *comparisons, size_t *swaps);
 
 int main()
 {
@@ -38,8 +39,10 @@ int main()
     printIntArray(arr, TEST_ARRAY_SIZE);
     comps = 0;
     swaps = 0;
-    selectionSort(arr, TEST_ARRAY_SIZE, &comps, &swaps);
+    // selectionSort(arr, TEST_ARRAY_SIZE, &comps, &swaps);
+    mergeSort(arr, 0, TEST_ARRAY_SIZE - 1, &comps, &swaps);
     printf("Comparisons: %zu, swaps: %zu\n", comps, swaps);
+    printIntArray(arr, TEST_ARRAY_SIZE);
 
     return 0;
 }
@@ -49,7 +52,7 @@ int *getRandIntArray(size_t n)
     int *arr = malloc(n * sizeof(int));
     for (size_t i = 0; i < n; i++)
     {
-        arr[i] = rand() % (n * 2);
+        arr[i] = rand() % (n * 10);
     }
     return arr;
 }
@@ -60,7 +63,7 @@ void printIntArray(int *arr, size_t n)
     {
         printf("%5d", arr[i]);
     }
-    printf("\n\n");
+    printf("\n");
 }
 
 void swap(int *a, int *b)
@@ -96,4 +99,73 @@ void selectionSort(int *arr, size_t n, size_t *comparisons, size_t *swaps)
 
         // printIntArray(arr, n);
     }
+}
+
+void mergeSort(int *arr, size_t left, size_t right, size_t *comparisons, size_t *swaps)
+{
+    if (right == left)
+    {
+        return;
+    }
+
+    size_t m = (left + right) / 2;
+
+    mergeSort(arr, left, m, comparisons, swaps);
+    mergeSort(arr, m + 1, right, comparisons, swaps);
+
+    size_t lSize = m - left + 1;
+    int *L = malloc(lSize * sizeof(int));
+    for (size_t i = 0; i < lSize; i++)
+    {
+        L[i] = arr[left + i];
+    }
+
+    size_t rSize = right - (m + 1) + 1;
+    int *R = malloc(rSize * sizeof(int));
+    for (size_t i = 0; i < rSize; i++)
+    {
+        R[i] = arr[m + 1 + i];
+    }
+
+    printf("left: %zu, m: %zu, right: %zu, lSize: %zu, rSize: %zu\n", left, m, right, lSize, rSize);
+    printf("Left array: ");
+    printIntArray(L, lSize);
+    printf("Right array: ");
+    printIntArray(R, rSize);
+    printf("\n");
+
+    size_t k;
+    size_t i;
+    size_t j;
+
+    for (k = left, i = 0, j = 0; i < lSize && j < rSize; k++)
+    {
+        if (L[i] < R[j])
+        {
+            arr[k] = L[i];
+            i++;
+        }
+        else
+        {
+            arr[k] = R[j];
+            j++;
+        }
+    }
+
+    while (i < lSize)
+    {
+        arr[k] = L[i];
+        i++;
+        k++;
+    }
+
+    while (j < rSize)
+    {
+        arr[k] = R[j];
+        j++;
+        k++;
+    }
+
+    free(L);
+    free(R);
 }
