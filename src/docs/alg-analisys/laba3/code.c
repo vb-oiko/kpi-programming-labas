@@ -91,6 +91,7 @@ void algCheck()
         int *arr = getIntArrayByCase(TEST_ARRAY_SIZE, i);
         printf("%s case\n", caseName[i]);
         printIntArray(arr, TEST_ARRAY_SIZE);
+        free(arr);
     }
     printf("\n\n");
 
@@ -142,7 +143,7 @@ void algCheck()
 
 int *getRandIntArray(size_t n)
 {
-    int *arr = malloc(n * sizeof(int));
+    int *arr = newIntArray(n);
     int range = debugMode ? 1000 : 10000000;
     for (size_t i = 0; i < n; i++)
     {
@@ -162,7 +163,7 @@ void printIntArray(int *arr, size_t n)
 
 int *copyIntArray(int *arr, size_t n)
 {
-    int *copy = malloc(n * sizeof(int));
+    int *copy = newIntArray(n);
 
     for (size_t i = 0; i < n; i++)
     {
@@ -232,7 +233,7 @@ void mergeSort(int *arr, size_t left, size_t right, size_t *comparisons, size_t 
     mergeSort(arr, m + 1, right, comparisons, swaps);
 
     size_t lSize = m - left + 1;
-    int *L = malloc(lSize * sizeof(int));
+    int *L = newIntArray(lSize);
     for (size_t i = 0; i < lSize; i++)
     {
         L[i] = arr[left + i];
@@ -240,7 +241,7 @@ void mergeSort(int *arr, size_t left, size_t right, size_t *comparisons, size_t 
     }
 
     size_t rSize = right - (m + 1) + 1;
-    int *R = malloc(rSize * sizeof(int));
+    int *R = newIntArray(rSize);
     for (size_t i = 0; i < rSize; i++)
     {
         R[i] = arr[m + 1 + i];
@@ -317,13 +318,13 @@ int getDigit(int a, int k)
 
 void countingSort(int *arr, int n, int digit, __attribute__((unused)) size_t *comparisons, size_t *swaps)
 {
-    int *count = malloc(10 * sizeof(int));
+    int *count = newIntArray(10);
     for (size_t i = 0; i < 10; i++)
     {
         count[i] = 0;
     }
 
-    int *output = malloc(n * sizeof(int));
+    int *output = newIntArray(n);
 
     for (size_t i = 0; i < (size_t)n; i++)
     {
