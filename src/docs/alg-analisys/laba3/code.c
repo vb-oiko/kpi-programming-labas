@@ -26,6 +26,7 @@ char caseName[TEST_CASES_NUM][7] = {
 
 int *getRandIntArray(size_t n);
 void printIntArray(int *arr, size_t n);
+int *copyIntArray(int *arr, size_t n);
 void selectionSort(int *arr, size_t n, size_t *comparisons, size_t *swaps);
 void swap(int *a, int *b);
 void mergeSort(int *arr, size_t left, size_t right, size_t *comparisons, size_t *swaps);
@@ -36,14 +37,27 @@ int main()
     size_t comps;
     size_t swaps;
 
-    int *arr = getRandIntArray(TEST_ARRAY_SIZE);
-    printIntArray(arr, TEST_ARRAY_SIZE);
+    int *arr1 = getRandIntArray(TEST_ARRAY_SIZE);
+    int *arr2 = copyIntArray(arr1, TEST_ARRAY_SIZE);
+    printf("Sourse array:\n");
+    printIntArray(arr1, TEST_ARRAY_SIZE);
+    printf("\n");
+
+    printf("Selection sort\n");
     comps = 0;
     swaps = 0;
-    // selectionSort(arr, TEST_ARRAY_SIZE, &comps, &swaps);
-    mergeSort(arr, 0, TEST_ARRAY_SIZE - 1, &comps, &swaps);
+    selectionSort(arr1, TEST_ARRAY_SIZE, &comps, &swaps);
+    printIntArray(arr1, TEST_ARRAY_SIZE);
     printf("Comparisons: %zu, swaps: %zu\n", comps, swaps);
-    printIntArray(arr, TEST_ARRAY_SIZE);
+    printf("\n");
+
+    printf("Merge sort\n");
+    comps = 0;
+    swaps = 0;
+    mergeSort(arr2, 0, TEST_ARRAY_SIZE - 1, &comps, &swaps);
+    printIntArray(arr2, TEST_ARRAY_SIZE);
+    printf("Comparisons: %zu, swaps: %zu\n", comps, swaps);
+    printf("\n");
 
     return 0;
 }
@@ -65,6 +79,17 @@ void printIntArray(int *arr, size_t n)
         printf("%5d", arr[i]);
     }
     printf("\n");
+}
+
+int *copyIntArray(int *arr, size_t n)
+{
+    int *copy = malloc(n * sizeof(int));
+
+    for (size_t i = 0; i < n; i++)
+    {
+        copy[i] = arr[i];
+    }
+    return copy;
 }
 
 void swap(int *a, int *b)
@@ -125,6 +150,7 @@ void mergeSort(int *arr, size_t left, size_t right, size_t *comparisons, size_t 
     for (size_t i = 0; i < lSize; i++)
     {
         L[i] = arr[left + i];
+        // (*swaps)++;
     }
 
     size_t rSize = right - (m + 1) + 1;
@@ -132,6 +158,7 @@ void mergeSort(int *arr, size_t left, size_t right, size_t *comparisons, size_t 
     for (size_t i = 0; i < rSize; i++)
     {
         R[i] = arr[m + 1 + i];
+        // (*swaps)++;
     }
 
     if (debugMode)
@@ -160,6 +187,8 @@ void mergeSort(int *arr, size_t left, size_t right, size_t *comparisons, size_t 
             arr[k] = R[j];
             j++;
         }
+        (*swaps)++;
+        (*comparisons)++;
     }
 
     while (i < lSize)
@@ -167,6 +196,7 @@ void mergeSort(int *arr, size_t left, size_t right, size_t *comparisons, size_t 
         arr[k] = L[i];
         i++;
         k++;
+        (*swaps)++;
     }
 
     while (j < rSize)
@@ -174,6 +204,7 @@ void mergeSort(int *arr, size_t left, size_t right, size_t *comparisons, size_t 
         arr[k] = R[j];
         j++;
         k++;
+        (*swaps)++;
     }
 
     free(L);
