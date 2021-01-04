@@ -15,6 +15,7 @@ typedef enum
     WORST,
 } caseType;
 
+int debugMode = 0;
 int iterationsCount[3] = {1000, 10000, 100000};
 
 char caseName[TEST_CASES_NUM][7] = {
@@ -92,12 +93,18 @@ void selectionSort(int *arr, size_t n, size_t *comparisons, size_t *swaps)
         (*comparisons)++;
         if (arr[minInd] < arr[i])
         {
-            // printf("Swaped %ld-th and %ld-th elements\n", minInd, i);
+            if (debugMode)
+            {
+                printf("Swaped %ld-th and %ld-th elements\n", minInd, i);
+            }
             swap(&arr[minInd], &arr[i]);
             (*swaps)++;
         }
 
-        // printIntArray(arr, n);
+        if (debugMode)
+        {
+            printIntArray(arr, n);
+        }
     }
 }
 
@@ -127,12 +134,15 @@ void mergeSort(int *arr, size_t left, size_t right, size_t *comparisons, size_t 
         R[i] = arr[m + 1 + i];
     }
 
-    printf("left: %zu, m: %zu, right: %zu, lSize: %zu, rSize: %zu\n", left, m, right, lSize, rSize);
-    printf("Left array: ");
-    printIntArray(L, lSize);
-    printf("Right array: ");
-    printIntArray(R, rSize);
-    printf("\n");
+    if (debugMode)
+    {
+        printf("left: %zu, m: %zu, right: %zu, lSize: %zu, rSize: %zu\n", left, m, right, lSize, rSize);
+        printf("Left array: ");
+        printIntArray(L, lSize);
+        printf("Right array: ");
+        printIntArray(R, rSize);
+        printf("\n");
+    }
 
     size_t k;
     size_t i;
