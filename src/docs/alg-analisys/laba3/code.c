@@ -57,9 +57,11 @@ void printSortResults(size_t n, caseType testCase, sortType sortMethod);
 int main()
 {
     srand(time(NULL));
+    debugMode = 1;
     algCheck();
+    debugMode = 0;
 
-    printf("!--------------------------------------------------------------------------------------------------------------!\n");
+    printf("!==============================================================================================================!\n");
     printf("!                    !                                     Sorting Method                                      !\n");
     printf("!                    !-----------------------------------------------------------------------------------------!\n");
     printf("!    Array  Size     !            Comparisons Count               !                Swaps Count                 !\n");
@@ -68,7 +70,7 @@ int main()
 
     for (size_t sortMethod = 0; sortMethod < SORT_METHODS_NUM; sortMethod++)
     {
-        printf("!--------------------------------------------------------------------------------------------------------------!\n");
+        printf("!==============================================================================================================!\n");
         printf("!                                           %10s SORT                                                    !\n", sortMethodName[sortMethod]);
         fflush(stdout);
         for (size_t testCase = 0; testCase < TEST_CASES_NUM; testCase++)
@@ -85,7 +87,7 @@ int main()
         }
     }
 
-    printf("!--------------------------------------------------------------------------------------------------------------!\n");
+    printf("!==============================================================================================================!\n");
     printf("\n\n");
     return 0;
 }
@@ -104,6 +106,16 @@ void printSortResults(size_t n, caseType testCase, sortType sortMethod)
         tSwaps = (size_t)n;
         break;
 
+    case MERGE:
+        tComps = 0;
+        tSwaps = (size_t)(n * log(n));
+        break;
+
+    case RADIX:
+        tComps = 0;
+        tSwaps = (size_t)n * 10;
+        break;
+
     default:
         break;
     }
@@ -118,6 +130,14 @@ void printSortResults(size_t n, caseType testCase, sortType sortMethod)
         {
         case SELECTION:
             selectionSort(arr, n, &comps, &swaps);
+            break;
+
+        case MERGE:
+            mergeSort(arr, 0, n - 1, &comps, &swaps);
+            break;
+
+        case RADIX:
+            radixSort(arr, n, &comps, &swaps);
             break;
 
         default:
@@ -340,7 +360,6 @@ void mergeSort(int *arr, size_t left, size_t right, size_t *comparisons, size_t 
             j++;
         }
         (*swaps)++;
-        (*comparisons)++;
     }
 
     while (i < lSize)
@@ -429,7 +448,11 @@ void radixSort(int *arr, int n, size_t *comparisons, size_t *swaps)
     for (size_t i = 0; i < 3; i++)
     {
         countingSort(arr, n, i, comparisons, swaps);
-        printIntArray(arr, n);
+        if (debugMode)
+        {
+
+            printIntArray(arr, n);
+        }
     }
 }
 
