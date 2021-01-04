@@ -40,11 +40,7 @@ int *getIntArrayByCase(size_t n, caseType testCase);
 int main()
 {
     srand(time(NULL));
-
-    debugMode = 1;
     algCheck();
-    debugMode = 0;
-    return 0;
 
     printf("!-------------------------------------------------------------------------------------------------------------!\n");
     printf("!                   !                                     Sorting Method                                      !\n");
@@ -83,6 +79,11 @@ int main()
 
 void algCheck()
 {
+    if (!debugMode)
+    {
+        return;
+    }
+
     size_t comps;
     size_t swaps;
     printf("GENERATING ARRAYS\n");
