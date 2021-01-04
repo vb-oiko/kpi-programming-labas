@@ -32,11 +32,22 @@ void swap(int *a, int *b);
 void mergeSort(int *arr, size_t left, size_t right, size_t *comparisons, size_t *swaps);
 void algCheck();
 int getDigit(int a, int k);
+int *countingSort(int *arr, int n, int digit);
 
 int main()
 {
     srand(time(NULL));
     // algCheck();
+
+    int *arr1 = getRandIntArray(TEST_ARRAY_SIZE);
+    printf("Sourse array:\n");
+    printIntArray(arr1, TEST_ARRAY_SIZE);
+    printf("\n");
+
+    printf("Counting sort\n");
+    int *arr2 = countingSort(arr1, TEST_ARRAY_SIZE, 0);
+    printIntArray(arr2, TEST_ARRAY_SIZE);
+    printf("\n");
 
     return 0;
 }
@@ -67,6 +78,9 @@ void algCheck()
     printIntArray(arr2, TEST_ARRAY_SIZE);
     printf("Comparisons: %zu, swaps: %zu\n", comps, swaps);
     printf("\n");
+
+    free(arr1);
+    free(arr2);
 }
 
 int *getRandIntArray(size_t n)
@@ -234,4 +248,34 @@ int getDigit(int a, int k)
     };
 
     return (a / powersOf10[k]) % 10;
+}
+
+int *countingSort(int *arr, int n, int digit)
+{
+    int *count = malloc(10 * sizeof(int));
+    int *output = malloc(n * sizeof(int));
+
+    for (size_t i = 0; i < n; i++)
+    {
+        count[getDigit(arr[i], digit)]++;
+    }
+    printIntArray(count, 10);
+
+    int total = 0;
+    for (size_t i = 0; i < 10; i++)
+    {
+        int temp = count[i];
+        count[i] += total;
+        total += temp;
+    }
+    printIntArray(count, 10);
+
+    for (size_t i = 0; i < n; i++)
+    {
+        output[count[getDigit(arr[i], digit)] - 1] = arr[i];
+        count[getDigit(arr[i], digit)]--;
+    }
+
+    free(count);
+    return output;
 }
