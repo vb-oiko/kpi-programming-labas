@@ -32,29 +32,17 @@ void swap(int *a, int *b);
 void mergeSort(int *arr, size_t left, size_t right, size_t *comparisons, size_t *swaps);
 void algCheck();
 int getDigit(int a, int k);
-void countingSort(int *arr, int n, int digit);
-void radixSort(int *arr, int n);
+void countingSort(int *arr, int n, int digit, size_t *comparisons, size_t *swap);
+void radixSort(int *arr, int n, size_t *comparisons, size_t *swap);
 
 int main()
 {
     srand(time(NULL));
+
     debugMode = 1;
+    algCheck();
 
-    // algCheck();
-
-    int *arr1 = getRandIntArray(TEST_ARRAY_SIZE);
-    printf("Sourse array:\n");
-    printIntArray(arr1, TEST_ARRAY_SIZE);
-    printf("\n");
-
-    printf("Counting sort\n");
-    countingSort(arr1, TEST_ARRAY_SIZE, 0);
-    printIntArray(arr1, TEST_ARRAY_SIZE);
-    countingSort(arr1, TEST_ARRAY_SIZE, 1);
-    printIntArray(arr1, TEST_ARRAY_SIZE);
-    countingSort(arr1, TEST_ARRAY_SIZE, 2);
-    printIntArray(arr1, TEST_ARRAY_SIZE);
-    printf("\n");
+    debugMode = 0;
 
     return 0;
 }
@@ -66,28 +54,47 @@ void algCheck()
 
     int *arr1 = getRandIntArray(TEST_ARRAY_SIZE);
     int *arr2 = copyIntArray(arr1, TEST_ARRAY_SIZE);
+    int *arr3 = copyIntArray(arr1, TEST_ARRAY_SIZE);
+    printf("Array size: %d\n", TEST_ARRAY_SIZE);
     printf("Sourse array:\n");
     printIntArray(arr1, TEST_ARRAY_SIZE);
     printf("\n");
 
-    printf("Selection sort\n");
+    printf("SELECTION SORT\n");
     comps = 0;
     swaps = 0;
-    selectionSort(arr1, TEST_ARRAY_SIZE, &comps, &swaps);
+    printf("Sourse array:\n");
     printIntArray(arr1, TEST_ARRAY_SIZE);
+    selectionSort(arr1, TEST_ARRAY_SIZE, &comps, &swaps);
     printf("Comparisons: %zu, swaps: %zu\n", comps, swaps);
     printf("\n");
 
-    printf("Merge sort\n");
+    printf("MERGE SORT\n");
     comps = 0;
     swaps = 0;
     mergeSort(arr2, 0, TEST_ARRAY_SIZE - 1, &comps, &swaps);
     printIntArray(arr2, TEST_ARRAY_SIZE);
-    printf("Comparisons: %zu, swaps: %zu\n", comps, swaps);
+    printf("Comparisons: %zu, copying to new array: %zu\n", comps, swaps);
     printf("\n");
+
+    printf("Radix sort\n");
+    comps = 0;
+    swaps = 0;
+    printf("Sourse array:\n");
+    printIntArray(arr3, TEST_ARRAY_SIZE);
+
+    for (int i = 0; i < 3; i++)
+    {
+        countingSort(arr3, TEST_ARRAY_SIZE, i, &comps, &swaps);
+        printf("Sorted by the digit number %d from the right:\n", i + 1);
+        printIntArray(arr3, TEST_ARRAY_SIZE);
+    }
+    printf("Comparisons: %zu, copying to new array: %zu\n", comps, swaps);
+    printf("\n\n");
 
     free(arr1);
     free(arr2);
+    free(arr3);
 }
 
 int *getRandIntArray(size_t n)
@@ -149,10 +156,17 @@ void selectionSort(int *arr, size_t n, size_t *comparisons, size_t *swaps)
         {
             if (debugMode)
             {
-                printf("Swaped %ld-th and %ld-th elements\n", minInd, i);
+                printf("Swapped elements with indices %3ld and %3ld\n", i, minInd);
             }
             swap(&arr[minInd], &arr[i]);
             (*swaps)++;
+        }
+        else
+        {
+            if (debugMode)
+            {
+                printf("No swap needed for the element with index %3ld\n", i);
+            }
         }
 
         if (debugMode)
@@ -179,7 +193,7 @@ void mergeSort(int *arr, size_t left, size_t right, size_t *comparisons, size_t 
     for (size_t i = 0; i < lSize; i++)
     {
         L[i] = arr[left + i];
-        // (*swaps)++;
+        (*swaps)++;
     }
 
     size_t rSize = right - (m + 1) + 1;
@@ -187,13 +201,13 @@ void mergeSort(int *arr, size_t left, size_t right, size_t *comparisons, size_t 
     for (size_t i = 0; i < rSize; i++)
     {
         R[i] = arr[m + 1 + i];
-        // (*swaps)++;
+        (*swaps)++;
     }
 
     if (debugMode)
     {
         printf("left: %zu, m: %zu, right: %zu, lSize: %zu, rSize: %zu\n", left, m, right, lSize, rSize);
-        printf("Left array: ");
+        printf("Left array:  ");
         printIntArray(L, lSize);
         printf("Right array: ");
         printIntArray(R, rSize);
@@ -258,7 +272,7 @@ int getDigit(int a, int k)
     return (a / powersOf10[k]) % 10;
 }
 
-void countingSort(int *arr, int n, int digit)
+void countingSort(int *arr, int n, int digit, size_t *comparisons, size_t *swaps)
 {
     int *count = malloc(10 * sizeof(int));
     for (size_t i = 0; i < 10; i++)
@@ -272,7 +286,6 @@ void countingSort(int *arr, int n, int digit)
     {
         count[getDigit(arr[i], digit)]++;
     }
-    // printIntArray(count, 10);
 
     int total = 0;
     for (size_t i = 0; i < 10; i++)
@@ -280,32 +293,33 @@ void countingSort(int *arr, int n, int digit)
         int temp = count[i];
         count[i] += total;
         total += temp;
+        (*swaps)++;
     }
-    // printIntArray(count, 10);
 
     for (int i = n - 1; i >= 0; i--)
     {
         int key = getDigit(arr[i], digit);
         int ind = count[key] - 1;
-        // printf("elem: %5d, i: %5d, key: %5d, index: %5d\n", arr[i], i, key, ind);
         output[ind] = arr[i];
         count[getDigit(arr[i], digit)]--;
+        (*swaps)++;
     }
 
     for (size_t i = 0; i < n; i++)
     {
         arr[i] = output[i];
+        (*swaps)++;
     }
 
     free(output);
     free(count);
 }
 
-void radixSort(int *arr, int n)
+void radixSort(int *arr, int n, size_t *comparisons, size_t *swaps)
 {
     for (size_t i = 0; i < 3; i++)
     {
-        countingSort(arr, n, i);
+        countingSort(arr, n, i, &comparisons, &swaps);
         printIntArray(arr, n);
     }
 }
