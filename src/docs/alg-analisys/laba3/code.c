@@ -272,7 +272,7 @@ int getDigit(int a, int k)
     return (a / powersOf10[k]) % 10;
 }
 
-void countingSort(int *arr, int n, int digit, size_t *comparisons, size_t *swaps)
+void countingSort(int *arr, int n, int digit, __attribute__((unused)) size_t *comparisons, size_t *swaps)
 {
     int *count = malloc(10 * sizeof(int));
     for (size_t i = 0; i < 10; i++)
@@ -282,7 +282,7 @@ void countingSort(int *arr, int n, int digit, size_t *comparisons, size_t *swaps
 
     int *output = malloc(n * sizeof(int));
 
-    for (size_t i = 0; i < n; i++)
+    for (size_t i = 0; i < (size_t)n; i++)
     {
         count[getDigit(arr[i], digit)]++;
     }
@@ -305,7 +305,7 @@ void countingSort(int *arr, int n, int digit, size_t *comparisons, size_t *swaps
         (*swaps)++;
     }
 
-    for (size_t i = 0; i < n; i++)
+    for (size_t i = 0; i < (size_t)n; i++)
     {
         arr[i] = output[i];
         (*swaps)++;
@@ -319,7 +319,7 @@ void radixSort(int *arr, int n, size_t *comparisons, size_t *swaps)
 {
     for (size_t i = 0; i < 3; i++)
     {
-        countingSort(arr, n, i, &comparisons, &swaps);
+        countingSort(arr, n, i, comparisons, swaps);
         printIntArray(arr, n);
     }
 }
