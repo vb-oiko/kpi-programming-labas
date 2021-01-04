@@ -52,7 +52,7 @@ void countingSort(int *arr, int n, int digit, size_t *comparisons, size_t *swap)
 void radixSort(int *arr, int n, size_t *comparisons, size_t *swap);
 int *newIntArray(size_t n);
 int *getIntArrayByCase(size_t n, caseType testCase);
-void printSelectionSortResults(size_t n, caseType testCase);
+void printSortResults(size_t n, caseType testCase, sortType sortMethod);
 
 int main()
 {
@@ -62,8 +62,8 @@ int main()
     printf("!--------------------------------------------------------------------------------------------------------------!\n");
     printf("!                    !                                     Sorting Method                                      !\n");
     printf("!                    !-----------------------------------------------------------------------------------------!\n");
-    printf("!       Array        !            Comparisons Count               !                Swaps Count                 !\n");
-    printf("!        Size        !-----------------------------------------------------------------------------------------!\n");
+    printf("!    Array  Size     !            Comparisons Count               !                Swaps Count                 !\n");
+    printf("!  (Passes Count)    !-----------------------------------------------------------------------------------------!\n");
     printf("!                    !  Theoretical ! Experimental !    Ratio     !  Theoretical ! Experimental !    Ratio     !\n");
 
     for (size_t sortMethod = 0; sortMethod < SORT_METHODS_NUM; sortMethod++)
@@ -80,16 +80,7 @@ int main()
             for (size_t sizeRange = 0; sizeRange < ARRAY_SIZES_NUM; sizeRange++)
             {
                 int n = arraySize[sizeRange];
-
-                switch (sortMethod)
-                {
-                case SELECTION:
-                    printSelectionSortResults(n, testCase);
-                    break;
-
-                default:
-                    break;
-                }
+                printSortResults(n, testCase, sortMethod);
             }
         }
     }
@@ -99,32 +90,47 @@ int main()
     return 0;
 }
 
-void printSelectionSortResults(size_t n, caseType testCase)
+void printSortResults(size_t n, caseType testCase, sortType sortMethod)
 {
     size_t comps = 0;
     size_t swaps = 0;
-    size_t tComps = (size_t)n / 2 * (size_t)n;
-    size_t tSwaps = (size_t)n;
+    size_t tComps = 0;
+    size_t tSwaps = 0;
 
-    if (testCase == MIDDLE)
+    switch (sortMethod)
     {
-        for (size_t i = 0; i < RANDOM_GENERATION_NUM; i++)
-        {
-            int *arr = getIntArrayByCase(n, testCase);
-            selectionSort(arr, n, &comps, &swaps);
-            free(arr);
-        }
-        comps = comps / (size_t)RANDOM_GENERATION_NUM;
-        swaps = swaps / (size_t)RANDOM_GENERATION_NUM;
+    case SELECTION:
+        tComps = (size_t)n / 2 * (size_t)n;
+        tSwaps = (size_t)n;
+        break;
+
+    default:
+        break;
     }
-    else
+
+    int passNum = (testCase == MIDDLE) ? RANDOM_GENERATION_NUM : 1;
+
+    for (size_t i = 0; i < RANDOM_GENERATION_NUM; i++)
     {
         int *arr = getIntArrayByCase(n, testCase);
-        selectionSort(arr, n, &comps, &swaps);
+
+        switch (sortMethod)
+        {
+        case SELECTION:
+            selectionSort(arr, n, &comps, &swaps);
+            break;
+
+        default:
+            break;
+        }
+
         free(arr);
     }
 
-    printf("! %12ld       !", n);
+    comps = comps / (size_t)RANDOM_GENERATION_NUM;
+    swaps = swaps / (size_t)RANDOM_GENERATION_NUM;
+
+    printf("!%12ld (%4d) !", n, passNum);
     printf(" % 11ld  !", tComps);
     printf(" % 11ld  !", comps);
     printf(" % 11f  !", (float)comps / tComps);
