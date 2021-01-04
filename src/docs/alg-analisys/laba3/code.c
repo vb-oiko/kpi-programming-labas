@@ -6,6 +6,7 @@
 
 #define TEST_CASES_NUM 3
 #define ARRAY_SIZES_NUM 3
+#define SORT_METHODS_NUM 3
 #define RANDOM_GENERATION_NUM 1000
 #define TEST_ARRAY_SIZE 20
 
@@ -16,13 +17,27 @@ typedef enum
     WORST,
 } caseType;
 
+typedef enum
+{
+    SELECTION,
+    MERGE,
+    RADIX,
+} sortType;
+
 int debugMode = 0;
-int arraySize[3] = {1000, 10000, 100000};
+// int arraySize[3] = {1000, 10000, 100000};
+int arraySize[3] = {10, 100, 1000};
 
 char caseName[TEST_CASES_NUM][7] = {
     "Best",
     "Middle",
     "Worst",
+};
+
+char sortMethodName[SORT_METHODS_NUM][10] = {
+    "SELECTION",
+    "MERGE",
+    "RADIX",
 };
 
 int *getRandIntArray(size_t n);
@@ -49,43 +64,61 @@ int main()
     printf("!       Array        !            Comparisons Count               !                Swaps Count                 !\n");
     printf("!        Size        !-----------------------------------------------------------------------------------------!\n");
     printf("!                    !  Theoretical ! Experimental !    Ratio     !  Theoretical ! Experimental !    Ratio     !\n");
-    printf("!--------------------------------------------------------------------------------------------------------------!\n");
-    printf("!                                               SELECTION SORT                                                 !\n");
-    fflush(stdout);
-    for (size_t testCase = 0; testCase < TEST_CASES_NUM; testCase++)
+
+    for (size_t sortMethod = 0; sortMethod < SORT_METHODS_NUM; sortMethod++)
     {
         printf("!--------------------------------------------------------------------------------------------------------------!\n");
-        printf("!                                              %7s Case                                                    !\n", caseName[testCase]);
-        printf("!--------------------------------------------------------------------------------------------------------------!\n");
-
-        for (size_t j = 0; j < ARRAY_SIZES_NUM; j++)
+        printf("!                                           %10s SORT                                                    !\n", sortMethodName[sortMethod]);
+        fflush(stdout);
+        for (size_t testCase = 0; testCase < TEST_CASES_NUM; testCase++)
         {
-            int n = arraySize[j];
-            size_t comps = 0;
-            size_t swaps = 0;
-            int *arr = getIntArrayByCase(n, testCase);
-            size_t tComps = (size_t)n / 2 * (size_t)n;
-            size_t tSwaps = (size_t)n;
+            printf("!--------------------------------------------------------------------------------------------------------------!\n");
+            printf("!                                              %7s Case                                                    !\n", caseName[testCase]);
+            printf("!--------------------------------------------------------------------------------------------------------------!\n");
 
-            selectionSort(arr, n, &comps, &swaps);
+            for (size_t sizeRange = 0; sizeRange < ARRAY_SIZES_NUM; sizeRange++)
+            {
+                int n = arraySize[sizeRange];
 
-            printf("! %12d       !", n);
-            printf(" % 11ld  !", tComps);
-            printf(" % 11ld  !", comps);
-            printf(" % 11f  !", (float)comps / tComps);
-            printf(" % 11ld  !", tSwaps);
-            printf(" % 11ld  !", swaps);
-            printf(" % 11f  !", (float)swaps / tSwaps);
-            printf("\n");
-            fflush(stdout);
+                switch (sortMethod)
+                {
+                case SELECTION:
+                    printSelectionSortResults(n, testCase);
+                    break;
 
-            free(arr);
+                default:
+                    break;
+                }
+            }
         }
     }
 
     printf("!--------------------------------------------------------------------------------------------------------------!\n");
     printf("\n\n");
     return 0;
+}
+
+void printSelectionSortResults(size_t n, caseType testCase)
+{
+    size_t comps = 0;
+    size_t swaps = 0;
+    int *arr = getIntArrayByCase(n, testCase);
+    size_t tComps = (size_t)n / 2 * (size_t)n;
+    size_t tSwaps = (size_t)n;
+
+    selectionSort(arr, n, &comps, &swaps);
+
+    printf("! %12d       !", n);
+    printf(" % 11ld  !", tComps);
+    printf(" % 11ld  !", comps);
+    printf(" % 11f  !", (float)comps / tComps);
+    printf(" % 11ld  !", tSwaps);
+    printf(" % 11ld  !", swaps);
+    printf(" % 11f  !", (float)swaps / tSwaps);
+    printf("\n");
+    fflush(stdout);
+
+    free(arr);
 }
 
 void algCheck()
