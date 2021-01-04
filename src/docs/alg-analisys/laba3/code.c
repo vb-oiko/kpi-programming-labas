@@ -2,9 +2,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <math.h>
 
 #define TEST_CASES_NUM 3
-#define ITERATIONS_NUM 3
+#define ARRAY_SIZES_NUM 3
 #define RANDOM_GENERATION_NUM 1000
 #define TEST_ARRAY_SIZE 20
 
@@ -42,37 +43,47 @@ int main()
     srand(time(NULL));
     algCheck();
 
-    printf("!-------------------------------------------------------------------------------------------------------------!\n");
-    printf("!                   !                                     Sorting Method                                      !\n");
-    printf("!                   !-----------------------------------------------------------------------------------------!\n");
-    printf("!       Array       !            Comparisons Count               !                Swaps Count                 !\n");
-    printf("!        Size       !-----------------------------------------------------------------------------------------!\n");
-    printf("!                   !  Theoretical ! Experimental !    Ratio     !  Theoretical ! Experimental !    Ratio     !\n");
-    printf("!-------------------------------------------------------------------------------------------------------------!\n");
-    printf("!                                            Selection Sort                                                   !\n");
-    printf("!-------------------------------------------------------------------------------------------------------------!\n");
-    printf("!                   !                                        Best Case                                        !\n");
-    printf("!                   !-----------------------------------------------------------------------------------------!\n");
+    printf("!--------------------------------------------------------------------------------------------------------------!\n");
+    printf("!                    !                                     Sorting Method                                      !\n");
+    printf("!                    !-----------------------------------------------------------------------------------------!\n");
+    printf("!       Array        !            Comparisons Count               !                Swaps Count                 !\n");
+    printf("!        Size        !-----------------------------------------------------------------------------------------!\n");
+    printf("!                    !  Theoretical ! Experimental !    Ratio     !  Theoretical ! Experimental !    Ratio     !\n");
+    printf("!--------------------------------------------------------------------------------------------------------------!\n");
+    printf("!                                               SELECTION SORT                                                 !\n");
     fflush(stdout);
     for (size_t testCase = 0; testCase < TEST_CASES_NUM; testCase++)
     {
-        int n = arraySize[testCase];
+        printf("!--------------------------------------------------------------------------------------------------------------!\n");
+        printf("!                                              %7s Case                                                    !\n", caseName[testCase]);
+        printf("!--------------------------------------------------------------------------------------------------------------!\n");
 
-        printf("! %12s      !", caseName[testCase]);
-        printf(" % 10zu  !", n * n / 2);
-        printf(" % 10zu  !", n * n / 2);
-        printf(" % 10fl  !", n * n / 2);
-        fflush(stdout);
+        for (size_t j = 0; j < ARRAY_SIZES_NUM; j++)
+        {
+            int n = arraySize[j];
+            size_t comps = 0;
+            size_t swaps = 0;
+            int *arr = getIntArrayByCase(n, testCase);
+            size_t tComps = (size_t)n / 2 * (size_t)n;
+            size_t tSwaps = (size_t)n;
+
+            selectionSort(arr, n, &comps, &swaps);
+
+            printf("! %12d       !", n);
+            printf(" % 11ld  !", tComps);
+            printf(" % 11ld  !", comps);
+            printf(" % 11f  !", (float)comps / tComps);
+            printf(" % 11ld  !", tSwaps);
+            printf(" % 11ld  !", swaps);
+            printf(" % 11f  !", (float)swaps / tSwaps);
+            printf("\n");
+            fflush(stdout);
+
+            free(arr);
+        }
     }
 
-    printf("!                                              Merge Sort                                                     !\n");
-    printf("!-------------------------------------------------------------------------------------------------------------!\n");
-    fflush(stdout);
-
-    printf("!                                              Radix Sort                                                     !\n");
-    printf("!-------------------------------------------------------------------------------------------------------------!\n");
-    fflush(stdout);
-
+    printf("!--------------------------------------------------------------------------------------------------------------!\n");
     printf("\n\n");
     return 0;
 }
