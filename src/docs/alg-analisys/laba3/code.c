@@ -52,6 +52,7 @@ void countingSort(int *arr, int n, int digit, size_t *comparisons, size_t *swap)
 void radixSort(int *arr, int n, size_t *comparisons, size_t *swap);
 int *newIntArray(size_t n);
 int *getIntArrayByCase(size_t n, caseType testCase);
+void printSelectionSortResults(size_t n, caseType testCase);
 
 int main()
 {
@@ -102,13 +103,28 @@ void printSelectionSortResults(size_t n, caseType testCase)
 {
     size_t comps = 0;
     size_t swaps = 0;
-    int *arr = getIntArrayByCase(n, testCase);
     size_t tComps = (size_t)n / 2 * (size_t)n;
     size_t tSwaps = (size_t)n;
 
-    selectionSort(arr, n, &comps, &swaps);
+    if (testCase == MIDDLE)
+    {
+        for (size_t i = 0; i < RANDOM_GENERATION_NUM; i++)
+        {
+            int *arr = getIntArrayByCase(n, testCase);
+            selectionSort(arr, n, &comps, &swaps);
+            free(arr);
+        }
+        comps = comps / (size_t)RANDOM_GENERATION_NUM;
+        swaps = swaps / (size_t)RANDOM_GENERATION_NUM;
+    }
+    else
+    {
+        int *arr = getIntArrayByCase(n, testCase);
+        selectionSort(arr, n, &comps, &swaps);
+        free(arr);
+    }
 
-    printf("! %12d       !", n);
+    printf("! %12ld       !", n);
     printf(" % 11ld  !", tComps);
     printf(" % 11ld  !", comps);
     printf(" % 11f  !", (float)comps / tComps);
@@ -117,8 +133,6 @@ void printSelectionSortResults(size_t n, caseType testCase)
     printf(" % 11f  !", (float)swaps / tSwaps);
     printf("\n");
     fflush(stdout);
-
-    free(arr);
 }
 
 void algCheck()
