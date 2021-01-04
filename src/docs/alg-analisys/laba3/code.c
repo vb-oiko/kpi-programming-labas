@@ -30,10 +30,19 @@ int *copyIntArray(int *arr, size_t n);
 void selectionSort(int *arr, size_t n, size_t *comparisons, size_t *swaps);
 void swap(int *a, int *b);
 void mergeSort(int *arr, size_t left, size_t right, size_t *comparisons, size_t *swaps);
+void algCheck();
+int getDigit(int a, int k);
 
 int main()
 {
     srand(time(NULL));
+    // algCheck();
+
+    return 0;
+}
+
+void algCheck()
+{
     size_t comps;
     size_t swaps;
 
@@ -58,8 +67,6 @@ int main()
     printIntArray(arr2, TEST_ARRAY_SIZE);
     printf("Comparisons: %zu, swaps: %zu\n", comps, swaps);
     printf("\n");
-
-    return 0;
 }
 
 int *getRandIntArray(size_t n)
@@ -209,4 +216,22 @@ void mergeSort(int *arr, size_t left, size_t right, size_t *comparisons, size_t 
 
     free(L);
     free(R);
+}
+
+int getDigit(int a, int k)
+{
+    static int powersOf10[] = {
+        1,
+        10,
+        100,
+        1000,
+        10000,
+        100000,
+        1000000,
+        10000000,
+        100000000,
+        1000000000,
+    };
+
+    return (a / powersOf10[k]) % 10;
 }
