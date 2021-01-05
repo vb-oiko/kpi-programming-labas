@@ -25,8 +25,7 @@ typedef enum
 } sortType;
 
 int debugMode = 0;
-// int arraySize[3] = {1000, 10000, 100000};
-int arraySize[3] = {10, 100, 1000};
+int arraySize[3] = {1000, 10000, 100000};
 
 char caseName[TEST_CASES_NUM][7] = {
     "Best",
