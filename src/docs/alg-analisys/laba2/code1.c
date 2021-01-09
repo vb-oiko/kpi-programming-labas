@@ -37,7 +37,7 @@ void printStrArray(char **arr, int arrLength);
 void getTestWord(char *word, caseType testCase, size_t wordCount);
 void checkTestDataGeneration();
 int quickLinearSearch(const char *searchedWord, char **arr, int arrLen);
-double getExecutionTime(char *searchWord, char **arr, size_t n);
+double getExecutionTime(caseType testCase, char **arr, size_t n);
 
 int verbose = 0;
 
@@ -55,9 +55,6 @@ int main(void)
     char **arr = splitStrToArray(string);
     printf("Array size: %zu\n\n", n);
 
-    char word[WORD_LEN + 1];
-    word[WORD_LEN] = '\0';
-
     printf("Starting to search through array...n");
     printf("Number of iterations in each pass: %d\n\n", PASS_COUNT);
 
@@ -73,18 +70,15 @@ int main(void)
     {
         printf("! %12zu      !", curN);
 
-        getTestWord(word, BEST, curN);
-        double best = getExecutionTime(word, arr, curN);
+        double best = getExecutionTime(BEST, arr, curN);
         printf(" %10lf   !", best);
         fflush(stdout);
 
-        getTestWord(word, MIDDLE, curN);
-        double middle = getExecutionTime(word, arr, curN);
+        double middle = getExecutionTime(MIDDLE, arr, curN);
         printf(" %10lf   !", middle);
         fflush(stdout);
 
-        getTestWord(word, WORST, curN);
-        double worst = getExecutionTime(word, arr, curN);
+        double worst = getExecutionTime(WORST, arr, curN);
         printf(" %10lf   !", worst);
         fflush(stdout);
 
@@ -227,12 +221,10 @@ void checkTestDataGeneration()
     {
         getTestWord(word, testCase, n);
         int ind = quickLinearSearch(word, arr, n);
-        double t = getExecutionTime(word, arr, n);
 
         printf("Test Case: %s\n", caseName[testCase]);
         printf("Searched word: %s\n", word);
         printf("Index of the searched word in array (or -1 if the word is not found) is: %d\n", ind);
-        printf("Time elapsed: %f\n", t);
         printf("\n");
     }
 
@@ -282,16 +274,20 @@ int quickLinearSearch(const char *searchedWord, char **arr, int arrLen)
     return res;
 }
 
-double getExecutionTime(char *searchWord, char **arr, size_t n)
+double getExecutionTime(caseType testCase, char **arr, size_t n)
 {
     struct tms start, end;
     long clocks_per_sec = sysconf(_SC_CLK_TCK);
     long clocks;
 
+    char word[WORD_LEN + 1];
+    word[WORD_LEN] = '\0';
+
     times(&start);
     for (size_t i = 0; i < PASS_COUNT; i++)
     {
-        quickLinearSearch(searchWord, arr, n);
+        getTestWord(word, testCase, n);
+        quickLinearSearch(word, arr, n);
     }
     times(&end);
 
