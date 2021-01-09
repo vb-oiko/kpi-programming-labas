@@ -31,6 +31,8 @@ char *newString(size_t length);
 char *getTestString(size_t len);
 char **splitStrToArray(char *string);
 size_t getWordCount(size_t len);
+void freeStrArray(char **arr, int arrLength);
+void printStrArray(char **arr, int arrLength);
 
 int verbose = 0;
 
@@ -38,9 +40,13 @@ int main(void)
 {
     srand(times(NULL));
     char *s = getTestString(100);
-    size_t wordCount = getWordCount(strlen(s));
-    printf("%s\n%zu\n", s, wordCount);
+    size_t n = getWordCount(strlen(s));
+    printf("%s\n%zu\n", s, n);
 
+    char **arr = splitStrToArray(s);
+    printStrArray(arr, n);
+
+    freeStrArray(arr, n);
     free(s);
     return 0;
 }
@@ -137,4 +143,20 @@ char **splitStrToArray(char *string)
 size_t getWordCount(size_t len)
 {
     return (len - 2) / (WORD_LEN + 1);
+}
+
+void freeStrArray(char **arr, int arrLength)
+{
+    for (int i = 0; i < arrLength; i++)
+    {
+        free(arr[i]);
+    }
+}
+
+void printStrArray(char **arr, int arrLength)
+{
+    for (int i = 0; i < arrLength; i++)
+    {
+        printf("%s\n", arr[i]);
+    }
 }
