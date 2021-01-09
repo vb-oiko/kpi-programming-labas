@@ -36,6 +36,7 @@ void printStrArray(char **arr, int arrLength);
 void getTestWord(char *word, caseType testCase, size_t wordCount);
 void checkTestDataGeneration();
 int quickLinearSearch(const char *searchedWord, char **arr, int arrLen);
+double getExecutionTime(char *searchWord, char **arr, size_t n);
 
 int verbose = 0;
 
@@ -43,6 +44,28 @@ int main(void)
 {
     srand(times(NULL));
     checkTestDataGeneration();
+
+    printf("Generating string...\n");
+    char *string = getTestString(MAX_STR_LEN);
+    size_t n = getWordCount(strlen(string));
+    printf("Generated string length: %zu\n\n", strlen(string));
+
+    printf("Splitting string into array...\n");
+    char **arr = splitStrToArray(string);
+    printf("Array size: %zu\n\n", n);
+
+    char word[WORD_LEN + 1];
+    word[WORD_LEN] = '\0';
+
+    printf("Starting to search through array...n");
+    printf("Number of iterations in each pass: %d\n\n", PASS_COUNT);
+
+    printf("!----------------------------------------------------------------------------------------------!\n");
+    printf("!                   !                  Time, sec                 !            Ratio            !\n");
+    printf("!   String Length   !--------------------------------------------------------------------------!\n");
+    printf("!                   !     BEST     !    MIDDLE    !     WORST    !  BEST/WORST  ! MIDDLE/WORST !\n");
+    printf("!----------------------------------------------------------------------------------------------!\n");
+    fflush(stdout);
 
     return 0;
 }
@@ -175,10 +198,13 @@ void checkTestDataGeneration()
     {
         getTestWord(word, testCase, n);
         int ind = quickLinearSearch(word, arr, n);
+        double t = getExecutionTime(word, arr, n);
 
         printf("Test Case: %s\n", caseName[testCase]);
         printf("Searched word: %s\n", word);
-        printf("Index of the searched word in array (or -1 if the word is not found) is: %d\n\n", ind);
+        printf("Index of the searched word in array (or -1 if the word is not found) is: %d\n", ind);
+        printf("Time elapsed: %f\n", t);
+        printf("\n");
     }
 
     printf("\n\n");
@@ -225,4 +251,21 @@ int quickLinearSearch(const char *searchedWord, char **arr, int arrLen)
     }
 
     return res;
+}
+
+double getExecutionTime(char *searchWord, char **arr, size_t n)
+{
+    struct tms start, end;
+    long clocks_per_sec = sysconf(_SC_CLK_TCK);
+    long clocks;
+
+    times(&start);
+    for (size_t i = 0; i < PASS_COUNT; i++)
+    {
+        quickLinearSearch(searchWord, arr, n);
+    }
+    times(&end);
+
+    clocks = end.tms_utime - start.tms_utime;
+    return (double)clocks / clocks_per_sec;
 }
