@@ -6,11 +6,10 @@
 #include <unistd.h>    // for sysconf
 
 #define ARRAY_SIZE(arr) (sizeof((arr)) / sizeof((arr)[0]))
-#define MAX_STR_LEN 7015
-// #define MAX_STR_LEN (2lu << 20) - 1
+#define MAX_STR_LEN (2lu << 20) - 1
 #define TEST_STR_LEN 80
 #define MEASURE_COUNT 5
-#define PASS_COUNT 100000
+#define PASS_COUNT 10000
 #define TEST_CASES_NUM 4
 #define WORD_LEN 6
 typedef enum
@@ -55,7 +54,7 @@ int main(void)
     char **arr = splitStrToArray(string);
     printf("Array size: %zu\n\n", n);
 
-    printf("Starting to search through array...n");
+    printf("Starting to search through array...\n");
     printf("Number of iterations in each pass: %d\n\n", PASS_COUNT);
 
     printf("!----------------------------------------------------------------------------------------------!\n");
@@ -82,11 +81,19 @@ int main(void)
         printf(" %10lf   !", worst);
         fflush(stdout);
 
-        curN /= 10;
+        double bestToWorst = best / worst;
+        printf(" %10lf   !", bestToWorst);
+
+        double middleToWorst = middle / worst;
+        printf(" %10lf   !", middleToWorst);
+        fflush(stdout);
+
+        curN /= 5;
         printf("\n");
     }
 
     printf("!----------------------------------------------------------------------------------------------!\n");
+    printf("\n");
 
     freeStrArray(arr, n);
     free(string);
