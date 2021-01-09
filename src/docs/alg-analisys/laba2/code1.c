@@ -35,6 +35,7 @@ void freeStrArray(char **arr, int arrLength);
 void printStrArray(char **arr, int arrLength);
 void getTestWord(char *word, caseType testCase, size_t wordCount);
 void checkTestDataGeneration();
+int quickLinearSearch(const char *searchedWord, char **arr, int arrLen);
 
 int verbose = 0;
 
@@ -165,17 +166,19 @@ void checkTestDataGeneration()
     char word[WORD_LEN + 1];
     word[WORD_LEN] = '\0';
 
-    printf("String: %s\n", string);
+    printf("\nString: %s\n\n", string);
     printf("Array:\n");
     printStrArray(arr, n);
+    printf("\n");
 
     for (caseType testCase = BEST; testCase <= WORST; testCase++)
     {
         getTestWord(word, testCase, n);
+        int ind = quickLinearSearch(word, arr, n);
+
         printf("Test Case: %s\n", caseName[testCase]);
         printf("Searched word: %s\n", word);
-
-        // printf("Index of the searched word in array (or -1 if the word is not found) is: %d\n", ind);
+        printf("Index of the searched word in array (or -1 if the word is not found) is: %d\n\n", ind);
     }
 
     printf("\n\n");
@@ -206,4 +209,20 @@ void getTestWord(char *word, caseType testCase, size_t wordCount)
     }
 
     getWord(word, ind);
+}
+
+int quickLinearSearch(const char *searchedWord, char **arr, int arrLen)
+{
+    int res = -1;
+
+    for (int i = 0; i < arrLen; i++)
+    {
+        if (strcmp(searchedWord, arr[i]) == 0)
+        {
+            res = i;
+            break;
+        }
+    }
+
+    return res;
 }
