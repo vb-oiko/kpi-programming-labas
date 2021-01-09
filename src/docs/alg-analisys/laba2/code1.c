@@ -33,21 +33,16 @@ char **splitStrToArray(char *string);
 size_t getWordCount(size_t len);
 void freeStrArray(char **arr, int arrLength);
 void printStrArray(char **arr, int arrLength);
+void getTestWord(char *word, caseType testCase, size_t wordCount);
+void checkTestDataGeneration();
 
 int verbose = 0;
 
 int main(void)
 {
     srand(times(NULL));
-    char *s = getTestString(100);
-    size_t n = getWordCount(strlen(s));
-    printf("%s\n%zu\n", s, n);
+    checkTestDataGeneration();
 
-    char **arr = splitStrToArray(s);
-    printStrArray(arr, n);
-
-    freeStrArray(arr, n);
-    free(s);
     return 0;
 }
 
@@ -159,4 +154,56 @@ void printStrArray(char **arr, int arrLength)
     {
         printf("%s\n", arr[i]);
     }
+}
+
+void checkTestDataGeneration()
+{
+
+    char *string = getTestString(100);
+    size_t n = getWordCount(strlen(string));
+    char **arr = splitStrToArray(string);
+    char word[WORD_LEN + 1];
+    word[WORD_LEN] = '\0';
+
+    printf("String: %s\n", string);
+    printf("Array:\n");
+    printStrArray(arr, n);
+
+    for (caseType testCase = BEST; testCase <= WORST; testCase++)
+    {
+        getTestWord(word, testCase, n);
+        printf("Test Case: %s\n", caseName[testCase]);
+        printf("Searched word: %s\n", word);
+
+        // printf("Index of the searched word in array (or -1 if the word is not found) is: %d\n", ind);
+    }
+
+    printf("\n\n");
+    freeStrArray(arr, n);
+    free(string);
+}
+
+void getTestWord(char *word, caseType testCase, size_t wordCount)
+{
+    size_t ind;
+
+    switch (testCase)
+    {
+    case BEST:
+        ind = 0;
+        break;
+
+    case MIDDLE:
+        ind = rand() % wordCount;
+        break;
+
+    case WORST:
+        ind = wordCount - 1;
+        break;
+
+    default:
+        break;
+    }
+
+    getWord(word, ind);
 }
