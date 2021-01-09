@@ -6,10 +6,11 @@
 #include <unistd.h>    // for sysconf
 
 #define ARRAY_SIZE(arr) (sizeof((arr)) / sizeof((arr)[0]))
-#define MAX_STR_LEN (2lu << 20) - 1
+#define MAX_STR_LEN 7015
+// #define MAX_STR_LEN (2lu << 20) - 1
 #define TEST_STR_LEN 80
 #define MEASURE_COUNT 5
-#define PASS_COUNT 1
+#define PASS_COUNT 100000
 #define TEST_CASES_NUM 4
 #define WORD_LEN 6
 typedef enum
@@ -62,11 +63,39 @@ int main(void)
 
     printf("!----------------------------------------------------------------------------------------------!\n");
     printf("!                   !                  Time, sec                 !            Ratio            !\n");
-    printf("!   String Length   !--------------------------------------------------------------------------!\n");
+    printf("!     Array Size    !--------------------------------------------------------------------------!\n");
     printf("!                   !     BEST     !    MIDDLE    !     WORST    !  BEST/WORST  ! MIDDLE/WORST !\n");
     printf("!----------------------------------------------------------------------------------------------!\n");
     fflush(stdout);
 
+    size_t curN = n;
+    for (size_t i = 0; i < 3; i++)
+    {
+        printf("! %12zu      !", curN);
+
+        getTestWord(word, BEST, curN);
+        double best = getExecutionTime(word, arr, curN);
+        printf(" %10lf   !", best);
+        fflush(stdout);
+
+        getTestWord(word, MIDDLE, curN);
+        double middle = getExecutionTime(word, arr, curN);
+        printf(" %10lf   !", middle);
+        fflush(stdout);
+
+        getTestWord(word, WORST, curN);
+        double worst = getExecutionTime(word, arr, curN);
+        printf(" %10lf   !", worst);
+        fflush(stdout);
+
+        curN /= 10;
+        printf("\n");
+    }
+
+    printf("!----------------------------------------------------------------------------------------------!\n");
+
+    freeStrArray(arr, n);
+    free(string);
     return 0;
 }
 
