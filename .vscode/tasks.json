@@ -9,7 +9,7 @@
                 "${file}",
                 "-lm",
                 "-o",
-                "${workspaceFolder}/build/${fileBasenameNoExtension}",
+                "${workspaceFolder}/${fileBasenameNoExtension}",
             ],
             "options": {
                 "cwd": "${workspaceFolder}",
