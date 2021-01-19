@@ -40,7 +40,7 @@ Node *removeFromHead(Node *head);
 int isSorted(Node *head);
 void printList(Node *head);
 void printNode(Node *node);
-void deleteList(Node *head);
+Node *deleteList(Node *head);
 Node *newList(size_t n, caseType caseVal);
 void freeList(Node *head);
 int compareNodes(Node *nodeA, Node *nodeB);
@@ -100,6 +100,15 @@ int main(void)
     free(randList);
     free(ascList);
     free(descList);
+    printf("----------------------------------------------------------------------------\n\n");
+
+    printf("Deleting a list:\n\n");
+    list = newList(5, RAND);
+    printf("\nSource List:\n");
+    printList(list);
+    list = deleteList(list);
+    printf("\nTarget List:\n");
+    printList(list);
     printf("----------------------------------------------------------------------------\n\n");
 
     exit(EXIT_SUCCESS);
@@ -193,6 +202,12 @@ int compareNodes(Node *nodeA, Node *nodeB)
 
 void printList(Node *head)
 {
+    if (head == NULL)
+    {
+        printf("List is empty\n");
+        return;
+    }
+
     Node *curNode = head;
 
     while (curNode != NULL)
@@ -272,4 +287,14 @@ int isSorted(Node *head)
     }
 
     return asc + desc;
+}
+
+Node *deleteList(Node *head)
+{
+    if (head != NULL)
+    {
+
+        freeList(head);
+    }
+    return NULL;
 }
