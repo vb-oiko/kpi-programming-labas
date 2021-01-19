@@ -13,6 +13,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <stdio.h>
+#include <math.h>
 #include <sys/times.h>
 
 #define N 10
@@ -52,27 +53,54 @@ int main(void)
 
     printf("Adding a node to the tail of the list:\n\n");
     list = newList(5, RAND);
-    printf("Source List:\n");
+    printf("\nSource List:\n");
     printList(list);
-    printf("Node to add:\n");
+    printf("\nNode to add:\n");
     nodeA = newNode(100, 200);
     printNode(nodeA);
+    printf("\n");
     addToTail(list, nodeA);
-    printf("Target List:\n");
+    printf("\nTarget List:\n");
     printList(list);
     free(list);
     free(nodeA);
-    printf("-------------------\n\n");
+    printf("----------------------------------------------------------------------------\n\n");
 
-    printf("Adding a node to the tail of the list:\n\n");
+    printf("Removing a node from the head of the list:\n\n");
     list = newList(5, RAND);
-    printf("Source List:\n");
+    printf("\nSource List:\n");
     printList(list);
     list = removeFromHead(list);
-    printf("Target List:\n");
+    printf("\nTarget List:\n");
     printList(list);
     free(list);
-    printf("-------------------\n\n");
+    printf("----------------------------------------------------------------------------\n\n");
+
+    printf("Check if a list is unsorted and sorted (ascending or descending):\n");
+    printf("Function 'int isSorted(Node *head)' returns following values:\n");
+    printf("    -1 if the list is sorted in descending order\n");
+    printf("     0 if the list is unsorted\n");
+    printf("     1 if the list is sorted in ascending order\n\n");
+
+    Node *randList = newList(5, RAND);
+    printf("Source List:\n");
+    printList(randList);
+    printf("isSorted: %d\n\n", isSorted(randList));
+
+    Node *ascList = newList(5, ASC);
+    printf("Source List:\n");
+    printList(ascList);
+    printf("isSorted: %d\n\n", isSorted(ascList));
+
+    Node *descList = newList(5, DESC);
+    printf("Source List:\n");
+    printList(descList);
+    printf("isSorted: %d\n\n", isSorted(descList));
+
+    free(randList);
+    free(ascList);
+    free(descList);
+    printf("----------------------------------------------------------------------------\n\n");
 
     exit(EXIT_SUCCESS);
 }
@@ -95,7 +123,7 @@ Node *newNode(double x, double y)
 
 void printNode(Node *node)
 {
-    printf("(%f, %f)\n", node->x, node->y);
+    printf("(%f, %f)", node->x, node->y);
 }
 
 Node *newList(size_t n, caseType caseVal)
@@ -148,12 +176,14 @@ Node *newList(size_t n, caseType caseVal)
 
 int compareNodes(Node *nodeA, Node *nodeB)
 {
-    if (nodeA->x == nodeB->x && nodeA->y == nodeB->y)
+    double absA = pow(nodeA->x, 2) + pow(nodeA->y, 2);
+    double absB = pow(nodeB->x, 2) + pow(nodeB->y, 2);
+    if (absA == absB)
     {
         return 0;
     }
 
-    if (nodeA->x > nodeB->x && nodeA->y > nodeB->y)
+    if (absA > absB)
     {
         return 1;
     }
@@ -168,6 +198,7 @@ void printList(Node *head)
     while (curNode != NULL)
     {
         printNode(curNode);
+        printf("\n");
         curNode = curNode->next;
     }
 }
@@ -209,4 +240,36 @@ Node *removeFromHead(Node *head)
     Node *next = head->next;
     free(head);
     return next;
+}
+
+int isSorted(Node *head)
+{
+    int asc = 1;
+    int desc = -1;
+
+    if (head == NULL)
+    {
+        return 0;
+    }
+
+    Node *cur = head;
+
+    while (cur->next != NULL)
+    {
+        int c = compareNodes(cur, cur->next);
+
+        if (c == 1)
+        {
+            asc = 0;
+        }
+
+        if (c == -1)
+        {
+            desc = 0;
+        }
+
+        cur = cur->next;
+    }
+
+    return asc + desc;
 }
