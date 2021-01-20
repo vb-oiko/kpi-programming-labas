@@ -223,6 +223,7 @@ void addToTail(Node *head, Node *node)
     if (head == NULL)
     {
         head = node;
+        return;
     }
 
     Node *curNode = head;
