@@ -1,3 +1,16 @@
+/*
+* Реалізувати функцію зчитування вузлів дерева з файла
+* 
+* Реалізувати друк ключів вузлів дерева (у консоль або файл),
+* використовуючи обходи:
+* а) прямий;
+* б) симетричний;
+* в) зворотній;
+* г) по рівнях.
+* 
+* Розробити та реалізувати алгоритм розв’язання задачі згідно з номером варіанту.
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -6,11 +19,30 @@
 
 #define N 20
 
+typedef struct Node Node;
+
+struct Node
+{
+    Node *left;
+    Node *right;
+    int key;
+};
+
 int *readIntArray(FILE *fptr, int n);
 char **split_string(char *str);
 char *readline(FILE *fptr);
 FILE *openFile(const char *filename);
 void printIntArray(int *arr, int n);
+Node *newNode(int key);
+Node *fillTreeFromArray(int *arr, int n);
+Node *addNode(Node *parent, int key);
+void freeTree(Node *node);
+void printNode(Node *node);
+void traversePreOrder(Node *node, void (*callback)(Node *));
+void traverseInOrder(Node *node, void (*callback)(Node *));
+void traversePostOrder(Node *node, void (*callback)(Node *));
+int depthLimitedPreOrder(Node *node, size_t depth, void (*callback)(Node *));
+void traverseLevelOrder(Node *root, void (*callback)(Node *));
 
 int main(int argc, char *argv[])
 {
@@ -24,15 +56,34 @@ int main(int argc, char *argv[])
 
     FILE *file = openFile(filename);
     int *arr = readIntArray(file, N);
-    printf("Source data:\n");
+    printf("%15s: ", "Source data");
     printIntArray(arr, N);
 
+    Node *root = fillTreeFromArray(arr, N);
+
+    printf("%15s: ", "PreOrder");
+    traversePreOrder(root, printNode);
+    printf("\n");
+
+    printf("%15s: ", "InOrder");
+    traverseInOrder(root, printNode);
+    printf("\n");
+
+    printf("%15s: ", "PostOrder");
+    traversePostOrder(root, printNode);
+    printf("\n");
+
+    printf("%15s: ", "LevelOrder");
+    // printf("\n");
+    traverseLevelOrder(root, printNode);
+    printf("\n");
 
     printf("\n");
     printf("\n");
 
     fclose(file);
     free(arr);
+    freeTree(root);
     exit(EXIT_SUCCESS);
 }
 
@@ -151,4 +202,161 @@ void printIntArray(int *arr, int n)
         printf("%5d", arr[i]);
     }
     printf("\n");
+}
+
+Node *newNode(int key)
+{
+    Node *node = malloc(sizeof(Node));
+    if (node == NULL)
+    {
+        printf("Failed to allocate memory\n");
+        exit(EXIT_FAILURE);
+    }
+
+    node->key = key;
+    node->left = NULL;
+    node->right = NULL;
+
+    return node;
+}
+
+Node *fillTreeFromArray(int *arr, int n)
+{
+    if (n <= 0)
+    {
+        return NULL;
+    }
+
+    Node *root = newNode(arr[0]);
+
+    for (int i = 1; i < n; i++)
+    {
+        addNode(root, arr[i]);
+    }
+
+    return root;
+}
+
+Node *addNode(Node *parent, int key)
+{
+    if (key == parent->key)
+    {
+        return parent;
+    }
+
+    if (key < parent->key)
+    {
+        if (parent->left != NULL)
+        {
+            return addNode(parent->left, key);
+        }
+        else
+        {
+            parent->left = newNode(key);
+            return parent->left;
+        }
+    }
+
+    if (key > parent->key)
+    {
+        if (parent->right != NULL)
+        {
+            return addNode(parent->right, key);
+        }
+        else
+        {
+            parent->right = newNode(key);
+            return parent->right;
+        }
+    }
+}
+
+void freeTree(Node *node)
+{
+    if (node == NULL)
+    {
+        return;
+    }
+
+    freeTree(node->left);
+    freeTree(node->right);
+    free(node);
+}
+
+void printNode(Node *node)
+{
+    if (node == NULL)
+    {
+        return;
+    }
+
+    printf("%5d", node->key);
+}
+
+void traversePreOrder(Node *node, void (*callback)(Node *))
+{
+    if (node == NULL)
+    {
+        return;
+    }
+
+    callback(node);
+    traversePreOrder(node->left, callback);
+    traversePreOrder(node->right, callback);
+}
+
+void traverseInOrder(Node *node, void (*callback)(Node *))
+{
+    if (node == NULL)
+    {
+        return;
+    }
+
+    traverseInOrder(node->left, callback);
+    callback(node);
+    traverseInOrder(node->right, callback);
+}
+
+void traversePostOrder(Node *node, void (*callback)(Node *))
+{
+    if (node == NULL)
+    {
+        return;
+    }
+
+    traversePostOrder(node->left, callback);
+    traversePostOrder(node->right, callback);
+    callback(node);
+}
+
+int depthLimitedPreOrder(Node *node, size_t depth, void (*callback)(Node *))
+{
+    if (node == NULL)
+    {
+        return 0;
+    }
+
+    if (depth == 0)
+    {
+        callback(node);
+        return 1;
+    }
+
+    return depthLimitedPreOrder(node->left, depth - 1, callback) + depthLimitedPreOrder(node->right, depth - 1, callback);
+}
+
+void traverseLevelOrder(Node *root, void (*callback)(Node *))
+{
+    if (root == NULL)
+    {
+        return;
+    }
+
+    size_t i = 0;
+
+    while (depthLimitedPreOrder(root, i, callback) != 0)
+    {
+        i++;
+        // printf("\n");
+    }
 }
