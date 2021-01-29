@@ -9,6 +9,7 @@
 * г) по рівнях.
 * 
 * Розробити та реалізувати алгоритм розв’язання задачі згідно з номером варіанту.
+* Варіант2. Обчислити суму ключів вузлів правого піддерева.
 */
 
 #include <stdio.h>
@@ -43,6 +44,8 @@ void traverseInOrder(Node *node, void (*callback)(Node *));
 void traversePostOrder(Node *node, void (*callback)(Node *));
 int depthLimitedPreOrder(Node *node, size_t depth, void (*callback)(Node *));
 void traverseLevelOrder(Node *root, void (*callback)(Node *));
+int sumKeys(Node *subTree);
+int sumRightSubtreeKeys(Node *subTree);
 
 int main(int argc, char *argv[])
 {
@@ -74,8 +77,10 @@ int main(int argc, char *argv[])
     printf("\n");
 
     printf("%15s: ", "LevelOrder");
-    // printf("\n");
     traverseLevelOrder(root, printNode);
+    printf("\n");
+
+    printf("Sum of the keys of the right sub tree: %d", sumRightSubtreeKeys(root));
     printf("\n");
 
     printf("\n");
@@ -357,6 +362,25 @@ void traverseLevelOrder(Node *root, void (*callback)(Node *))
     while (depthLimitedPreOrder(root, i, callback) != 0)
     {
         i++;
-        // printf("\n");
     }
+}
+
+int sumKeys(Node *subTree)
+{
+    if (subTree == NULL)
+    {
+        return 0;
+    }
+
+    return subTree->key + sumKeys(subTree->left) + sumKeys(subTree->right);
+}
+
+int sumRightSubtreeKeys(Node *subTree)
+{
+    if (subTree == NULL)
+    {
+        return 0;
+    }
+
+    return sumKeys(subTree->right);
 }
