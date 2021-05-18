@@ -92,12 +92,12 @@ $$
 Графік функції $F_\xi(x)$
 
 <p align="center" width="100%">
-    <img width="70%" src="./Fx.png"> 
+    <img width="70%" src="./fx2.png"> 
 </p>
 
 Графік функції $f_\xi(x)$
 
 
 <p align="center" width="100%">
-    <img width="70%" src="./fx.png"> 
+    <img width="70%" src="./fx1.png"> 
 </p>
