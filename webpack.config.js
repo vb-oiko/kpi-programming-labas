@@ -55,6 +55,7 @@ const entry = htmlPageNames.reduce(
 );
 
 module.exports = {
+  mode: "development",
   resolve: {
     alias: {
       ["@"]: path.resolve(__dirname, "src/"),
