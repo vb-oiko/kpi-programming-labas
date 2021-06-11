@@ -144,7 +144,7 @@ $$
     \\ \hline
     \overline{A_1} & 2 + \delta_1 & \frac{2}{3} & 1 & 0 & 0 & -\frac{1}{3} & \frac{1}{3} &
     \\ \hline
-     & \Delta_j =Z_j -c_j   & 32\frac{1}{3} + \frac{2}{3} \delta_1 & \delta & 0 & 0 & \frac{1}{3}- \frac{1}{3}\delta & 29\frac{2}{3}+\frac{1}{3}\delta  &
+     & \Delta_j =Z_j -c_j   & 32\frac{1}{3} + \frac{2}{3} \delta_1 & \delta_1 & 0 & 0 & \frac{1}{3}- \frac{1}{3}\delta_1 & 29\frac{2}{3}+\frac{1}{3}\delta_1  &
     \\ \hline
   \end{array}
 $$
@@ -154,4 +154,26 @@ $$
 Розв’язання системи рівнянь дає результат: $0 \leq \delta_1 \leq 1$.
 При зміні $\delta_1$ в цьому діапазоні значення ЦФ буде змінюватися за правилом:
 $$Z = 32\frac{1}{3} + \frac{2}{3} \delta_1$$
+
+
+Виконаємо дослідження для змінної $x_2$:
+
+$$
+\begin{array}{ | c | c | c | c | c | c | c | c | c | } \hline
+    & & & 2 & 3 & 0 & 0 &0
+    \\ \hline
+    \text{Базис} & С_\text {баз} & \text{План}  & \overline{A_1}  & \overline{A_2}  & \overline{A_3}  & \overline{A_4}  & \overline{A_5} & \theta
+    \\ \hline
+    \overline{A_2} & 3 + \delta_2& 10\frac{1}{3} & 0 & 1 & 0 & \frac{1}{3} & 9\frac{2}{3} &
+    \\ \hline
+     & \Delta_j    & 32\frac{1}{3} + 10\frac{1}{3}\delta_2& 0 & \delta_2 & 0 & \frac{1}{3} + \frac{1}{3}\delta_2 & 29\frac{2}{3} + 9\frac{2}{3}\delta_2 &
+    \\ \hline
+  \end{array}
+$$
+
+Оптимальний розв’язок залишається незмінним при значенні $\Delta_j \geq 0, j =1,…,5$.
+
+Розв’язання системи рівнянь дає результат: $ 0 \leq \delta_2 \leq \infty$.
+При зміні $\delta_2$ в цьому діапазоні значення ЦФ буде змінюватися за правилом:
+$$Z = 32\frac{1}{3} + 10\frac{1}{3}\delta_2$$
 
