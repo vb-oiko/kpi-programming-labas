@@ -92,11 +92,11 @@ $$
     \\ \hline
     \overline{A_3} & 0 & 15 & -1 & 0 & 1 & 1 & 0 & -
     \\ \hline
-    \overline{A_2} & 3 & 9 & -2 & 1 & 0 & 1 & 9 & -
+    \overline{A_2} & 3 & 9 & -2 & 1 & 0 & 1 & 0 & -
     \\ \hline
     \overline{A_5} & 0 & 2 & \colorbox{aqua}{3} & 0 & 0 & -1 & 1 & \frac{2}{3}
     \\ \hline
-        & \Delta_j     & 27 & -8 & 0 & 0 & 3 & 27 &
+        & \Delta_j     & 27 & -8 & 0 & 0 & 3 & 0 &
     \\ \hline
   \end{array}
 $$
@@ -113,11 +113,11 @@ $$
     \\ \hline
     \overline{A_3} & 0 & 15\frac{2}{3} & 0 & 0 & 1 & \frac{2}{3} & \frac{1}{3} &
     \\ \hline
-    \overline{A_2} & 3 & 10\frac{1}{3} & 0 & 1 & 0 & \frac{1}{3} & 9\frac{2}{3} &
+    \overline{A_2} & 3 & 10\frac{1}{3} & 0 & 1 & 0 & \frac{1}{3} & \frac{2}{3} &
     \\ \hline
     \overline{A_1} & 2 & \frac{2}{3} & 1 & 0 & 0 & -\frac{1}{3} & \frac{1}{3} &
     \\ \hline
-     & \Delta_j    & 32\frac{1}{3} & 0 & 0 & 0 & \frac{1}{3} & 29\frac{2}{3} &
+     & \Delta_j    & 32\frac{1}{3} & 0 & 0 & 0 & \frac{1}{3} & \frac{8}{3} &
     \\ \hline
   \end{array}
 $$
@@ -144,7 +144,7 @@ $$
     \\ \hline
     \overline{A_1} & 2 + \delta_1 & \frac{2}{3} & 1 & 0 & 0 & -\frac{1}{3} & \frac{1}{3} &
     \\ \hline
-     & \Delta_j =Z_j -c_j   & 32\frac{1}{3} + \frac{2}{3} \delta_1 & \delta_1 & 0 & 0 & \frac{1}{3}- \frac{1}{3}\delta_1 & 29\frac{2}{3}+\frac{1}{3}\delta_1  &
+     & \Delta_j =Z_j -c_j   & 32\frac{1}{3} + \frac{2}{3} \delta_1 & \delta_1 & 0 & 0 & \frac{1}{3}- \frac{1}{3}\delta_1 & \frac{8}{3}+\frac{1}{3}\delta_1  &
     \\ \hline
   \end{array}
 $$
@@ -164,9 +164,9 @@ $$
     \\ \hline
     \text{Базис} & С_\text {баз} & \text{План}  & \overline{A_1}  & \overline{A_2}  & \overline{A_3}  & \overline{A_4}  & \overline{A_5} & \theta
     \\ \hline
-    \overline{A_2} & 3 + \delta_2& 10\frac{1}{3} & 0 & 1 & 0 & \frac{1}{3} & 9\frac{2}{3} &
+    \overline{A_2} & 3 + \delta_2& 10\frac{1}{3} & 0 & 1 & 0 & \frac{1}{3} & \frac{2}{3} &
     \\ \hline
-     & \Delta_j    & 32\frac{1}{3} + 10\frac{1}{3}\delta_2& 0 & \delta_2 & 0 & \frac{1}{3} + \frac{1}{3}\delta_2 & 29\frac{2}{3} + 9\frac{2}{3}\delta_2 &
+     & \Delta_j    & 32\frac{1}{3} + 10\frac{1}{3}\delta_2& 0 & \delta_2 & 0 & \frac{1}{3} + \frac{1}{3}\delta_2 & \frac{8}{3} + \frac{2}{3}\delta_2 &
     \\ \hline
   \end{array}
 $$
@@ -225,11 +225,11 @@ $$
     \\ \hline
     15\frac{2}{3} & \frac{1}{3} \epsilon_3
     \\ \hline
-    10\frac{1}{3} & 9\frac{2}{3} \epsilon_3 
+    10\frac{1}{3} & \frac{2}{3} \epsilon_3 
     \\ \hline
     \frac{2}{3} & \frac{1}{3} \epsilon_3 
     \\ \hline
-    32\frac{1}{3} & 29\frac{2}{3} \epsilon_3 
+    32\frac{1}{3} & \frac{8}{3} \epsilon_3 
     \\ \hline
   \end{array}
 $$
@@ -238,11 +238,45 @@ $$
 
 $$x_3 = 15\frac{2}{3} + \frac{1}{3} \epsilon_3 \geq 0$$
 
-$$x_2 = 10\frac{1}{3} + 9\frac{2}{3} \epsilon_3 \geq 0$$
+$$x_2 = 10\frac{1}{3} + \frac{2}{3} \epsilon_3 \geq 0$$
 
 $$x_1 = \frac{2}{3} + \frac{1}{3} \epsilon_3 \geq 0$$
 
-$$z = 32\frac{1}{3} + 29\frac{2}{3} \epsilon_3 \geq 0$$
+$$z = 32\frac{1}{3} + \frac{8}{3} \epsilon_3 \geq 0$$
 
-Розв’язуючи систему рівнянь, отримаємо: $-1\frac{2}{29} \leq \epsilon_3 \leq \infty$.
-При зміні $\epsilon_3$ в цьому діапазоні значення ЦФ буде змінюватися за правилом $z = 32\frac{1}{3} + 29\frac{2}{3} \epsilon_3$.
+Розв’язуючи систему рівнянь, отримаємо: $-2 \leq \epsilon_3 \leq \infty$.
+При зміні $\epsilon_3$ в цьому діапазоні значення ЦФ буде змінюватися за правилом $z = 32\frac{1}{3} + 2\frac{2}{3} \epsilon_3$.
+
+### Побудувати двоїсту задачу до заданої задачі, розв'язати її, порівняти результат з розв’язком прямої задачі
+
+Пряма задача:
+
+$$ 2 x_1 + 3 x_2 \to max $$
+
+$$ x_1 - x_2 \leq 6 $$
+
+$$ -2 x_1 + x_2 \leq 9 $$
+
+$$ x_1 + x_2 \leq 11 $$
+
+$$ x_i \geq 0, i= 1,2 $$
+
+Двоіста задача:
+
+$$ 6y_1 + 9y_2 + 11y_3 \to min $$
+
+$$ y_1 -2y_2 + y_3 \geq 2 $$
+
+$$ -y_1 + y_2 + y_3 \geq 3 $$
+
+$$ y_i \geq 0, i= 1,2,3 $$
+
+Використовуючи останню ітерацію прямої задачі знайдемо оптимальний план двоїстої задачі:
+
+$$y_1=0, y_2=\frac{1}{3}, y_3=2\frac{2}{3}$$
+
+Значення цільової функції двоїстої задачі:
+
+$$ z = 6 \cdot 0 + 9 \cdot \frac{1}{3} + 11 \cdot 2\frac{2}{3} = 32\frac{1}{3} $$
+
+### Знайти цілочислове рішення задачі методом Гоморі.
