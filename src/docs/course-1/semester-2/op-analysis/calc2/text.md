@@ -69,7 +69,7 @@ $$
 \begin{array}{ | c | c | c | c | c | c | c | c | c | } \hline
     & & & 2 & 3 & 0 & 0 &0
     \\ \hline
-    \text{Базис} & С_\text {баз} & \text{План}  & \overline{A_1}  & \overline{A_2}  & \overline{A_3}  & \overline{A_4}  & \overline{A_5} & \theta
+    \text{Базис} & C_\text {баз} & \text{План}  & \overline{A_1}  & \overline{A_2}  & \overline{A_3}  & \overline{A_4}  & \overline{A_5} & \theta
     \\ \hline
     \overline{A_3} & 0 & 6 & 1 & -1 & 1 & 0 & 0 & -
     \\ \hline
@@ -88,7 +88,7 @@ $$
 \begin{array}{ | c | c | c | c | c | c | c | c | c | } \hline
     & & & 2 & 3 & 0 & 0 &0
     \\ \hline
-    \text{Базис} & С_\text {баз} & \text{План}  & \overline{A_1}  & \overline{A_2}  & \overline{A_3}  & \overline{A_4}  & \overline{A_5} & \theta
+    \text{Базис} & C_\text {баз} & \text{План}  & \overline{A_1}  & \overline{A_2}  & \overline{A_3}  & \overline{A_4}  & \overline{A_5} & \theta
     \\ \hline
     \overline{A_3} & 0 & 15 & -1 & 0 & 1 & 1 & 0 & -
     \\ \hline
@@ -109,7 +109,7 @@ $$
 \begin{array}{ | c | c | c | c | c | c | c | c | c | } \hline
     & & & 2 & 3 & 0 & 0 &0
     \\ \hline
-    \text{Базис} & С_\text {баз} & \text{План}  & \overline{A_1}  & \overline{A_2}  & \overline{A_3}  & \overline{A_4}  & \overline{A_5} & \theta
+    \text{Базис} & C_\text {баз} & \text{План}  & \overline{A_1}  & \overline{A_2}  & \overline{A_3}  & \overline{A_4}  & \overline{A_5} & \theta
     \\ \hline
     \overline{A_3} & 0 & 15\frac{2}{3} & 0 & 0 & 1 & \frac{2}{3} & \frac{1}{3} &
     \\ \hline
@@ -140,7 +140,7 @@ $$
 \begin{array}{ | c | c | c | c | c | c | c | c | c | } \hline
     & & & 2 & 3 & 0 & 0 &0
     \\ \hline
-    \text{Базис} & С_\text {баз} & \text{План}  & \overline{A_1}  & \overline{A_2}  & \overline{A_3}  & \overline{A_4}  & \overline{A_5} & \theta
+    \text{Базис} & C_\text {баз} & \text{План}  & \overline{A_1}  & \overline{A_2}  & \overline{A_3}  & \overline{A_4}  & \overline{A_5} & \theta
     \\ \hline
     \overline{A_1} & 2 + \delta_1 & \frac{2}{3} & 1 & 0 & 0 & -\frac{1}{3} & \frac{1}{3} &
     \\ \hline
@@ -162,7 +162,7 @@ $$
 \begin{array}{ | c | c | c | c | c | c | c | c | c | } \hline
     & & & 2 & 3 & 0 & 0 &0
     \\ \hline
-    \text{Базис} & С_\text {баз} & \text{План}  & \overline{A_1}  & \overline{A_2}  & \overline{A_3}  & \overline{A_4}  & \overline{A_5} & \theta
+    \text{Базис} & C_\text {баз} & \text{План}  & \overline{A_1}  & \overline{A_2}  & \overline{A_3}  & \overline{A_4}  & \overline{A_5} & \theta
     \\ \hline
     \overline{A_2} & 3 + \delta_2& 10\frac{1}{3} & 0 & 1 & 0 & \frac{1}{3} & \frac{2}{3} &
     \\ \hline
@@ -307,7 +307,7 @@ $$
 \begin{array}{ | c | c | c | c | c | c | c | c | c | c | } \hline
     & & & 2 & 3 & 0 & 0 &0
     \\ \hline
-    \text{Базис} & С_\text {баз} & \text{План}  & \overline{A_1}  & \overline{A_2}  & \overline{A_3}  & \overline{A_4}  & \overline{A_5} & \overline{A_6} & \theta
+    \text{Базис} & C_\text {баз} & \text{План}  & \overline{A_1}  & \overline{A_2}  & \overline{A_3}  & \overline{A_4}  & \overline{A_5} & \overline{A_6} & \theta
     \\ \hline
     \overline{A_3} & 0 & 15\frac{2}{3} & 0 & 0 & 1 & \frac{2}{3} & \frac{1}{3} & 0 
     \\ \hline
@@ -329,7 +329,7 @@ $$
 \begin{array}{ | c | c | c | c | c | c | c | c | c | c | } \hline
     & & & 2 & 3 & 0 & 0 &0
     \\ \hline
-    \text{Базис} & С_\text {баз} & \text{План}  & \overline{A_1}  & \overline{A_2}  & \overline{A_3}  & \overline{A_4}  & \overline{A_5} & \overline{A_6} & \theta
+    \text{Базис} & C_\text {баз} & \text{План}  & \overline{A_1}  & \overline{A_2}  & \overline{A_3}  & \overline{A_4}  & \overline{A_5} & \overline{A_6} & \theta
     \\ \hline
     \overline{A_3} & 0 & 15 & 0 & 0 & 1 & 0 & 0 & 1 
     \\ \hline
