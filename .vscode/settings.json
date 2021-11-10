@@ -1,10 +1,11 @@
 {
-    "files.associations": {
-        "functional": "c",
-        "string": "c",
-        "sstream": "c",
-        "limits": "c",
-        "algorithm": "c"
-    },
-    "git.ignoreLimitWarning": true
+  "files.associations": {
+    "functional": "c",
+    "string": "c",
+    "sstream": "c",
+    "limits": "c",
+    "algorithm": "c"
+  },
+  "git.ignoreLimitWarning": true,
+  "markdown.math.enabled": false
 }
