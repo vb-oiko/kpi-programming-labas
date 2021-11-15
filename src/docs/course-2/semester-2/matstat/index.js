@@ -9,10 +9,10 @@ const blocks = [
     type: "html",
     content: titleSheet,
     vars: {
-      labaNo: 4,
-      professor: "проф. Гайна Г.А.",
-      course: "Дослідження операцій",
-      title: "самостійної",
+      labaNo: 1,
+      professor: "доц. Спекторський І.Я.",
+      course: "Математична статистика",
+      title: "розрахункової",
     },
   },
   {
