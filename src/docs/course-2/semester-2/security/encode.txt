@@ -1,0 +1,67 @@
+------------------
+rc2-40-cbc
+------------------
+*** WARNING : deprecated key derivation used.
+Using -iter or -pbkdf2 would be better.
+openssl enc -e -rc2-40-cbc -k secret -in "file"$i -out "file_rc2_encoded"$i  0,02s user 0,02s system 45% cpu 0,087 total
+*** WARNING : deprecated key derivation used.
+Using -iter or -pbkdf2 would be better.
+openssl enc -e -rc2-40-cbc -k secret -in "file"$i -out "file_rc2_encoded"$i  0,05s user 0,03s system 56% cpu 0,134 total
+*** WARNING : deprecated key derivation used.
+Using -iter or -pbkdf2 would be better.
+openssl enc -e -rc2-40-cbc -k secret -in "file"$i -out "file_rc2_encoded"$i  0,08s user 0,02s system 61% cpu 0,165 total
+*** WARNING : deprecated key derivation used.
+Using -iter or -pbkdf2 would be better.
+openssl enc -e -rc2-40-cbc -k secret -in "file"$i -out "file_rc2_encoded"$i  0,09s user 0,05s system 64% cpu 0,217 total
+*** WARNING : deprecated key derivation used.
+Using -iter or -pbkdf2 would be better.
+openssl enc -e -rc2-40-cbc -k secret -in "file"$i -out "file_rc2_encoded"$i  0,13s user 0,05s system 66% cpu 0,260 total
+*** WARNING : deprecated key derivation used.
+Using -iter or -pbkdf2 would be better.
+openssl enc -e -rc2-40-cbc -k secret -in "file"$i -out "file_rc2_encoded"$i  0,15s user 0,05s system 69% cpu 0,289 total
+*** WARNING : deprecated key derivation used.
+Using -iter or -pbkdf2 would be better.
+openssl enc -e -rc2-40-cbc -k secret -in "file"$i -out "file_rc2_encoded"$i  0,16s user 0,07s system 70% cpu 0,322 total
+*** WARNING : deprecated key derivation used.
+Using -iter or -pbkdf2 would be better.
+openssl enc -e -rc2-40-cbc -k secret -in "file"$i -out "file_rc2_encoded"$i  0,19s user 0,06s system 70% cpu 0,360 total
+*** WARNING : deprecated key derivation used.
+Using -iter or -pbkdf2 would be better.
+openssl enc -e -rc2-40-cbc -k secret -in "file"$i -out "file_rc2_encoded"$i  0,21s user 0,07s system 72% cpu 0,390 total
+*** WARNING : deprecated key derivation used.
+Using -iter or -pbkdf2 would be better.
+openssl enc -e -rc2-40-cbc -k secret -in "file"$i -out "file_rc2_encoded"$i  0,19s user 0,13s system 73% cpu 0,424 total
+------------------
+aria-256-cfb1
+------------------
+*** WARNING : deprecated key derivation used.
+Using -iter or -pbkdf2 would be better.
+openssl enc -e -aria-256-cfb1 -k secret -in "file"$i -out   1,18s user 0,05s system 95% cpu 1,290 total
+*** WARNING : deprecated key derivation used.
+Using -iter or -pbkdf2 would be better.
+openssl enc -e -aria-256-cfb1 -k secret -in "file"$i -out   2,30s user 0,09s system 96% cpu 2,479 total
+*** WARNING : deprecated key derivation used.
+Using -iter or -pbkdf2 would be better.
+openssl enc -e -aria-256-cfb1 -k secret -in "file"$i -out   3,51s user 0,13s system 96% cpu 3,760 total
+*** WARNING : deprecated key derivation used.
+Using -iter or -pbkdf2 would be better.
+openssl enc -e -aria-256-cfb1 -k secret -in "file"$i -out   4,46s user 0,23s system 97% cpu 4,821 total
+*** WARNING : deprecated key derivation used.
+Using -iter or -pbkdf2 would be better.
+openssl enc -e -aria-256-cfb1 -k secret -in "file"$i -out   5,60s user 0,31s system 96% cpu 6,104 total
+*** WARNING : deprecated key derivation used.
+Using -iter or -pbkdf2 would be better.
+openssl enc -e -aria-256-cfb1 -k secret -in "file"$i -out   6,97s user 0,36s system 97% cpu 7,548 total
+*** WARNING : deprecated key derivation used.
+Using -iter or -pbkdf2 would be better.
+openssl enc -e -aria-256-cfb1 -k secret -in "file"$i -out   7,95s user 0,30s system 97% cpu 8,497 total
+*** WARNING : deprecated key derivation used.
+Using -iter or -pbkdf2 would be better.
+openssl enc -e -aria-256-cfb1 -k secret -in "file"$i -out   9,05s user 0,36s system 97% cpu 9,675 total
+*** WARNING : deprecated key derivation used.
+Using -iter or -pbkdf2 would be better.
+openssl enc -e -aria-256-cfb1 -k secret -in "file"$i -out   10,22s user 0,41s system 97% cpu 10,921 total
+*** WARNING : deprecated key derivation used.
+Using -iter or -pbkdf2 would be better.
+openssl enc -e -aria-256-cfb1 -k secret -in "file"$i -out   11,46s user 0,41s system 97% cpu 12,204 total
+

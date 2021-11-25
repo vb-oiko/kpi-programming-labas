@@ -20,7 +20,7 @@
 ```
 #!/bin/zsh
 for i (1 2 3 4 5 6 7 8 9 10);
-    yes "Особисті дані Бойко В.О." | head -c $[$i*1048576] > "file"$i;
+    yes "Особисті дані Бойко В.О." | head -c $[$i*1048576] > "file"$i; 
 ```
 
 Результат виконання файлу.
@@ -48,24 +48,91 @@ total 112664
 
 ```
 #!/bin/zsh
+echo ------------------
+echo rc2-40-cbc
+echo ------------------
 for i (1 2 3 4 5 6 7 8 9 10);
-    time openssl enc -e -rc2-40-cbc -k secret -in "file"$i -out "file_encoded"$i  
+    time openssl enc -e -rc2-40-cbc -k secret -in "file"$i -out "file_rc2_encoded"$i  
+    
+echo ------------------
+echo aria-256-cfb1
+echo ------------------
+
+for i (1 2 3 4 5 6 7 8 9 10);
+    time openssl enc -e -aria-256-cfb1 -k secret -in "file"$i -out "file_aria_encoded"$i  
 ```
 
 Результат виконання файлу.
 
 ```
-./encode.sh
-openssl enc -e -rc2-40-cbc -k secret -in "file"$i -out "file_encoded"$i  0.02s user 0.01s system 92% cpu 0.035 total
-openssl enc -e -rc2-40-cbc -k secret -in "file"$i -out "file_encoded"$i  0.04s user 0.01s system 95% cpu 0.056 total
-openssl enc -e -rc2-40-cbc -k secret -in "file"$i -out "file_encoded"$i  0.05s user 0.01s system 96% cpu 0.066 total
-openssl enc -e -rc2-40-cbc -k secret -in "file"$i -out "file_encoded"$i  0.07s user 0.01s system 97% cpu 0.086 total
-openssl enc -e -rc2-40-cbc -k secret -in "file"$i -out "file_encoded"$i  0.09s user 0.02s system 98% cpu 0.106 total
-openssl enc -e -rc2-40-cbc -k secret -in "file"$i -out "file_encoded"$i  0.10s user 0.02s system 98% cpu 0.125 total
-openssl enc -e -rc2-40-cbc -k secret -in "file"$i -out "file_encoded"$i  0.13s user 0.02s system 98% cpu 0.151 total
-openssl enc -e -rc2-40-cbc -k secret -in "file"$i -out "file_encoded"$i  0.16s user 0.03s system 98% cpu 0.189 total
-openssl enc -e -rc2-40-cbc -k secret -in "file"$i -out "file_encoded"$i  0.15s user 0.03s system 99% cpu 0.183 total
-openssl enc -e -rc2-40-cbc -k secret -in "file"$i -out "file_encoded"$i  0.18s user 0.03s system 98% cpu 0.215 total
+------------------
+rc2-40-cbc
+------------------
+*** WARNING : deprecated key derivation used.
+Using -iter or -pbkdf2 would be better.
+openssl enc -e -rc2-40-cbc -k secret -in "file"$i -out "file_rc2_encoded"$i  0,02s user 0,02s system 45% cpu 0,087 total
+*** WARNING : deprecated key derivation used.
+Using -iter or -pbkdf2 would be better.
+openssl enc -e -rc2-40-cbc -k secret -in "file"$i -out "file_rc2_encoded"$i  0,05s user 0,03s system 56% cpu 0,134 total
+*** WARNING : deprecated key derivation used.
+Using -iter or -pbkdf2 would be better.
+openssl enc -e -rc2-40-cbc -k secret -in "file"$i -out "file_rc2_encoded"$i  0,08s user 0,02s system 61% cpu 0,165 total
+*** WARNING : deprecated key derivation used.
+Using -iter or -pbkdf2 would be better.
+openssl enc -e -rc2-40-cbc -k secret -in "file"$i -out "file_rc2_encoded"$i  0,09s user 0,05s system 64% cpu 0,217 total
+*** WARNING : deprecated key derivation used.
+Using -iter or -pbkdf2 would be better.
+openssl enc -e -rc2-40-cbc -k secret -in "file"$i -out "file_rc2_encoded"$i  0,13s user 0,05s system 66% cpu 0,260 total
+*** WARNING : deprecated key derivation used.
+Using -iter or -pbkdf2 would be better.
+openssl enc -e -rc2-40-cbc -k secret -in "file"$i -out "file_rc2_encoded"$i  0,15s user 0,05s system 69% cpu 0,289 total
+*** WARNING : deprecated key derivation used.
+Using -iter or -pbkdf2 would be better.
+openssl enc -e -rc2-40-cbc -k secret -in "file"$i -out "file_rc2_encoded"$i  0,16s user 0,07s system 70% cpu 0,322 total
+*** WARNING : deprecated key derivation used.
+Using -iter or -pbkdf2 would be better.
+openssl enc -e -rc2-40-cbc -k secret -in "file"$i -out "file_rc2_encoded"$i  0,19s user 0,06s system 70% cpu 0,360 total
+*** WARNING : deprecated key derivation used.
+Using -iter or -pbkdf2 would be better.
+openssl enc -e -rc2-40-cbc -k secret -in "file"$i -out "file_rc2_encoded"$i  0,21s user 0,07s system 72% cpu 0,390 total
+*** WARNING : deprecated key derivation used.
+Using -iter or -pbkdf2 would be better.
+openssl enc -e -rc2-40-cbc -k secret -in "file"$i -out "file_rc2_encoded"$i  0,19s user 0,13s system 73% cpu 0,424 total
+------------------
+aria-256-cfb1
+------------------
+*** WARNING : deprecated key derivation used.
+Using -iter or -pbkdf2 would be better.
+openssl enc -e -aria-256-cfb1 -k secret -in "file"$i -out   1,18s user 0,05s system 95% cpu 1,290 total
+*** WARNING : deprecated key derivation used.
+Using -iter or -pbkdf2 would be better.
+openssl enc -e -aria-256-cfb1 -k secret -in "file"$i -out   2,30s user 0,09s system 96% cpu 2,479 total
+*** WARNING : deprecated key derivation used.
+Using -iter or -pbkdf2 would be better.
+openssl enc -e -aria-256-cfb1 -k secret -in "file"$i -out   3,51s user 0,13s system 96% cpu 3,760 total
+*** WARNING : deprecated key derivation used.
+Using -iter or -pbkdf2 would be better.
+openssl enc -e -aria-256-cfb1 -k secret -in "file"$i -out   4,46s user 0,23s system 97% cpu 4,821 total
+*** WARNING : deprecated key derivation used.
+Using -iter or -pbkdf2 would be better.
+openssl enc -e -aria-256-cfb1 -k secret -in "file"$i -out   5,60s user 0,31s system 96% cpu 6,104 total
+*** WARNING : deprecated key derivation used.
+Using -iter or -pbkdf2 would be better.
+openssl enc -e -aria-256-cfb1 -k secret -in "file"$i -out   6,97s user 0,36s system 97% cpu 7,548 total
+*** WARNING : deprecated key derivation used.
+Using -iter or -pbkdf2 would be better.
+openssl enc -e -aria-256-cfb1 -k secret -in "file"$i -out   7,95s user 0,30s system 97% cpu 8,497 total
+*** WARNING : deprecated key derivation used.
+Using -iter or -pbkdf2 would be better.
+openssl enc -e -aria-256-cfb1 -k secret -in "file"$i -out   9,05s user 0,36s system 97% cpu 9,675 total
+*** WARNING : deprecated key derivation used.
+Using -iter or -pbkdf2 would be better.
+openssl enc -e -aria-256-cfb1 -k secret -in "file"$i -out   10,22s user 0,41s system 97% cpu 10,921 total
+*** WARNING : deprecated key derivation used.
+Using -iter or -pbkdf2 would be better.
+openssl enc -e -aria-256-cfb1 -k secret -in "file"$i -out   11,46s user 0,41s system 97% cpu 12,204 total
+
+
 ```
 
 3. Дешифрувати зашифровані дані
@@ -75,25 +142,91 @@ openssl enc -e -rc2-40-cbc -k secret -in "file"$i -out "file_encoded"$i  0.18s u
 
 ```
 #!/bin/zsh
+
+echo ------------------
+echo rc2-40-cbc
+echo ------------------
 for i (1 2 3 4 5 6 7 8 9 10);
-    time openssl enc -d -rc2-40-cbc -k secret -in "file_encoded"$i -out "file_decoded"$i  
+    time openssl enc -d -rc2-40-cbc -k secret -in "file_rc2_encoded"$i -out "file_rc2_decoded"$i  
+
+    
+echo ------------------
+echo aria-256-cfb1
+echo ------------------
+for i (1 2 3 4 5 6 7 8 9 10);
+    time openssl enc -d -aria-256-cfb1 -k secret -in "file_aria_encoded"$i -out "file_aria_decoded"$i   
 ```
 
 Результат виконання файлу.
 
 ```
-./decode.sh
-openssl enc -d -rc2-40-cbc -k secret -in "file_encoded"$i -out   0.01s user 0.01s system 90% cpu 0.022 total
-openssl enc -d -rc2-40-cbc -k secret -in "file_encoded"$i -out   0.03s user 0.01s system 93% cpu 0.038 total
-openssl enc -d -rc2-40-cbc -k secret -in "file_encoded"$i -out   0.04s user 0.01s system 95% cpu 0.051 total
-openssl enc -d -rc2-40-cbc -k secret -in "file_encoded"$i -out   0.04s user 0.01s system 96% cpu 0.054 total
-openssl enc -d -rc2-40-cbc -k secret -in "file_encoded"$i -out   0.05s user 0.02s system 96% cpu 0.066 total
-openssl enc -d -rc2-40-cbc -k secret -in "file_encoded"$i -out   0.06s user 0.02s system 97% cpu 0.080 total
-openssl enc -d -rc2-40-cbc -k secret -in "file_encoded"$i -out   0.07s user 0.02s system 97% cpu 0.091 total
-openssl enc -d -rc2-40-cbc -k secret -in "file_encoded"$i -out   0.08s user 0.02s system 97% cpu 0.104 total
-openssl enc -d -rc2-40-cbc -k secret -in "file_encoded"$i -out   0.09s user 0.03s system 98% cpu 0.121 total
-openssl enc -d -rc2-40-cbc -k secret -in "file_encoded"$i -out   0.13s user 0.04s system 98% cpu 0.171 total
-
+./decode.sh    
+------------------
+rc2-40-cbc
+------------------
+*** WARNING : deprecated key derivation used.
+Using -iter or -pbkdf2 would be better.
+openssl enc -d -rc2-40-cbc -k secret -in "file_rc2_encoded"$i -out   0,02s user 0,01s system 45% cpu 0,061 total
+*** WARNING : deprecated key derivation used.
+Using -iter or -pbkdf2 would be better.
+openssl enc -d -rc2-40-cbc -k secret -in "file_rc2_encoded"$i -out   0,04s user 0,01s system 53% cpu 0,096 total
+*** WARNING : deprecated key derivation used.
+Using -iter or -pbkdf2 would be better.
+openssl enc -d -rc2-40-cbc -k secret -in "file_rc2_encoded"$i -out   0,04s user 0,02s system 53% cpu 0,125 total
+*** WARNING : deprecated key derivation used.
+Using -iter or -pbkdf2 would be better.
+openssl enc -d -rc2-40-cbc -k secret -in "file_rc2_encoded"$i -out   0,05s user 0,02s system 58% cpu 0,125 total
+*** WARNING : deprecated key derivation used.
+Using -iter or -pbkdf2 would be better.
+openssl enc -d -rc2-40-cbc -k secret -in "file_rc2_encoded"$i -out   0,07s user 0,02s system 59% cpu 0,152 total
+*** WARNING : deprecated key derivation used.
+Using -iter or -pbkdf2 would be better.
+openssl enc -d -rc2-40-cbc -k secret -in "file_rc2_encoded"$i -out   0,08s user 0,05s system 55% cpu 0,224 total
+*** WARNING : deprecated key derivation used.
+Using -iter or -pbkdf2 would be better.
+openssl enc -d -rc2-40-cbc -k secret -in "file_rc2_encoded"$i -out   0,11s user 0,02s system 55% cpu 0,241 total
+*** WARNING : deprecated key derivation used.
+Using -iter or -pbkdf2 would be better.
+openssl enc -d -rc2-40-cbc -k secret -in "file_rc2_encoded"$i -out   0,11s user 0,04s system 55% cpu 0,273 total
+*** WARNING : deprecated key derivation used.
+Using -iter or -pbkdf2 would be better.
+openssl enc -d -rc2-40-cbc -k secret -in "file_rc2_encoded"$i -out   0,16s user 0,03s system 57% cpu 0,330 total
+*** WARNING : deprecated key derivation used.
+Using -iter or -pbkdf2 would be better.
+openssl enc -d -rc2-40-cbc -k secret -in "file_rc2_encoded"$i -out   0,14s user 0,06s system 56% cpu 0,349 total
+------------------
+aria-256-cfb1
+------------------
+*** WARNING : deprecated key derivation used.
+Using -iter or -pbkdf2 would be better.
+openssl enc -d -aria-256-cfb1 -k secret -in "file_aria_encoded"$i -out   1,25s user 0,02s system 96% cpu 1,316 total
+*** WARNING : deprecated key derivation used.
+Using -iter or -pbkdf2 would be better.
+openssl enc -d -aria-256-cfb1 -k secret -in "file_aria_encoded"$i -out   2,62s user 0,05s system 95% cpu 2,813 total
+*** WARNING : deprecated key derivation used.
+Using -iter or -pbkdf2 would be better.
+openssl enc -d -aria-256-cfb1 -k secret -in "file_aria_encoded"$i -out   4,17s user 0,09s system 96% cpu 4,437 total
+*** WARNING : deprecated key derivation used.
+Using -iter or -pbkdf2 would be better.
+openssl enc -d -aria-256-cfb1 -k secret -in "file_aria_encoded"$i -out   5,16s user 0,12s system 96% cpu 5,470 total
+*** WARNING : deprecated key derivation used.
+Using -iter or -pbkdf2 would be better.
+openssl enc -d -aria-256-cfb1 -k secret -in "file_aria_encoded"$i -out   5,99s user 0,25s system 96% cpu 6,458 total
+*** WARNING : deprecated key derivation used.
+Using -iter or -pbkdf2 would be better.
+openssl enc -d -aria-256-cfb1 -k secret -in "file_aria_encoded"$i -out   6,82s user 0,25s system 97% cpu 7,242 total
+*** WARNING : deprecated key derivation used.
+Using -iter or -pbkdf2 would be better.
+openssl enc -d -aria-256-cfb1 -k secret -in "file_aria_encoded"$i -out   8,05s user 0,25s system 97% cpu 8,514 total
+*** WARNING : deprecated key derivation used.
+Using -iter or -pbkdf2 would be better.
+openssl enc -d -aria-256-cfb1 -k secret -in "file_aria_encoded"$i -out   9,44s user 0,25s system 97% cpu 9,927 total
+*** WARNING : deprecated key derivation used.
+Using -iter or -pbkdf2 would be better.
+openssl enc -d -aria-256-cfb1 -k secret -in "file_aria_encoded"$i -out   10,34s user 0,32s system 97% cpu 10,962 total
+*** WARNING : deprecated key derivation used.
+Using -iter or -pbkdf2 would be better.
+openssl enc -d -aria-256-cfb1 -k secret -in "file_aria_encoded"$i -out   11,55s user 0,34s system 97% cpu 12,228 total
 ```
 
 4. Описати основні характеристики алгоритмів шифрування
@@ -175,9 +308,13 @@ Files data and data.dcr are identical
 
 Отже, як бачимо файли є ідентичними.
 
-
-1. Зробити висновки і оформити Домашню контрольну роботу
+9. Зробити висновки і оформити Домашню контрольну роботу
 Зробити висновки щодо продуктивності алгоритму шифрування ( за часом шифрування і дешифрування) за даними шифрування і дешифрування (в області користувача, ядра, загальний час).
+
+
+
+
+
 10. Надати відповіді на питання
 Бальні оцінки
 11. Описати особливості політик безпеки операційної системи
