@@ -1,7 +1,11 @@
 import task_1_1 from "../task-1-1/text.md";
+import task_1_2 from "../task-1-2/text.md";
+import task_1_3 from "../task-1-3/text.md";
 import { render } from "@/core";
 import titleSheet from "@/common/laba-title-sheet.html";
 import "@/style.css";
+
+const contents = [task_1_1, task_1_2, task_1_3];
 
 const blocks = [
   {
@@ -15,11 +19,11 @@ const blocks = [
       title: "контрольної",
     },
   },
-  {
+  ...contents.map((task) => ({
     title: "",
     type: "markdown",
-    content: task_1_1,
-  },
+    content: task,
+  })),
 ];
 
 render(blocks);
