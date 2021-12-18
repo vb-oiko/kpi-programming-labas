@@ -32,7 +32,13 @@ const getAllFolders = (path) => {
 
 const toSnakeCase = (str) => str.replace(/\//g, "-");
 
-const htmlPageNames = getAllFolders(docsPath).filter(
+const allFolders = getAllFolders(docsPath);
+
+const AllFoldersWithJs = allFolders.filter((folder) =>
+  fs.readdirSync(`${docsPath}/${folder}`).some((name) => name.endsWith(".js"))
+);
+
+const htmlPageNames = AllFoldersWithJs.filter(
   (name) => inclRegEx.test(name) && !exclRegEx.test(name)
 );
 

@@ -1,4 +1,4 @@
-import task_1_1 from "./task-1-1/text.md";
+import task_1_1 from "../task-1-1/text.md";
 import { render } from "@/core";
 import titleSheet from "@/common/laba-title-sheet.html";
 import "@/style.css";
