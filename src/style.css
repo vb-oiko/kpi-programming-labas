@@ -5,6 +5,10 @@ body {
   font-family: "Times New Roman", Times, serif;
 }
 
+img {
+  width: 100%;
+}
+
 h1,
 h2,
 h3 {
