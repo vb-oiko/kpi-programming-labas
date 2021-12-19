@@ -12,12 +12,12 @@
 Позначимо через $x_{ij}$ - кількість деталей $i$-го типу, виготовлених на верстаті $j$,
 а через $C_i$ прибуток від випуску одиниці деталі кожного виду:
 
-$$  \sum_{i=1}^{3} C_i x_j \rightarrow max $$
+$$  \sum_{i=1}^{3} \sum_{j=1}^{3} C_i x_{ij} \rightarrow max $$
 
 
 При обмеженнях
 
-$$  \sum_{i=1}^{3} x_{ij} \mu_{ij} + \Phi^{-1}(\alpha_0) \left( \sum_{i=1}^{3} x_{ij}^2 \sigma^2_{ij} +\theta^2 \right)^{\frac{1}{2}} \le \phi_j ,\quad j=1..3, \quad \theta^2 = 0
+$$  \sum_{i=1}^{3} x_{ij} \mu_{ij} + \Phi^{-1}(\alpha_0) \left( \sum_{i=1}^{3} x_{ij}^2 \sigma^2_{ij} \right)^{\frac{1}{2}} \le \phi_j ,\quad j=1..3
 $$
 
 Підставляючи дані з таблиці отримаємо модель даної задачі:
