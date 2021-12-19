@@ -35,6 +35,7 @@ const renderBlock = {
 
   markdown(content) {
     const el = document.createElement("div");
+    el.className = "page-break-before";
     el.innerHTML = content;
     this.app.appendChild(el);
   },

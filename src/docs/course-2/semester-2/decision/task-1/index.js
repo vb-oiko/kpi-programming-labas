@@ -7,7 +7,7 @@ import { render } from "@/core";
 import titleSheet from "@/common/laba-title-sheet-var-1.html";
 import "@/style.css";
 
-const contents = [task_1_1, task_1_2, task_1_4, task_1_5];
+const contents = [task_1_1, task_1_2, task_1_3, task_1_4, task_1_5];
 
 const blocks = [
   {
