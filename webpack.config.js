@@ -23,7 +23,10 @@ const getAllFolders = (path) => {
   return folders
     .map((folder) => {
       const subFolders = getAllFolders(`${path}/${folder}`);
-      return subFolders.length
+      return subFolders.length &&
+        !fs
+          .readdirSync(`${path}/${folder}`)
+          .some((name) => name.endsWith(".js"))
         ? subFolders.map((subFolder) => `${folder}/${subFolder}`)
         : folder;
     })
