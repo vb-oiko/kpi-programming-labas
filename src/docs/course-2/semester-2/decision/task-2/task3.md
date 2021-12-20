@@ -31,6 +31,7 @@ $R_3: x_2 \approx x_3, x_4 \succ x_1, x_1 \approx x_2 $
 Побудуємо матриці відношень:
 
 $$\mu_{R_1} = \begin{array}{|c|c|c|c|c|} \hline
+ & x_1 & x_2 & x_3 & x_4\\ \hline
 x_1 & 1 & 1 & 1 & 0\\ \hline
 x_2 & 1 & 1 & 1 & 0\\ \hline
 x_3 & 1 & 1 & 1 & 0\\ \hline
@@ -38,6 +39,7 @@ x_4 & 1 & 1 & 1 & 1\\ \hline
 \end{array}$$
 
 $$\mu_{R_2} = \begin{array}{|c|c|c|c|c|} \hline
+ & x_1 & x_2 & x_3 & x_4\\ \hline
 x_1 & 1 & 1 & 0 & 0\\ \hline
 x_2 & 0 & 1 & 0 & 0\\ \hline
 x_3 & 1 & 1 & 1 & 1\\ \hline
@@ -45,6 +47,7 @@ x_4 & 1 & 1 & 1 & 1\\ \hline
 \end{array}$$
 
 $$\mu_{R_3} = \begin{array}{|c|c|c|c|c|} \hline
+ & x_1 & x_2 & x_3 & x_4\\ \hline
 x_1 & 1 & 1 & 1 & 0\\ \hline
 x_2 & 1 & 1 & 1 & 0\\ \hline
 x_3 & 1 & 1 & 1 & 0\\ \hline
@@ -54,6 +57,7 @@ x_4 & 1 & 1 & 1 & 1\\ \hline
 Побудуємо згортку відношень і знайдемо відношення строгої переваги:
 
 $$\mu_{Q_1} = \begin{array}{|c|c|c|c|c|} \hline
+ & x_1 & x_2 & x_3 & x_4\\ \hline
 x_1 & 1 & 1 & 0 & 0\\ \hline
 x_2 & 0 & 1 & 0 & 0\\ \hline
 x_3 & 1 & 1 & 1 & 0\\ \hline
@@ -61,6 +65,7 @@ x_4 & 1 & 1 & 1 & 1\\ \hline
 \end{array}$$
 
 $$ \mu_{Q_1^S} = \begin{array}{|c|c|c|c|c|} \hline
+ & x_1 & x_2 & x_3 & x_4\\ \hline
 x_1 & 0 & 1 & 0 & 0\\ \hline
 x_2 & 0 & 0 & 0 & 0\\ \hline
 x_3 & 1 & 1 & 0 & 0\\ \hline
@@ -70,6 +75,7 @@ x_4 & 1 & 1 & 1 & 0\\ \hline
 Знаходимо підмножину недомінованих альтернатив по згортці $Q_1$:
 
 $$ \mu_{Q_1^\text{нд}} = \begin{array}{|c|c|c|c|} \hline
+x_1 & x_2 & x_3 & x_4\\ \hline
 0 & 0 & 0 & 1\\ \hline
 \end{array}$$
 
@@ -103,6 +109,7 @@ x_1 & x_2 & x_3 & x_4\\ \hline
 Знаходимо перетин множин $Q_1^\text{нд} \cap Q_2^\text{нд}$, та обчислюємо функцію належності результуючої множини $Q^\text{нд}$
 
 $$ \mu_{Q^\text{нд}} = \begin{array}{|c|c|c|c|} \hline
+x_1 & x_2 & x_3 & x_4\\ \hline
 0 & 0 & 0 & 1\\ \hline
 \end{array}$$
 
