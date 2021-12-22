@@ -1,9 +1,8 @@
 body {
-  margin: 2rem;
-  margin-left: 4rem;
-  font-size: 1.4rem;
-  line-height: 2.2rem;
-  max-width: 60rem;
+  margin-left: 2cm;
+  font-size: 14px;
+  line-height: 21px;
+  width: 600px;
   font-family: "Times New Roman", Times, serif;
 }
 
@@ -14,7 +13,7 @@ img {
 h1,
 h2,
 h3 {
-  font-size: 1.4rem;
+  font-size: 14px;
 }
 
 h1 {

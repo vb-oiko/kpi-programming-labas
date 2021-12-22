@@ -23,7 +23,8 @@ $$  \sum_{i=1}^{3} \sum_{j=1}^{3} C_i x_{ij}  \rightarrow max $$
 $$  \sum_{i=1}^{3} x_{ij} \frac{{\overline{t}_{ij} + \underline{t}_{ij}}}{2} + \Phi^{-1}(\alpha_0) \left( 
     \sum_{i=1}^{3} x_{ij}^2 \frac{({\overline{t}_{ij} - \underline{t}_{ij})^2}}{12} + 
     (\phi_{j\,max} - \phi_{j\,min})^2     
-    \right)^{\frac{1}{2}} \le \frac{\phi_{j\,max} + \phi_{j\,min}}{2} ,\quad j=1..3
+    \right)^{\frac{1}{2}} \le \\
+    \le \frac{\phi_{j\,max} + \phi_{j\,min}}{2} ,\quad j=1..3
 $$
 
 Підставляючи дані з таблиці отримаємо модель даної задачі
@@ -95,8 +96,8 @@ $$ 10 x_{11} + 10 x_{12} + 10 x_{13} +
    16 x_{21} + 16 x_{22} + 16 x_{23} + 
    12 x_{31} + 12 x_{32} + 12 x_{33} - \\
 \,- 30 \left( \frac{1}{4} x_{11} + \frac{3}{20} x_{12} + \frac{3}{40} x_{13}  \right)
-\,- 10 \left( \frac{3}{4} x_{21} + \frac{3}{10} x_{22} + \frac{3}{10} x_{23} \right) - 
-20 \left( \frac{3}{20} x_{31} + \frac{9}{40} x_{32} + \frac{2}{5} x_{33}  \right) - \\
+\,- 10 \left( \frac{3}{4} x_{21} + \frac{3}{10} x_{22} + \frac{3}{10} x_{23} \right) - \\
+\,- 20 \left( \frac{3}{20} x_{31} + \frac{9}{40} x_{32} + \frac{2}{5} x_{33}  \right) - \\
 \,- \Phi^{-1}(0.9) \left( 
 \frac{1}{1200} 30^2 x_{11}^2 + \frac{1}{1200} 30^2 x_{12}^2 + \frac{1}{240} 30^2 x_{13}^2 \right)^{\frac{1}{2}} - \\
 \,- \Phi^{-1}(0.9) \left( 
