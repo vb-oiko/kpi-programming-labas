@@ -58,7 +58,7 @@ $$ \overline{C}_{j} - \sqrt{ 2 \ln \frac{4}{3} } \le C_{j} \le \overline{C}_{j} 
 
 Задача песиміста:
 
-$$ 12 x_1 + 5 x_2 + 15 x_3 + 20 x_4 + \sqrt{ 2 \ln \frac{4}{3} } (x_1+x_2+x_3+x_4) \rightarrow \max $$
+$$ 12 x_1 + 5 x_2 + 15 x_3 + 20 x_4 - \sqrt{ 2 \ln \frac{4}{3} } (x_1+x_2+x_3+x_4) \rightarrow \max $$
 
 $$ 4 x_1 + 2 x_2 + 8 x_3 + 12 x_4 + \sqrt{\frac{2}{3}} (x_1+x_2+x_3+x_4) \le 1000 $$
 
@@ -68,7 +68,7 @@ $$ 5 x_1 + 3 x_2 + 6 x_3 + 12 x_4 + \sqrt{\frac{2}{3}} (x_1+x_2+x_3+x_4) \le 800
 
 Задача оптиміста:
 
-$$ 12 x_1 + 5 x_2 + 15 x_3 + 20 x_4 - \sqrt{ 2 \ln \frac{4}{3} } (x_1+x_2+x_3+x_4) \rightarrow \max $$
+$$ 12 x_1 + 5 x_2 + 15 x_3 + 20 x_4 + \sqrt{ 2 \ln \frac{4}{3} } (x_1+x_2+x_3+x_4) \rightarrow \max $$
 
 $$ 4 x_1 + 2 x_2 + 8 x_3 + 12 x_4 - \sqrt{\frac{2}{3}} (x_1+x_2+x_3+x_4) \le 1000 $$
 

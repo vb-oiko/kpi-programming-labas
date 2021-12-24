@@ -55,18 +55,18 @@ $$ \overline{C}_{j} - \sqrt{\frac{2}{3}} \le C_{j} \le \overline{C}_{j} + \sqrt{
 
 $$ 30 x_1 + 20 x_2 + 50 x_3  + 0.5 (x_1+x_2+x_3) \rightarrow \min $$
 
-$$ 300 x_1 + 20 x_2 + 150 x_3     +  \sqrt{2 \ln \frac{4}{3}} (x_1+x_2+x_3) \ge 2000 $$
-
-$$ 4 x_1 + 6 x_2 + 4 x_3  + \sqrt{2 \ln \frac{4}{3}} (x_1+x_2+x_3) \ge 120 $$
-
-$$ 3 x_1 + 1 x_2 + 2 x_3  + \sqrt{2 \ln \frac{4}{3}} (x_1+x_2+x_3) \ge 40 $$
-
-Задача оптиміста:
-
-$$ 30 x_1 + 20 x_2 + 50 x_3  - 0.5 (x_1+x_2+x_3) \rightarrow \min $$
-
 $$ 300 x_1 + 20 x_2 + 150 x_3     -  \sqrt{2 \ln \frac{4}{3}} (x_1+x_2+x_3) \ge 2000 $$
 
 $$ 4 x_1 + 6 x_2 + 4 x_3  - \sqrt{2 \ln \frac{4}{3}} (x_1+x_2+x_3) \ge 120 $$
 
 $$ 3 x_1 + 1 x_2 + 2 x_3  - \sqrt{2 \ln \frac{4}{3}} (x_1+x_2+x_3) \ge 40 $$
+
+Задача оптиміста:
+
+$$ 30 x_1 + 20 x_2 + 50 x_3  - 0.5 (x_1+x_2+x_3) \rightarrow \min $$
+
+$$ 300 x_1 + 20 x_2 + 150 x_3     +  \sqrt{2 \ln \frac{4}{3}} (x_1+x_2+x_3) \ge 2000 $$
+
+$$ 4 x_1 + 6 x_2 + 4 x_3  + \sqrt{2 \ln \frac{4}{3}} (x_1+x_2+x_3) \ge 120 $$
+
+$$ 3 x_1 + 1 x_2 + 2 x_3  + \sqrt{2 \ln \frac{4}{3}} (x_1+x_2+x_3) \ge 40 $$
