@@ -98,7 +98,7 @@ $$ (C_{ij} - \overline{C}_{ij})^2 \le 0.25 $$
 
 $$ |C_{ij} - \overline{C}_{ij}| \le 0.5 $$
 
-$$ \overline{C}_{ij} + 0.5 \le C_{ij} \le \overline{C}_{ij} + 0.5 $$
+$$ \overline{C}_{ij} - 0.5 \le C_{ij} \le \overline{C}_{ij} + 0.5 $$
 
 Таким чином знаходимо інтервали для $C_{ij}$:
 
