@@ -140,7 +140,7 @@ $$ \min F_{2U}(B) = 1.5 \times 5 -0.5 \times 11 = 2 $$
 
 $$ \max \lambda $$
 
-$$ \max \lambda  \begin{cases}
+$$ \begin{cases}
     (42.75 - 18) \lambda - (2.5 x_1 + 1.5 x_2) \le -18 \\
     (64.25 - 28) \lambda - (3.5 x_1 + 2.5 x_2) \le -28 \\
     (4.5 + 14) \lambda - (0.5 x_1 -1.5 x_2) \le 14 \\
@@ -174,6 +174,6 @@ $$ \begin{cases}
 \end{cases}
 $$
 
-![](img4-2.png)
+Розв'язуємо дану задачу симплекс методом і знаходимо найкраще компромісне рішення, яке максимізує $\lambda$.
 
 $$ \lambda \approx 0.8472,\quad x_1 \approx 14.192,\quad x_2 \approx 3.616 $$
