@@ -8,3 +8,4 @@ build
 *.cr
 *.dcr
 *.pem
+.DS_store
