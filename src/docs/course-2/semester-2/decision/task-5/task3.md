@@ -18,7 +18,9 @@ $$ \begin{cases}
 $$
 
 
-б) побудувати $(A \widehat{\cup} B \widehat{\cup} C)_\alpha$ та $(A \widehat{\cap} B \widehat{\cap} C)_\alpha$ , де $\alpha=0.4$ та переконатися, що $(A \widehat{\cup} B \widehat{\cup} C)_\alpha \supe A_\alpha \cup B_\alpha \cup C_\alpha$ та $(A \widehat{\cap} B \widehat{\cap} C)_\alpha \sube A_\alpha \cap B_\alpha \cap C_\alpha$.
+б) побудувати $(A \widehat{\cup} B \widehat{\cup} C)_\alpha, (A \widehat{\cap} B \widehat{\cap} C)_\alpha$ , де $\alpha=0.4$ 
+
+та переконатися, що $(A \widehat{\cup} B \widehat{\cup} C)_\alpha \supe A_\alpha \cup B_\alpha \cup C_\alpha$ та $(A \widehat{\cap} B \widehat{\cap} C)_\alpha \sube A_\alpha \cap B_\alpha \cap C_\alpha$.
 
 
 ### Розв'язок
