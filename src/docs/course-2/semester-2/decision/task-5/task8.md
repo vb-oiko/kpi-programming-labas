@@ -19,11 +19,11 @@ y_5 & 0.7 & 0 & 0.7 & 0 \\ \hline
 
 Побудувати $R_1^2, R_2^2, R_3^2$, де відповідно:
 
-$$ \mu_{R_1^2}(x,z) = \max_{y \in Y} \min (\mu_A(x,y), \mu_B(x,y)) $$
+$$ \mu_{R_1^2}(x,z) = \max_{y \in Y} \min (\mu_A(x,y), \mu_B(x,z)) $$
 
-$$ \mu_{R_2^2}(x,z) = \min_{y \in Y} \max (\mu_A(x,y), \mu_B(x,y)) $$
+$$ \mu_{R_2^2}(x,z) = \min_{y \in Y} \max (\mu_A(x,y), \mu_B(x,z)) $$
 
-$$ \mu_{R_3^2}(x,z) = \max_{y \in Y} \{ (\mu_A(x,y) \cdot \mu_B(x,y) \} $$
+$$ \mu_{R_3^2}(x,z) = \max_{y \in Y} \{ (\mu_A(x,y) \cdot \mu_B(x,z) \} $$
 
 
 ### Розв'язок
