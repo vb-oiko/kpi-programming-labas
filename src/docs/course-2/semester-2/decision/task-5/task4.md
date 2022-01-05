@@ -13,12 +13,12 @@
 Запишемо функції приналежності для обох частин рівності.
 
 $$ \mu_{(A \cap B) \cap C}(x) = \min\{ \mu_{A \cap B }(x);  \mu_{C}(x)\} = 
-\min \{ \min\{\mu_{A}(x);  \mu_{B}(x)\};  \mu_{C}(x)\}  = 
+\min \{ \min\{\mu_{A}(x);  \mu_{B}(x)\};  \mu_{C}(x)\}  = \\ =
 \min \{ \mu_{A}(x);  \mu_{B}(x);  \mu_{C}(x)\} 
 $$
 
 $$ \mu_{A \cap (B \cap C)}(x) = \min\{ \mu_{A}(x); \mu_{B \cap C }(x)\} = 
-\min \{ \mu_{A}(x); \min\{\mu_{B}(x);  \mu_{C}(x)\}\}  = 
+\min \{ \mu_{A}(x); \min\{\mu_{B}(x);  \mu_{C}(x)\}\}  = \\ =
 \min \{ \mu_{A}(x);  \mu_{B}(x);  \mu_{C}(x)\} 
 $$
 
