@@ -1,13 +1,4 @@
-import task1 from "./task1.md";
-// import task2 from "./task2.md";
-// import task3 from "./task3.md";
-// import task4 from "./task4.md";
-// import task5 from "./task5.md";
-// import task6 from "./task6.md";
-// import task7 from "./task7.md";
-// import task8 from "./task8.md";
-// import task9 from "./task9.md";
-// import task10 from "./task10.md";
+import task1 from "./task-1/task1.md";
 import { render } from "@/core";
 import titleSheet from "@/common/tpr-title-sheet.html";
 import "@/style.css";
