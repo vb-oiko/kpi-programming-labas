@@ -26,7 +26,7 @@ $$
 $$ \mu_{ij}(a_{ij}) = \frac{1}{1 + \frac{(a_{ij} - \overline{a}_{ij})^2}{\overline{a}_{ij}^2}},
 $$
 
-де $a_{ij}$ - це дані, наведені в таблиці 1, $i$ - номер виробу; $j$ - тип підприємства, $j=\overline{1,5}$. Побудувати відповідну модель задачі НМП. Знайти підмножини максимізуючих альтернатив, недомінованих, зі ступенем $\alpha=0.8$, зокрема для стратегій оптиміста та песиміста, та порівняти отримані рішення.
+де $a_{ij}$ - це дані, наведені в таблиці 1, $i$ - номер виробу; $j$ - тип підприємства, $j=\overline{1,5}$. Побудувати відповідну модель задачі НМП. Знайти підмножини максимізуючих альтернатив, недомінованих, зі ступенем $\alpha=\alpha_0$, зокрема для стратегій оптиміста та песиміста, та порівняти отримані рішення.
 
 #### Математична модель
 
@@ -42,29 +42,29 @@ $$ \sum_{i=1}^{3} x_{ij} \le b_{j}, \quad j=1..5 $$
 
 $$ x_{ij} \in \Z^{\ge} , \quad i=1..3, \quad j=1..5 $$
 
-$$ \mu(a_{ijk})  \ge 0.8 $$
+$$ \mu(a_{ij})  \ge 0.8 $$
 
-Вирішуємо нерівність та знайдемо кінці інтервалу нечіткої множини $a_{ij}$ рівня $\alpha=0.8$
+Вирішуємо нерівність та знайдемо кінці інтервалу нечіткої множини $a_{ij}$ рівня $\alpha_0=0.8$
 
-$$ \mu_{ij}(a_{ij}) = \frac{1}{1 + \frac{(a_{ij} - \overline{a}_{ij})^2}{\overline{a}_{ij}^2}} \ge 0.8 $$
+$$ \mu_{ij}(a_{ij}) = \frac{1}{1 + \frac{(a_{ij} - \overline{a}_{ij})^2}{\overline{a}_{ij}^2}} \ge \alpha_0 $$
 
-$$ 1 \ge 0.8 (1 + \frac{(a_{ij} - \overline{a}_{ij})^2}{\overline{a}_{ij}^2}) $$
+$$ 1 \ge \alpha_0 (1 + \frac{(a_{ij} - \overline{a}_{ij})^2}{\overline{a}_{ij}^2}) $$
 
-$$ 1 \ge 0.8 + 0.8 \frac{(a_{ij} - \overline{a}_{ij})^2}{\overline{a}_{ij}^2} $$
+$$ 1 \ge \alpha_0 + \alpha_0 \frac{(a_{ij} - \overline{a}_{ij})^2}{\overline{a}_{ij}^2} $$
 
-$$ 0.8 \frac{(a_{ij} - \overline{a}_{ij})^2}{\overline{a}_{ij}^2} \le 0.2$$
+$$ \alpha_0 \frac{(a_{ij} - \overline{a}_{ij})^2}{\overline{a}_{ij}^2} \le (1 - \alpha_0)$$
 
-$$ (a_{ij} - \overline{a}_{ij})^2 \le 0.25 \overline{a}_{ij}^2$$
+$$ (a_{ij} - \overline{a}_{ij})^2 \le \frac{1-\alpha_0}{\alpha_0} \overline{a}_{ij}^2$$
 
-$$ |a_{ij} - \overline{a}_{ij}| \le 0.5 |\overline{a}_{ij}|$$
+$$ |a_{ij} - \overline{a}_{ij}| \le \sqrt{\frac{1-\alpha_0}{\alpha_0}} |\overline{a}_{ij}|$$
 
 Зробимо зауваження, що згідно умовам задачі ${a}_{ij} > 0$, отже 
 
-$$ |a_{ij} - \overline{a}_{ij}| \le 0.5 \overline{a}_{ij}$$
+$$ |a_{ij} - \overline{a}_{ij}| \le \sqrt{\frac{1-\alpha_0}{\alpha_0}} \overline{a}_{ij}$$
 
-$$ \overline{a}_{ij} - 0.5 \overline{a}_{ij} \le a_{ij} \le \overline{a}_{ij} + 0.5 \overline{a}_{ij}$$
+$$ \overline{a}_{ij} - \sqrt{\frac{1-\alpha_0}{\alpha_0}} \overline{a}_{ij} \le a_{ij} \le \overline{a}_{ij} + \sqrt{\frac{1-\alpha_0}{\alpha_0}} \overline{a}_{ij}$$
 
-$$ 0.5 \overline{a}_{ij} \le a_{ij} \le 1.5 \overline{a}_{ij}$$
+$$ \left(1 - \sqrt{\frac{1-\alpha_0}{\alpha_0}} \right) \overline{a}_{ij} \le a_{ij} \le \left( 1+ \sqrt{\frac{1-\alpha_0}{\alpha_0}} \right) \overline{a}_{ij}$$
 
 #### Чітка модель
 
