@@ -9,3 +9,4 @@ build
 *.dcr
 *.pem
 .DS_store
+.history
