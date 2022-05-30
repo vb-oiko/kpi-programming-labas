@@ -6,18 +6,7 @@ import { render } from "@/core";
 import titleSheet from "@/common/tpr-title-sheet.html";
 import "@/style.css";
 
-const contents = [
-  // task1,
-  // task2,
-  // task3,
-  task4,
-  // task5,
-  // task6,
-  // task7,
-  // task8,
-  // task9,
-  // task10,
-];
+const contents = [task1, task2, task3, task4];
 
 const blocks = [
   {
