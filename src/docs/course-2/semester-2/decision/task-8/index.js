@@ -1,19 +1,16 @@
 import task1_1 from "./task1-1.md";
 import task1_2 from "./task1-2.md";
-// import task2 from "./task2.md";
-// import task3 from "./task3.md";
-// import task4 from "./task4.md";
-// import task5 from "./task5.md";
-// import task6 from "./task6.md";
-// import task7 from "./task7.md";
-// import task8 from "./task8.md";
-// import task9 from "./task9.md";
-// import task10 from "./task10.md";
+import task1_3 from "./task1-3.md";
 import { render } from "@/core";
-import titleSheet from "@/common/laba-title-sheet-var-1.html";
+import titleSheet from "@/common/tpr-title-sheet.html";
 import "@/style.css";
 
-const contents = [task1_1, task1_2];
+const contents = [
+  //
+  task1_1,
+  task1_2,
+  task1_3,
+];
 
 const blocks = [
   {
