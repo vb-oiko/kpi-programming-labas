@@ -66,9 +66,9 @@ $$ \frac{1}{2} \sum b_i = \frac{1}{2} (10+12+18+20+30 - 50) = 45 $$
 
 $$ \lambda_0 = \frac{1}{n} \left( \sum_{i=1}^n b_i - c \right) = \frac{10+12+18+20+30-75}{5} = 3 $$
 
-Оскільки $\lambda_0 < \frac{b_3}{2}$, то
+Оскільки $\lambda_0 < \frac{b_1}{2}$, то
 
-$$ \lambda^* = \lambda_2 =  3 $$
+$$ \lambda^* = \lambda_0 =  3 $$
 
 $$ x_1 = b_1 - \lambda^* = 10 -  3 = 7 $$
 
