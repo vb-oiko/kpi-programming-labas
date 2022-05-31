@@ -1,4 +1,5 @@
-import task1 from "./task1.md";
+import task1_1 from "./task1-1.md";
+import task1_2 from "./task1-2.md";
 // import task2 from "./task2.md";
 // import task3 from "./task3.md";
 // import task4 from "./task4.md";
@@ -12,18 +13,7 @@ import { render } from "@/core";
 import titleSheet from "@/common/laba-title-sheet-var-1.html";
 import "@/style.css";
 
-const contents = [
-  task1,
-  // task2,
-  // task3,
-  // task4,
-  // task5,
-  // task6,
-  // task7,
-  // task8,
-  // task9,
-  // task10,
-];
+const contents = [task1_1, task1_2];
 
 const blocks = [
   {
