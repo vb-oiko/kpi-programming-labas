@@ -10,13 +10,13 @@ $$ \lambda_0 = \frac{1}{n} \left( \sum_{i=1}^n b_i - c \right) = \frac{4000+6000
 
 Оскільки $ \lambda_0 > \frac{b_1}{2} $, то переходимо до наступного кроку:
 
-$$ \lambda^* = \lambda_0  3000 $$
-
 $$ x_1 = \frac{b_1}{2} = 2000 $$
 
 $$ \lambda_1 = \frac{1}{n-1} \left( \sum_{i=2}^n b_i - c +x_1\right) = \frac{6000+8000-10000+2000}{2} = 3000 $$
 
 Оскільки $ \lambda_1 = \frac{b_2}{2} $, то:
+
+$$ \lambda^* = \lambda_1 = 3000 $$
 
 $$ x_2 = 6000 - 3000 = 3000 $$
 
