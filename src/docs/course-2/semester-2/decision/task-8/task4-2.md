@@ -72,7 +72,7 @@ $$ \lambda_1 = \frac{1}{n-1} \left( \sum_{i=2}^n b_i - c \right) = \frac{12+20+2
 
 Оскільки $\lambda_1 < \frac{b_2}{2}$, то
 
-$$ \lambda^* = \lambda_0 =  5.5 $$
+$$ \lambda^* = \lambda_1 =  5.5 $$
 
 $$ x_1 = 4 $$
 
