@@ -8,6 +8,11 @@ import task3_1 from "./task3-1.md";
 import task3_2 from "./task3-2.md";
 import task3_3 from "./task3-3.md";
 import task4_1 from "./task4-1.md";
+import task4_2 from "./task4-2.md";
+import task4_3 from "./task4-3.md";
+// import task5_1 from "./task5-1.md";
+// import task5_2 from "./task5-2.md";
+// import task5_3 from "./task5-3.md";
 import { render } from "@/core";
 import titleSheet from "@/common/tpr-title-sheet.html";
 import "@/style.css";
@@ -24,6 +29,11 @@ const contents = [
   // task3_2,
   // task3_3,
   task4_1,
+  task4_2,
+  task4_3,
+  // task5_1,
+  // task5_2,
+  // task5_3,
 ];
 
 const blocks = [
