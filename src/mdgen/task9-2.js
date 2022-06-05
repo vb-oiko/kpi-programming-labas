@@ -2,37 +2,38 @@ const path = require("path");
 const fs = require("fs");
 const { METHODS } = require("http");
 
+const task = 2;
+
 const filePath = path.resolve(
   __dirname,
-  "../docs/course-2/semester-2/decision/task-9/task-1.md"
+  `../docs/course-2/semester-2/decision/task-9/task-${task}.md`
 );
 
-const task = 1;
 const n = 2;
 
 const dot = (x) => (typeof x === "number" ? " \\cdot " : "");
 const newLine = "\\" + "\\";
 
-const b1Text = (y = "y") => `2 \\ln(1 + 2 ${dot(y)} ${y})`;
-const b1Val = (y) => 2 * Math.log(1 + 2 * y);
-const b1DerText = (y = "y") => `\\frac{4}{1+2 ${dot(y)} ${y}}`;
-const b1DerVal = (y) => 4 / (1 + 2 * y);
+const b1Text = (y = "y") => `4 \\sqrt{${y}}`;
+const b1Val = (y) => 4 * Math.sqrt(y);
+const b1DerText = (y = "y") => `\\frac{2}{ \\sqrt{${y}}}`;
+const b1DerVal = (y) => 2 / Math.sqrt(y);
 
-const b2Text = (y = "y") => `\\sqrt{${y}}`;
-const b2Val = (y) => Math.sqrt(y);
-const b2DerText = (y = "y") => `\\frac{1}{2 \\sqrt{${y}}}`;
-const b2DerVal = (y) => 1 / (2 * Math.sqrt(y));
+const b2Text = (y = "y") => `2 \\ln(1 + ${y})`;
+const b2Val = (y) => 2 * Math.log(1 + y);
+const b2DerText = (y = "y") => `\\frac{2}{1+ ${y}}`;
+const b2DerVal = (y) => 2 / (1 + y);
 
-const cText = (y = "y") => `\\frac{1}{4}${y}^2`;
-const cVal = (y) => 0.25 * y * y;
-const cDerText = (y = "y") => `\\frac{1}{2}${y}`;
-const cDerVal = (y) => 0.5 * y;
+const cText = (y = "y") => `\\frac{1}{2} ${dot(y)}  ${y}`;
+const cVal = (y) => 0.5 * y;
+const cDerText = (y = "y") => `\\frac{1}{2}`;
+const cDerVal = (y) => 0.5;
 
 const round = (x) => Math.round(x * 100) / 100;
 
-const yStar = 2.17;
-const y1 = 1.77;
-const y2 = 1;
+const yStar = 23.03;
+const y1 = 16;
+const y2 = 3;
 
 const v12 = round(b1Val(yStar) + b2Val(yStar) - cVal(yStar));
 const v1 = Math.max(0, round(b1Val(y1) - cVal(y1)));
@@ -43,18 +44,22 @@ const v_2 = round(0.5 * v2 + 0.5 * (v12 - v1));
 
 const nCore = round(0.5 * (b1Val(yStar) + b2Val(yStar)));
 const lambda0 = round(cVal(yStar) / n);
+const b2y2 = round(b2Val(yStar)) / 2;
+const b1y2 = round(b1Val(yStar)) / 2;
+const lambda1 = round(cVal(yStar) - b2y2);
 
-const r1Text = "\\frac{8}{y+2y^2}";
-const r2Text = "\\frac{1}{y^{\\frac{3}{2}}}";
+const r1Text = "\\frac{4}{\\sqrt{y}}";
+const r2Text = "\\frac{4}{1+y}";
+const r1Val = (y) => 4 / Math.sqrt(y);
+const r2Val = (y) => 4 / (1 + y);
 
-const rPoly =
-  "2y^{\\frac{5}{2}} + y^{\\frac{3}{2}} -2y -8y^{\\frac{1}{2}} -1 = 0";
+const rPoly = "-y^{\\frac{3}{2}} +4y +3y^{\\frac{1}{2}} +4 = 0";
 
-const yStarR = 2.174;
-r1 = 0.688;
-r2 = 0.312;
+const yStarR = 23.029;
+r1 = round(r1Val(yStarR));
+r2 = round(r2Val(yStarR));
 
-yOver = 1.27;
+yOver = 6.32;
 
 const lines = [];
 
@@ -212,15 +217,32 @@ $$ \\frac{\\min(b_1(y^*), b_2(y^*))}{2} =
 \\frac{\\min(${round(b1Val(yStar))}, ${round(b2Val(yStar))})}{2} =
 \\frac{${round(Math.min(b1Val(yStar), b2Val(yStar)))}}{2} = 
 ${round(Math.min(b1Val(yStar), b2Val(yStar)) / 2)}
-$$
+$$`,
 
+  lambda0 < b2y2 / 2
+    ? `
 $$ \\lambda_0 < \\frac{b_2(y^*)}{2} $$
 
 $$ \\lambda^* = \\lambda_0 = ${lambda0} $$
 
-$$ x_1^* = x_2^* = \\lambda_0 = ${lambda0} $$
+$$ x_1^* = x_2^* = \\lambda_0 = ${lambda0} $$`
+    : `
+$$ \\lambda_0 > \\frac{b_2(y^*)}{2} $$
 
-3. Знайдемо розподіл витрат, що відповідає дольовій рівновазі по Лінделу.
+$$ x_2^* = \\frac{b_2(y^*)}{2} = ${b2y2}$$
+
+$$ \\lambda_1 = \\frac{1}{n-1} (c-x_1^*) = ${round(cVal(yStar))} - ${b2y2} =
+${round(cVal(yStar) - b2y2)} $$
+
+$$ \\frac{b_1 (y^*)}{2} = ${b1y2} $$
+
+$$ \\lambda^* = \\lambda_1 = ${lambda1} $$
+
+$$ x_1^* = \\lambda^* = ${lambda1} $$
+
+`,
+
+  `3. Знайдемо розподіл витрат, що відповідає дольовій рівновазі по Лінделу.
 
 $$ \\lbrace b_1(y^*) - r_1 C(y^*) \\rbrace = 
 \\max \\lbrace ${b1Text()} - r_1 ${cText()} \\rbrace
