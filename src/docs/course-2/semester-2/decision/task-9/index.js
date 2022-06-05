@@ -12,27 +12,27 @@ import "@/style.css";
 
 const contents = [
   //
-  // task1,
-  // task2,
-  // task3,
-  // task4,
-  // task5,
-  // task6,
+  task1,
+  task2,
+  task3,
+  task4,
+  task5,
+  task6,
   task7,
 ];
 
 const blocks = [
-  // {
-  //   title: "",
-  //   type: "html",
-  //   content: titleSheet,
-  //   vars: {
-  //     labaNo: 7,
-  //     professor: "проф. Зайченко Ю.П.",
-  //     course: "Теорія прийняття рішень",
-  //     title: "контрольної",
-  //   },
-  // },
+  {
+    title: "",
+    type: "html",
+    content: titleSheet,
+    vars: {
+      labaNo: 9,
+      professor: "проф. Зайченко Ю.П.",
+      course: "Теорія прийняття рішень",
+      title: "контрольної",
+    },
+  },
   ...contents.map((task) => ({
     title: "",
     type: "markdown",
