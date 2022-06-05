@@ -2,6 +2,7 @@ import task1 from "./task-1.md";
 import task2 from "./task-2.md";
 import task3 from "./task-3.md";
 import task4 from "./task-4.md";
+import task5 from "./task-5.md";
 
 import { render } from "@/core";
 import titleSheet from "@/common/tpr-title-sheet.html";
@@ -12,7 +13,8 @@ const contents = [
   // task1,
   // task2,
   // task3,
-  task4,
+  // task4,
+  task5,
 ];
 
 const blocks = [
