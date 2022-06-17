@@ -1,6 +1,6 @@
 import a_star from "./a_star.mmd";
 import greedy from "./greedy.mmd";
-import queens from "./queens.mmd";
+import dfs from "./dfs.mmd";
 import text from "./text.md";
 import { render } from "@/core";
 import "@/style.css";
@@ -27,9 +27,9 @@ const blocks = [
   },
   {
     type: "mermaid",
-    content: queens,
+    content: dfs,
     vars: {
-      id: "queens",
+      id: "dfs",
     },
   },
 ];

@@ -85,5 +85,5 @@
 
 Рисунок 1. Дерево рішень для алгоритму DFS.
 
-<style>#queens > svg {height:100rem}</style>
-<div id="queens" style="height:100rem"></div>
+<style>#dfs > svg {height:100rem}</style>
+<div id="dfs" style="height:100rem"></div>
