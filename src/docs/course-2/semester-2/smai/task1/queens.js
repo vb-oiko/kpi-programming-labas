@@ -174,5 +174,52 @@ const solveByDepthFirstSearch = (prevState, state) => {
   });
 };
 
-solveByDepthFirstSearch(null, state);
-flush("dfs");
+// solveByDepthFirstSearch(null, state);
+// flush("dfs");
+
+const solveByBreadthFirstSearch = (prevState, state) => {
+  usedStates.add(state);
+  if (solutionFound) {
+    return;
+  }
+
+  if (isTargetState(state)) {
+    solutionFound = true;
+    return;
+  }
+
+  const newStates = getAllNewStates(state).filter(
+    (s) => !usedStates.has(indexState(s))
+  );
+
+  if (newStates.length === 0) {
+    return;
+  }
+
+  newStates.forEach((newState) => {
+    if (!usedStates.has(newState)) {
+      const nodeId = count();
+      log(logMove(state, newState));
+    }
+    usedStates.add(indexState(state));
+  });
+
+  for (const newState of newStates) {
+    if (isTargetState(newState)) {
+      console.warn("Solution found!");
+      solutionFound = true;
+      return;
+    }
+  }
+
+  for (const newState of newStates) {
+    solveByBreadthFirstSearch(state, newState);
+    if (isTargetState(newState)) {
+      solutionFound = true;
+      return;
+    }
+  }
+};
+
+solveByBreadthFirstSearch(null, state);
+flush("bfs");
