@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "NODE_ENV='production' webpack",
-    "start": "webpack serve"
+    "start": "webpack serve",
+    "queens": "nodemon src/docs/course-2/semester-2/smai/task1/queens.js"
   },
   "keywords": [],
   "author": "",
