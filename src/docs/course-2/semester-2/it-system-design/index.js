@@ -1,6 +1,6 @@
 import text from "./text.md";
 import { render } from "@/core";
-import titleSheet from "@/common/laba-title-sheet.html";
+import titleSheet from "@/common/laba-title-sheet-var-2.html";
 import "@/style.css";
 
 const blocks = [
@@ -13,6 +13,7 @@ const blocks = [
       professor: "доц. Коваленко А.Є.",
       course: "Проектування інформаційних систем",
       title: "залікової контрольної",
+      variant: 21,
     },
   },
   {
