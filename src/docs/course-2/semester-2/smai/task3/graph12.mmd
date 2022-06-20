@@ -1,0 +1,74 @@
+
+flowchart TD
+    classDef disabled fill:#fff,color:#666,stroke:#666,stroke-dasharray: 5 5
+    
+A[/5, +inf\] --- B    
+A --- C
+
+B[\5, 5/] --- D
+B --- E
+C[\9,+inf/] --- F
+C --- G:::disabled
+
+D[/7, 7\] --- H
+D --- I
+E[/5,5\] --- J
+E --- K
+F[/9,9\] --- L
+F --- M
+G[/G\] --- N:::disabled
+G --- O:::disabled
+G --- P:::disabled
+
+H[\7, 7/] --- a(8)
+H --- b(7)
+I[\-inf, 2/] --- c(9)
+I --- d(2)
+I --- e(11):::disabled
+J[\5,5/] --- f(5)
+K[\3,3/] --- g(10)
+K --- h(3)
+L[\4,4/] --- i(12)
+L --- k(4)
+L --- l(6)
+M[\9,9/] --- m(9)
+N[\N/] --- n(6):::disabled
+O[\O/] --- o(14):::disabled
+O --- p(12):::disabled
+P[\P/] --- q(20):::disabled
+P --- r(2):::disabled
+P --- s(10):::disabled
+
+%% linkStyle 0 stroke:#888,stroke-width:2px,stroke-dasharray: 5 5;
+%% linkStyle 1 stroke:#888,stroke-width:2px,stroke-dasharray: 5 5;
+%% linkStyle 2 stroke:#888,stroke-width:2px,stroke-dasharray: 5 5;
+%% linkStyle 3 stroke:#888,stroke-width:2px,stroke-dasharray: 5 5;
+%%linkStyle 4 stroke:#888,stroke-width:2px,stroke-dasharray: 5 5;
+linkStyle 5 stroke:#888,stroke-width:2px,stroke-dasharray: 5 5;
+%% linkStyle 6 stroke:#888,stroke-width:2px,stroke-dasharray: 5 5;
+%% linkStyle 7 stroke:#888,stroke-width:2px,stroke-dasharray: 5 5;
+%% linkStyle 8 stroke:#888,stroke-width:2px,stroke-dasharray: 5 5;
+%% linkStyle 9 stroke:#888,stroke-width:2px,stroke-dasharray: 5 5;
+%% linkStyle 10 stroke:#888,stroke-width:2px,stroke-dasharray: 5 5;
+%% linkStyle 11 stroke:#888,stroke-width:2px,stroke-dasharray: 5 5;
+linkStyle 12 stroke:#888,stroke-width:2px,stroke-dasharray: 5 5;
+linkStyle 13 stroke:#888,stroke-width:2px,stroke-dasharray: 5 5;
+linkStyle 14 stroke:#888,stroke-width:2px,stroke-dasharray: 5 5;
+%% linkStyle 15 stroke:#888,stroke-width:2px,stroke-dasharray: 5 5;
+%% linkStyle 16 stroke:#888,stroke-width:2px,stroke-dasharray: 5 5;
+%% linkStyle 17 stroke:#888,stroke-width:2px,stroke-dasharray: 5 5;
+%% linkStyle 18 stroke:#888,stroke-width:2px,stroke-dasharray: 5 5;
+linkStyle 19 stroke:#888,stroke-width:2px,stroke-dasharray: 5 5;
+%% linkStyle 20 stroke:#888,stroke-width:2px,stroke-dasharray: 5 5;
+%% linkStyle 21 stroke:#888,stroke-width:2px,stroke-dasharray: 5 5;
+%% linkStyle 22 stroke:#888,stroke-width:2px,stroke-dasharray: 5 5;
+%% linkStyle 23 stroke:#888,stroke-width:2px,stroke-dasharray: 5 5;
+%% linkStyle 24 stroke:#888,stroke-width:2px,stroke-dasharray: 5 5;
+%% linkStyle 25 stroke:#888,stroke-width:2px,stroke-dasharray: 5 5;
+%% linkStyle 26 stroke:#888,stroke-width:2px,stroke-dasharray: 5 5;
+linkStyle 27 stroke:#888,stroke-width:2px,stroke-dasharray: 5 5;
+linkStyle 28 stroke:#888,stroke-width:2px,stroke-dasharray: 5 5;
+linkStyle 29 stroke:#888,stroke-width:2px,stroke-dasharray: 5 5;
+linkStyle 30 stroke:#888,stroke-width:2px,stroke-dasharray: 5 5;
+linkStyle 31 stroke:#888,stroke-width:2px,stroke-dasharray: 5 5;
+linkStyle 32 stroke:#888,stroke-width:2px,stroke-dasharray: 5 5;
