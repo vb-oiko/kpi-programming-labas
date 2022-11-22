@@ -1,12 +1,19 @@
 body {
-  margin: 2rem;
-  font-size: 1.1rem;
+  margin-left: 2cm;
+  font-size: 14pt;
+  line-height: 21pt;
+  width: 600px;
+  font-family: "Times New Roman", Times, serif;
+}
+
+img {
+  width: 100%;
 }
 
 h1,
 h2,
 h3 {
-  font-size: 1.1rem;
+  font-size: 14pt;
 }
 
 h1 {
@@ -16,7 +23,7 @@ h1 {
 .flowchart,
 h2,
 h3 {
-  text-align: center;
+  text-align: left;
   margin-block-start: 2rem;
 }
 

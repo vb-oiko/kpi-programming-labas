@@ -1,0 +1,18 @@
+flowchart TD
+    classDef removed fill:#666,color:#fff;
+    
+    a(a:14) --> b(b:16)
+    a(a:14) --> c(c:14)
+
+    c(c:14) --> d(d:16)
+    c(c:14) --> e(e:17):::removed
+
+    b(b:16) --> f(f:20)
+    b(b:16) --> e1(e:20):::removed
+    
+    d(d:16) --> e2(e:16)
+
+    e2(e:16) --> b1(b:36):::removed
+    e2(e:16) --> z(z:17)
+
+   

@@ -1,0 +1,9 @@
+graph TD
+    START(["Початок&nbsp"])
+    INPUT[/"&nbsp;&nbsp;&nbsp; x,y,z &nbsp;&nbsp;&nbsp;"/]
+    CALC1["a := (3 + exp(y - 1)) / ((1 + x^2) * abs(y - tan(z))) &nbsp " ]
+    CALC2["b := 1 + abs(y - x) + (y - x)^2 / 2 + (abs(y - x))^2 / 3 &nbsp " ]
+    OUTPUT[/"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a,b &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "/]
+    STOP([Кінець])
+    START --> INPUT --> CALC1 --> CALC2 --> OUTPUT --> STOP
+    classDef default fill:#fff,stroke:#333,stroke-width:2px;

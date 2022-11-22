@@ -1,0 +1,14 @@
+graph TD
+    START(["Початок&nbsp"])
+    INPUT[/"&nbsp;&nbsp;&nbsp; x &nbsp;&nbsp;&nbsp;"/]
+    COND1{"&nbsp;&nbsp;&nbsp; x<0 &nbsp;&nbsp;&nbsp;"}
+    COND2{"&nbsp;&nbsp;&nbsp; x>Pi &nbsp;&nbsp;&nbsp;"}
+    CALC1["y := 1 &nbsp "]
+    CALC2["y := -1 &nbsp "]
+    CALC3["y := cos(x) "]
+    OUTPUT[/"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; y &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  "/]
+    STOP([Кінець])
+    START --> INPUT --> COND1 -->|Так| CALC1 --> OUTPUT --> STOP
+    COND1 -->|Ні| COND2 -->|Так| CALC2 --> OUTPUT
+    COND2 -->|Ні| CALC3 --> OUTPUT
+    classDef default fill:#fff,stroke:#333,stroke-width:2px;

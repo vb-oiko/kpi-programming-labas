@@ -9,14 +9,15 @@
                 "${file}",
                 "-lm",
                 "-o",
-                "${workspaceFolder}/build/${fileBasenameNoExtension}",
+                "${workspaceFolder}/${fileBasenameNoExtension}",
             ],
             "options": {
                 "cwd": "${workspaceFolder}",
             },
-            "problemMatcher": [
-                "$gcc"
-            ],
+            "problemMatcher": {
+                "base": "$gcc",
+                "fileLocation": "absolute"
+            },
             "group": "build",
             "presentation": {
                 "echo": true,

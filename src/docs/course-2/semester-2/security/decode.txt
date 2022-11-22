@@ -1,0 +1,70 @@
+~/Documents/security
+ % ./decode.sh    
+------------------
+rc2-40-cbc
+------------------
+*** WARNING : deprecated key derivation used.
+Using -iter or -pbkdf2 would be better.
+openssl enc -d -rc2-40-cbc -k secret -in "file_rc2_encoded"$i -out   0,02s user 0,01s system 45% cpu 0,061 total
+*** WARNING : deprecated key derivation used.
+Using -iter or -pbkdf2 would be better.
+openssl enc -d -rc2-40-cbc -k secret -in "file_rc2_encoded"$i -out   0,04s user 0,01s system 53% cpu 0,096 total
+*** WARNING : deprecated key derivation used.
+Using -iter or -pbkdf2 would be better.
+openssl enc -d -rc2-40-cbc -k secret -in "file_rc2_encoded"$i -out   0,04s user 0,02s system 53% cpu 0,125 total
+*** WARNING : deprecated key derivation used.
+Using -iter or -pbkdf2 would be better.
+openssl enc -d -rc2-40-cbc -k secret -in "file_rc2_encoded"$i -out   0,05s user 0,02s system 58% cpu 0,125 total
+*** WARNING : deprecated key derivation used.
+Using -iter or -pbkdf2 would be better.
+openssl enc -d -rc2-40-cbc -k secret -in "file_rc2_encoded"$i -out   0,07s user 0,02s system 59% cpu 0,152 total
+*** WARNING : deprecated key derivation used.
+Using -iter or -pbkdf2 would be better.
+openssl enc -d -rc2-40-cbc -k secret -in "file_rc2_encoded"$i -out   0,08s user 0,05s system 55% cpu 0,224 total
+*** WARNING : deprecated key derivation used.
+Using -iter or -pbkdf2 would be better.
+openssl enc -d -rc2-40-cbc -k secret -in "file_rc2_encoded"$i -out   0,11s user 0,02s system 55% cpu 0,241 total
+*** WARNING : deprecated key derivation used.
+Using -iter or -pbkdf2 would be better.
+openssl enc -d -rc2-40-cbc -k secret -in "file_rc2_encoded"$i -out   0,11s user 0,04s system 55% cpu 0,273 total
+*** WARNING : deprecated key derivation used.
+Using -iter or -pbkdf2 would be better.
+openssl enc -d -rc2-40-cbc -k secret -in "file_rc2_encoded"$i -out   0,16s user 0,03s system 57% cpu 0,330 total
+*** WARNING : deprecated key derivation used.
+Using -iter or -pbkdf2 would be better.
+openssl enc -d -rc2-40-cbc -k secret -in "file_rc2_encoded"$i -out   0,14s user 0,06s system 56% cpu 0,349 total
+------------------
+aria-256-cfb1
+------------------
+*** WARNING : deprecated key derivation used.
+Using -iter or -pbkdf2 would be better.
+openssl enc -d -aria-256-cfb1 -k secret -in "file_aria_encoded"$i -out   1,25s user 0,02s system 96% cpu 1,316 total
+*** WARNING : deprecated key derivation used.
+Using -iter or -pbkdf2 would be better.
+openssl enc -d -aria-256-cfb1 -k secret -in "file_aria_encoded"$i -out   2,62s user 0,05s system 95% cpu 2,813 total
+*** WARNING : deprecated key derivation used.
+Using -iter or -pbkdf2 would be better.
+openssl enc -d -aria-256-cfb1 -k secret -in "file_aria_encoded"$i -out   4,17s user 0,09s system 96% cpu 4,437 total
+*** WARNING : deprecated key derivation used.
+Using -iter or -pbkdf2 would be better.
+openssl enc -d -aria-256-cfb1 -k secret -in "file_aria_encoded"$i -out   5,16s user 0,12s system 96% cpu 5,470 total
+*** WARNING : deprecated key derivation used.
+Using -iter or -pbkdf2 would be better.
+openssl enc -d -aria-256-cfb1 -k secret -in "file_aria_encoded"$i -out   5,99s user 0,25s system 96% cpu 6,458 total
+*** WARNING : deprecated key derivation used.
+Using -iter or -pbkdf2 would be better.
+openssl enc -d -aria-256-cfb1 -k secret -in "file_aria_encoded"$i -out   6,82s user 0,25s system 97% cpu 7,242 total
+*** WARNING : deprecated key derivation used.
+Using -iter or -pbkdf2 would be better.
+openssl enc -d -aria-256-cfb1 -k secret -in "file_aria_encoded"$i -out   8,05s user 0,25s system 97% cpu 8,514 total
+*** WARNING : deprecated key derivation used.
+Using -iter or -pbkdf2 would be better.
+openssl enc -d -aria-256-cfb1 -k secret -in "file_aria_encoded"$i -out   9,44s user 0,25s system 97% cpu 9,927 total
+*** WARNING : deprecated key derivation used.
+Using -iter or -pbkdf2 would be better.
+openssl enc -d -aria-256-cfb1 -k secret -in "file_aria_encoded"$i -out   10,34s user 0,32s system 97% cpu 10,962 total
+*** WARNING : deprecated key derivation used.
+Using -iter or -pbkdf2 would be better.
+openssl enc -d -aria-256-cfb1 -k secret -in "file_aria_encoded"$i -out   11,55s user 0,34s system 97% cpu 12,228 total
+vasyl@vasyl-VirtualBox ~/Documents/security
+ % 

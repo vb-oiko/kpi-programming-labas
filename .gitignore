@@ -1,3 +1,12 @@
+*
+!*/
+!*.*
 node_modules
 dist
 build
+.env
+*.cr
+*.dcr
+*.pem
+.DS_store
+.history

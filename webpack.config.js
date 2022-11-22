@@ -3,8 +3,14 @@ const fs = require("fs");
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+require("dotenv").config();
 
 const docsPath = path.resolve(__dirname, "src/docs/");
+
+const inclRegEx = new RegExp(process.env.INCLUDE_PATTERN);
+const exclRegEx = process.env.EXCLUDE_PATTERN
+  ? new RegExp(process.env.EXCLUDE_PATTERN)
+  : new RegExp("z..");
 
 const getSubFolders = (path) =>
   fs
@@ -17,7 +23,10 @@ const getAllFolders = (path) => {
   return folders
     .map((folder) => {
       const subFolders = getAllFolders(`${path}/${folder}`);
-      return subFolders.length
+      return subFolders.length &&
+        !fs
+          .readdirSync(`${path}/${folder}`)
+          .some((name) => name.endsWith(".js"))
         ? subFolders.map((subFolder) => `${folder}/${subFolder}`)
         : folder;
     })
@@ -26,7 +35,15 @@ const getAllFolders = (path) => {
 
 const toSnakeCase = (str) => str.replace(/\//g, "-");
 
-const htmlPageNames = getAllFolders(docsPath);
+const allFolders = getAllFolders(docsPath);
+
+const AllFoldersWithJs = allFolders.filter((folder) =>
+  fs.readdirSync(`${docsPath}/${folder}`).some((name) => name.endsWith(".js"))
+);
+
+const htmlPageNames = AllFoldersWithJs.filter(
+  (name) => inclRegEx.test(name) && !exclRegEx.test(name)
+);
 
 const multipleHtmlPlugins = htmlPageNames.map((name) => {
   return new HtmlWebpackPlugin({
@@ -47,6 +64,7 @@ const entry = htmlPageNames.reduce(
 );
 
 module.exports = {
+  mode: "development",
   resolve: {
     alias: {
       ["@"]: path.resolve(__dirname, "src/"),
